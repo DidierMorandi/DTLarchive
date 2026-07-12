@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+DTLarchive-output/
+build/
+dist/
+*.spec
+
+/logs/
