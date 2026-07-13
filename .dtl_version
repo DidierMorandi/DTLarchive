@@ -1,7 +1,7 @@
 {
   "project": "DTLarchive",
-  "version": "1.0.0",
-  "display_version": "v1.0.0",
-  "base_tag": "v1.0.0",
-  "updated_at": "2026-07-12T00:00:00+02:00"
+  "version": "2.1.1",
+  "display_version": "v2.1-1",
+  "base_tag": null,
+  "updated_at": "2026-07-13T19:15:00+02:00"
 }
