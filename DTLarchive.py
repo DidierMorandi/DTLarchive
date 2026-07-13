@@ -9,6 +9,7 @@ import hashlib
 import html
 import json
 import re
+import sqlite3
 import sys
 import tempfile
 import traceback
@@ -18,10 +19,13 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Sequence
 
+from dtlarchive_index import ArchiveIndex
+from dtlarchive_search import SearchEngine
+
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.1-1"
-SCHEMA_VERSION = "2.0"
+APP_VERSION = "v2.2-0"
+SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
 
@@ -113,6 +117,10 @@ def resolve_log_dir() -> Path:
         except OSError:
             continue
     return Path(tempfile.gettempdir())
+
+
+def default_index_path() -> Path:
+    return resolve_tool_dir() / "DTLarchive-index.sqlite"
 
 
 def current_log_path() -> Path:
@@ -384,12 +392,14 @@ def current_branch_messages(mapping: dict[str, Any], current_node: str | None) -
     return sorted(fallback, key=lambda message: (message.create_time is None, message.create_time or 0))
 
 
-def iter_conversations(path: Path) -> Iterator[Conversation]:
+def iter_conversations(path: Path, *, strict: bool = False) -> Iterator[Conversation]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError) as exc:
         write_action_log("Lecture d'une archive", "ERREUR", detail=str(path), exc=exc)
         print(f"[AVERTISSEMENT] {path}: {exc}", file=sys.stderr)
+        if strict:
+            raise
         return
     records = payload if isinstance(payload, list) else [payload]
     for raw in records:
@@ -413,42 +423,6 @@ def conversation_datetime(conversation: Conversation) -> dt.datetime | None:
         return dt.datetime.fromtimestamp(float(timestamp)) if timestamp is not None else None
     except (TypeError, ValueError, OSError):
         return None
-
-
-def conversation_in_period(
-    conversation: Conversation, start_date: dt.datetime | None, end_date: dt.datetime | None
-) -> bool:
-    if start_date is None and end_date is None:
-        return True
-    value = conversation_datetime(conversation)
-    if value is None:
-        return False
-    return not (start_date and value < start_date) and not (end_date and value > end_date)
-
-
-def load_conversation_archives(
-    files: Sequence[Path], *, show_progress: bool = False
-) -> dict[Path, list[Conversation]]:
-    archives: dict[Path, list[Conversation]] = {}
-    for source in files:
-        if show_progress:
-            print_current_file(source)
-        archives[source] = list(iter_conversations(source))
-    if show_progress:
-        clear_current_file()
-    return archives
-
-
-def archive_datetime_bounds(
-    archives: dict[Path, list[Conversation]],
-) -> tuple[dt.datetime, dt.datetime] | None:
-    dates = [
-        value
-        for conversations in archives.values()
-        for conversation in conversations
-        if (value := conversation_datetime(conversation)) is not None
-    ]
-    return (min(dates), max(dates)) if dates else None
 
 
 def period_overlaps_archive(
@@ -685,6 +659,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--date-debut", help="date de début inclusive au format jj/mm/aaaa")
     parser.add_argument("--date-fin", help="date de fin inclusive au format jj/mm/aaaa")
     parser.add_argument("--mots-cles", help="mots ou expressions séparés par des virgules")
+    parser.add_argument("--index", type=Path, help="chemin de la base d'index SQLite")
+    parser.add_argument("--reindex", action="store_true", help="reconstruire entièrement l'index")
     parser.add_argument(
         "--role",
         choices=("user", "assistant", "both"),
@@ -728,10 +704,47 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"[ERREUR] {message}", file=sys.stderr)
         return 2
 
-    if interactive:
-        print("\nAnalyse de la période couverte par les archives...", flush=True)
-    archives = load_conversation_archives(files, show_progress=interactive)
-    archive_bounds = archive_datetime_bounds(archives)
+    index_path = (args.index or default_index_path()).resolve()
+    try:
+        archive_index = ArchiveIndex(index_path)
+        if args.reindex:
+            archive_index.clear()
+        if interactive:
+            print("\nMise à jour de l'index local...", flush=True)
+        index_update = archive_index.update(
+            files,
+            lambda path: iter_conversations(path, strict=True),
+            force=args.reindex,
+            progress=print_current_file if interactive else None,
+        )
+        if interactive:
+            clear_current_file()
+            if index_update.imported_files:
+                file_label = pluralized(index_update.imported_files, "archive indexée", "archives indexées")
+                print(
+                    f"Index mis à jour : {green(index_update.imported_files)} {file_label}, "
+                    f"{green(index_update.imported_conversations)} conversations importées."
+                )
+            else:
+                print(f"Index déjà à jour : {green(index_update.unchanged_files)} archives réutilisées.")
+        source_ids = archive_index.source_ids(files)
+        archive_bounds = archive_index.archive_bounds(source_ids)
+    except (OSError, RuntimeError, ValueError, sqlite3.Error) as exc:
+        message = f"Impossible de mettre à jour l'index SQLite : {exc}"
+        write_action_log("Mise à jour de l'index SQLite", "ERREUR", detail=str(index_path), exc=exc)
+        print(f"[ERREUR] {message}", file=sys.stderr)
+        if interactive:
+            show_dialog("showerror", APP_NAME, message)
+        return 2
+
+    write_action_log(
+        "Index SQLite prêt",
+        "OK",
+        detail=(
+            f"base={index_path} | importées={index_update.imported_files} | "
+            f"réutilisées={index_update.unchanged_files}"
+        ),
+    )
     if interactive:
         if archive_bounds:
             print(f"Période disponible : {green(archive_period_label(archive_bounds))}")
@@ -743,6 +756,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         end_date = parse_french_date(args.date_fin, end_of_day=True) if args.date_fin else None
     except ValueError:
         print("[ERREUR] Date invalide : utilisez le format jj/mm/aaaa.", file=sys.stderr)
+        archive_index.close()
         return 2
 
     terms = parse_query(args.mots_cles or "")
@@ -770,6 +784,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         role_scope = ask_role_scope()
     elif start_date and end_date and start_date > end_date:
         print("[ERREUR] La date de fin doit être postérieure ou égale à la date de début.", file=sys.stderr)
+        archive_index.close()
         return 2
 
     if not period_overlaps_archive(start_date, end_date, archive_bounds):
@@ -777,9 +792,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         message = f"La période demandée ne recoupe pas celle des archives ({available})."
         write_action_log("Contrôle de la période", "ERREUR", detail=message)
         print(f"[ERREUR] {message}", file=sys.stderr)
+        archive_index.close()
         return 2
     if not any(not term.excluded for term in terms):
         print("[ERREUR] Saisissez au moins un mot-clé à rechercher.", file=sys.stderr)
+        archive_index.close()
         return 2
 
     all_labels = format_query(terms)
@@ -794,35 +811,32 @@ def main(argv: Sequence[str] | None = None) -> int:
     if interactive:
         label = pluralized(len(files), "fichier sélectionné", "fichiers sélectionnés")
         print(f"\n{green(len(files))} {label}.")
-        print("Traitement en cours, merci de patienter...", flush=True)
+        print("Recherche dans l'index local, merci de patienter...", flush=True)
 
     results: list[MiningResult] = []
     matched_conversations: list[tuple[MiningResult, Conversation]] = []
-    conversation_count = 0
-    for source, conversations in archives.items():
-        if interactive:
-            print_current_file(source)
-        for conversation in conversations:
-            if not conversation_in_period(conversation, start_date, end_date):
-                continue
-            conversation_count += 1
-            result = mine_conversation(conversation, terms, role_scope)
-            if result is not None:
-                page_name = conversation_page_name(conversation)
-                first_match_index = next(
-                    (
-                        item["index"]
-                        for context in result.contexts
-                        for item in context["messages"]
-                        if item["matched"]
-                    ),
-                    0,
-                )
-                result.conversation_url = f"conversations/{page_name}#msg-{first_match_index}"
-                results.append(result)
-                matched_conversations.append((result, conversation))
+    search_selection = SearchEngine(archive_index, source_ids).search(
+        terms, role_scope, start_date, end_date
+    )
+    conversation_count = search_selection.examined_count
+    for conversation in search_selection.conversations:
+        result = mine_conversation(conversation, terms, role_scope)
+        if result is not None:
+            page_name = conversation_page_name(conversation)
+            first_match_index = next(
+                (
+                    item["index"]
+                    for context in result.contexts
+                    for item in context["messages"]
+                    if item["matched"]
+                ),
+                0,
+            )
+            result.conversation_url = f"conversations/{page_name}#msg-{first_match_index}"
+            results.append(result)
+            matched_conversations.append((result, conversation))
+    archive_index.close()
     if interactive:
-        clear_current_file()
         print()
 
     def result_date_key(result: MiningResult) -> dt.datetime:
@@ -847,6 +861,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "schema_version": SCHEMA_VERSION,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "source_files": [str(path) for path in files],
+        "index_path": str(index_path),
         "fichiers": len(files),
         "conversations_lues": conversation_count,
         "date_debut": start_date.strftime("%d/%m/%Y") if start_date else None,

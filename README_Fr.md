@@ -1,8 +1,10 @@
 # DTLarchive
 
-Version actuelle : **v2.1-1**
+Version actuelle : **v2.2-0**
 
 [English version](README.md)
+
+Dépôt : [DidierMorandi/DTLarchive](https://github.com/DidierMorandi/DTLarchive)
 
 DTLarchive est un outil local de fouille et de recherche dans les archives de
 conversations ChatGPT. Il permet de retrouver toutes les conversations qui
@@ -15,16 +17,22 @@ et les réponses de ChatGPT, ou dans les titres et les messages des deux rôles.
 Tout le traitement reste sur l'ordinateur : aucune archive ni recherche n'est
 envoyée à un service en ligne.
 
+La version 2.2 introduit un index SQLite persistant. Les exports JSON ne sont
+analysés que lorsqu'ils sont nouveaux ou modifiés ; les recherches suivantes
+réutilisent l'index local en texte intégral au lieu de relire toutes les archives.
+
 ## Utilisation de l'exécutable Windows
 
 1. Ouvrez `DTLarchive.exe`.
 2. Appuyez sur une touche à l'invite, puis sélectionnez un ou plusieurs fichiers
    `conversations*.json` provenant d'un export ChatGPT.
-3. Consultez la période réellement couverte par les conversations choisies.
-4. Saisissez éventuellement une date de début et une date de fin inclusives au
+3. Laissez DTLarchive mettre à jour son index local. Les archives inchangées
+   sont réutilisées sans être relues.
+4. Consultez la période réellement couverte par les conversations choisies.
+5. Saisissez éventuellement une date de début et une date de fin inclusives au
    format `jj/mm/aaaa`. Laissez un champ vide pour supprimer cette limite.
-5. Saisissez les mots-clés et choisissez où effectuer la recherche.
-6. Patientez pendant le traitement, puis appuyez sur une touche pour ouvrir le
+6. Saisissez les mots-clés et choisissez où effectuer la recherche.
+7. Patientez pendant la recherche dans l'index, puis appuyez sur une touche pour ouvrir le
    rapport HTML dans le navigateur par défaut.
 
 DTLarchive contrôle la période demandée avant de demander les mots-clés. Une
@@ -61,6 +69,27 @@ Le mode interactif propose trois périmètres :
 
 Les titres des conversations sont inclus dans tous les périmètres.
 
+## Index SQLite local
+
+L'index par défaut est enregistré à côté de l'application :
+
+```text
+DTLarchive-index.sqlite
+```
+
+La base sépare l'importation des archives, la recherche indexée et l'analyse des
+résultats. Elle contient les empreintes des fichiers sources, les conversations
+uniques, les messages ordonnés, leur provenance et un index plein texte SQLite
+FTS5. Une conversation présente dans plusieurs exports sélectionnés n'est
+enregistrée qu'une fois, tout en conservant ses liens vers les fichiers sources.
+Lorsqu'une source change, DTLarchive conserve la version la plus récente de
+chaque conversation.
+
+La taille et la date de modification permettent de reconnaître immédiatement un
+fichier inchangé. Une empreinte SHA-256 évite aussi une réimportation inutile si
+seules les informations du fichier ont changé. L'option `--reindex` force une
+reconstruction complète.
+
 ## Ligne de commande
 
 DTLarchive accepte des fichiers d'archive individuels ou des dossiers. Dans un
@@ -81,6 +110,8 @@ Options utiles :
 
 - `--output CHEMIN` choisit le dossier de sortie ;
 - `--pattern MOTIF` modifie le motif des noms de fichiers d'archive ;
+- `--index CHEMIN` choisit un autre fichier d'index SQLite ;
+- `--reindex` efface et reconstruit l'index sélectionné ;
 - `--quiet` masque le résumé des résultats dans la console ;
 - `--version` affiche la version du programme.
 
@@ -92,6 +123,7 @@ extérieure aux archives provoque un arrêt avec le code de sortie `2`.
 En mode interactif, les fichiers suivants sont créés à côté de l'application :
 
 ```text
+DTLarchive-index.sqlite
 DTLarchive-output\
 ├── conversations\
 │   └── conversation-<identifiant>.html
@@ -132,5 +164,12 @@ logs\DTLarchive_AAAAMMJJ.html
 ```
 
 Le journal enregistre le démarrage, les paramètres choisis, les recherches
-terminées et les erreurs fatales ou liées aux saisies, sans envoyer
+terminées et les erreurs fatales ou liées aux saisies. Il indique également le
+nombre d'archives importées ou réutilisées depuis l'index, sans envoyer
 d'information hors de l'ordinateur.
+
+## Licence
+
+DTLarchive est distribué sous [licence MIT](LICENSE).
+
+Copyright © 2026 Didier DTL Morandi — [www.netdtl.com](https://www.netdtl.com/)

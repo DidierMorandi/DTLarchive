@@ -1,8 +1,10 @@
 # DTLarchive
 
-Current version: **v2.1-1**
+Current version: **v2.2-0**
 
 [Version française](README_Fr.md)
+
+Repository: [DidierMorandi/DTLarchive](https://github.com/DidierMorandi/DTLarchive)
 
 DTLarchive is a local data-mining and search tool for ChatGPT conversation
 archives. It can find every conversation that contains a word, phrase, or
@@ -13,16 +15,22 @@ You can also search titles and ChatGPT answers, or titles and both roles. The
 tool runs entirely on the local computer: no archive or search term is sent to
 an online service.
 
+Version 2.2 introduces a persistent SQLite index. JSON exports are parsed only
+when they are new or modified; later searches reuse the local full-text index
+instead of reading every archive again.
+
 ## Using the Windows executable
 
 1. Open `DTLarchive.exe`.
 2. Press a key when prompted, then select one or more
    `conversations*.json` files from a ChatGPT export.
-3. Review the date range actually covered by the selected conversations.
-4. Optionally enter an inclusive start date and end date in `dd/mm/yyyy`
+3. Let DTLarchive update its local index. Unchanged archives are reused without
+   being parsed again.
+4. Review the date range actually covered by the selected conversations.
+5. Optionally enter an inclusive start date and end date in `dd/mm/yyyy`
    format. Leave either field empty to remove that limit.
-5. Enter the keyword query and choose where to search.
-6. Wait while the archives are processed, then press a key to open the HTML
+6. Enter the keyword query and choose where to search.
+7. Wait while the index is searched, then press a key to open the HTML
    report in the default browser.
 
 DTLarchive validates the requested period before asking for keywords. A period
@@ -57,6 +65,25 @@ Interactive mode offers three scopes:
 
 Conversation titles are included in every scope.
 
+## Local SQLite index
+
+The default index is stored next to the application:
+
+```text
+DTLarchive-index.sqlite
+```
+
+The database separates archive import, indexed search, and result analysis. It
+contains source-file fingerprints, unique conversations, ordered messages,
+source provenance, and an SQLite FTS5 full-text index. A conversation appearing
+in several selected exports is stored only once, while its source links are
+preserved. When a source changes, DTLarchive keeps the newest available version
+of each conversation.
+
+File size and modification time provide the fast unchanged-file check. A
+SHA-256 fingerprint prevents unnecessary reimport when only file metadata has
+changed. Use `--reindex` when a complete rebuild is required.
+
 ## Command line
 
 DTLarchive accepts individual archive files or directories. Directories are
@@ -77,6 +104,8 @@ Useful options:
 
 - `--output PATH` selects the output directory;
 - `--pattern PATTERN` changes the archive filename pattern;
+- `--index PATH` selects another SQLite index file;
+- `--reindex` clears and rebuilds the selected index;
 - `--quiet` suppresses the result summary in the console;
 - `--version` displays the program version.
 
@@ -88,6 +117,7 @@ command-line execution with exit code `2`.
 Interactive runs create the following files next to the application:
 
 ```text
+DTLarchive-index.sqlite
 DTLarchive-output\
 ├── conversations\
 │   └── conversation-<identifier>.html
@@ -123,4 +153,11 @@ logs\DTLarchive_YYYYMMDD.html
 ```
 
 The log records startup, selected parameters, completed searches, and fatal or
-input-related errors without sending any information outside the computer.
+input-related errors. It also indicates how many archive files were imported or
+reused from the index, without sending any information outside the computer.
+
+## License
+
+DTLarchive is released under the [MIT License](LICENSE).
+
+Copyright © 2026 Didier DTL Morandi — [www.netdtl.com](https://www.netdtl.com/)
