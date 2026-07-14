@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTLarchive — Guide utilisateur v2.2-5</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  :root{--bg:#0f1117;--surface:#181c27;--border:#2a3142;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#7b879f;--heading:#f2f6ff;--code:#12161f;--blue:#55a7ff;--warning:#ffcc66;--sidebar:280px}
+  *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',Arial,sans-serif;font-size:15px;line-height:1.7;display:flex;min-height:100vh}
+  nav{position:fixed;inset:0 auto 0 0;width:var(--sidebar);height:100vh;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:28px 0 40px;z-index:10}nav .logo{font:600 12px/1.4 'IBM Plex Mono',monospace;color:var(--accent);letter-spacing:2px;text-transform:uppercase;padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}nav .logo span{display:block;color:var(--muted);font-size:9px;letter-spacing:1px;margin-top:4px}nav a{display:block;color:var(--muted);text-decoration:none;font:12px/1.4 'IBM Plex Mono',monospace;padding:6px 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.active{color:var(--accent);background:rgba(57,255,20,.05)}nav a.group{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding-top:16px;opacity:.6}nav a.group:hover{background:none;opacity:1}
+  main{margin-left:var(--sidebar);padding:54px 64px 100px;max-width:1190px;width:100%}.doc-header{margin-bottom:44px;padding-bottom:30px;border-bottom:1px solid var(--border)}.doc-header h1{font:600 28px/1.3 'IBM Plex Mono',monospace;color:var(--heading)}.accent{color:var(--accent)}.subtitle{color:var(--muted);margin-top:10px}.lang-link{display:inline-block;margin-top:14px;color:var(--blue)}.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.pill{font:11px 'IBM Plex Mono',monospace;padding:4px 9px;border:1px solid var(--border);background:var(--code);border-radius:3px;color:var(--muted)}.pill b{color:var(--accent);margin-right:5px}
+  h2{font:600 14px 'IBM Plex Mono',monospace;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin:54px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border)}h3{font:600 17px 'IBM Plex Mono',monospace;color:var(--heading);margin:34px 0 13px}h4{font:600 13px 'IBM Plex Mono',monospace;color:var(--blue);margin:18px 0 6px;text-transform:uppercase;letter-spacing:1px}p{margin-bottom:14px}strong{color:var(--heading)}code{font:12px 'IBM Plex Mono',monospace;background:var(--code);border:1px solid var(--border);border-radius:3px;padding:1px 6px;color:#9bff85}pre{font:12px/1.65 'IBM Plex Mono',monospace;background:var(--code);border:1px solid var(--border);padding:16px 18px;margin:14px 0 20px;overflow:auto;color:#9bff85}
+  ul,ol{margin:9px 0 18px 25px}li{padding:3px 0 3px 4px}li::marker{color:var(--accent);font-weight:600}.feature{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 22px;margin:18px 0}.feature h3{margin-top:0}.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.triptych>div{background:var(--code);border:1px solid var(--border);border-top:3px solid var(--accent-dim);padding:14px}.triptych h4{margin-top:0;color:var(--accent)}.callout{background:rgba(57,255,20,.045);border:1px solid var(--accent-dim);border-radius:4px;padding:14px 18px;margin:17px 0}.warning{background:rgba(255,204,102,.055);border-color:#695522}.warning strong{color:var(--warning)}.steps{counter-reset:step;list-style:none;margin-left:0}.steps li{position:relative;padding:8px 0 12px 42px}.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:7px;width:26px;height:26px;border:1px solid var(--accent-dim);border-radius:50%;color:var(--accent);font:600 12px/24px 'IBM Plex Mono';text-align:center}.figure{margin:20px 0;padding:12px;background:var(--surface);border:1px solid var(--border)}.figure img{display:block;width:100%;height:auto}.figure figcaption{color:var(--muted);font-size:12px;margin-top:8px}.audience{font:10px 'IBM Plex Mono',monospace;color:var(--blue);text-transform:uppercase;letter-spacing:1.5px}
+  table{width:100%;border-collapse:collapse;margin:15px 0 24px;font-size:13px}thead{background:var(--code)}th{font:600 10px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:10px 12px;text-align:left}td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}td:first-child{font-family:'IBM Plex Mono',monospace;color:var(--accent)}tbody tr:hover{background:rgba(57,255,20,.025)}footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+  @media(max-width:900px){nav{display:none}main{margin-left:0;padding:32px 24px 60px}.triptych{grid-template-columns:1fr}.doc-header h1{font-size:23px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<nav aria-label="Sommaire">
+  <div class="logo">DTLarchive<span>Guide utilisateur v2.2-5</span></div>
+  <a class="group" href="#start">Premiers pas</a><a href="#purpose">À quoi sert DTLarchive ?</a><a href="#prepare">Préparer les archives</a><a href="#quickstart">Parcours rapide</a>
+  <a class="group" href="#features">Fonctionnalités</a><a href="#language">Langue et aide</a><a href="#selection">Sélection et index</a><a href="#dates">Période</a><a href="#query">Recherche</a><a href="#scope">Périmètre</a><a href="#report">Rapport et contextes</a><a href="#json">Résultats JSON</a>
+  <a class="group" href="#advanced">Utilisation avancée</a><a href="#index">Gérer l'index</a><a href="#commandline">Ligne de commande</a><a href="#diagnostics">Diagnostic</a>
+  <a class="group" href="#help">Aide</a><a href="#troubleshooting">Résoudre un problème</a><a href="#privacy">Confidentialité</a><a href="#glossary">Glossaire</a>
+</nav>
+<main>
+  <header class="doc-header">
+    <h1><span class="accent">DTLarchive</span> — Guide utilisateur v2.2-5</h1>
+    <p class="subtitle">Le quoi, le pourquoi et le comment de chaque fonctionnalité.</p>
+    <a class="lang-link" href="DTLarchive_User_Guide.html">Read this guide in English</a>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-5</span><span class="pill"><b>date</b>14 juillet 2026</span><span class="pill"><b>public</b>tous publics</span><span class="pill"><b>système</b>Windows</span><span class="pill"><b>langues</b>fr / en</span></div>
+  </header>
+
+  <h2 id="start">Premiers pas</h2>
+  <h3 id="purpose">À quoi sert DTLarchive ?</h3>
+  <p>DTLarchive recherche et rassemble les connaissances présentes dans vos archives de conversations ChatGPT. Il transforme les fichiers JSON de l'export en un index local, puis produit un rapport lisible qui conserve le contexte des correspondances.</p>
+  <div class="callout"><strong>Confidentialité :</strong> les archives, l'index, les recherches et les rapports restent sur votre ordinateur. Aucun service d'IA externe n'est nécessaire.</div>
+  <p class="audience">Public : tous publics</p>
+
+  <h3 id="prepare">Préparer les archives</h3>
+  <div class="triptych">
+    <div><h4>Quoi ?</h4><p>DTLarchive lit les fichiers nommés <code>conversations*.json</code> provenant d'un export ChatGPT.</p></div>
+    <div><h4>Pourquoi ?</h4><p>Ces fichiers contiennent les titres, dates, questions et réponses nécessaires à la recherche.</p></div>
+    <div><h4>Comment ?</h4><p>Décompressez l'export ChatGPT dans un dossier facile à retrouver. Ne modifiez pas les fichiers JSON avant leur sélection.</p></div>
+  </div>
+  <div class="warning callout"><strong>À ne pas confondre :</strong> choisissez les fichiers JSON de conversations, pas le fichier ZIP complet, les pages HTML de l'export ou les rapports produits par DTLarchive.</div>
+
+  <h3 id="quickstart">Parcours rapide avec l'exécutable</h3>
+  <ol class="steps">
+    <li>Double-cliquez sur <code>DTLarchive.exe</code>.</li>
+    <li>Appuyez sur <strong>Entrée</strong> pour continuer en français. Pour passer en anglais, saisissez <code>1</code> : la question en cours est alors répétée en anglais.</li>
+    <li>Dans l'Explorateur de fichiers, sélectionnez un ou plusieurs fichiers <code>conversations*.json</code>, puis validez.</li>
+    <li>Lisez la période disponible. Saisissez éventuellement une date de début et une date de fin au format <code>jj/mm/aaaa</code>, ou laissez les champs vides.</li>
+    <li>Saisissez votre recherche, puis choisissez <code>1</code>, <code>2</code> ou <code>3</code> pour déterminer les parties des conversations à examiner.</li>
+    <li>À la fin du traitement, appuyez sur une touche. Le rapport s'ouvre dans votre navigateur par défaut.</li>
+  </ol>
+
+  <h2 id="features">Fonctionnalités principales</h2>
+  <section class="feature">
+    <h3 id="language">Choisir la langue et demander de l'aide</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>L'interface complète existe en français et en anglais. Une aide contextuelle est disponible à chaque question interactive.</p></div>
+      <div><h4>Pourquoi ?</h4><p>La langue choisie s'applique aux questions, erreurs, fenêtres, rapports, pages de conversation et journaux.</p></div>
+      <div><h4>Comment ?</h4><p>À la première question, saisissez <code>1</code> pour l'anglais ou appuyez sur Entrée pour le français. Saisissez <code>?</code>, <code>aide</code>, <code>help</code> ou <code>h</code> pour obtenir l'explication de la question affichée.</p></div>
+    </div>
+    <p>Après une demande d'aide, DTLarchive affiche l'explication puis répète la même question. Le passage à l'anglais fonctionne de la même manière : il ne saute aucune étape.</p>
+  </section>
+
+  <section class="feature">
+    <h3 id="selection">Sélectionner les archives et alimenter l'index</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>Vous pouvez réunir plusieurs fichiers d'archives dans une seule recherche. DTLarchive les inscrit dans un index SQLite persistant.</p></div>
+      <div><h4>Pourquoi ?</h4><p>L'index accélère les recherches suivantes et évite de relire les fichiers inchangés. Une conversation dupliquée dans plusieurs exports n'est conservée qu'une fois.</p></div>
+      <div><h4>Comment ?</h4><p>Dans la fenêtre de sélection, maintenez <strong>Ctrl</strong> pour choisir plusieurs fichiers séparés, ou <strong>Maj</strong> pour une plage continue, puis cliquez sur <strong>Ouvrir</strong>.</p></div>
+    </div>
+    <p>Pendant la mise à jour, le nom du fichier traité apparaît. Le message final précise combien d'archives ont été importées ou réutilisées. Gardez l'index <code>DTLarchive-index.sqlite</code> à côté de l'application si vous souhaitez bénéficier de cette réutilisation.</p>
+  </section>
+
+  <section class="feature">
+    <h3 id="dates">Limiter la recherche à une période</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>Le filtre de période retient seulement les conversations datées entre deux limites inclusives.</p></div>
+      <div><h4>Pourquoi ?</h4><p>Il réduit le nombre de résultats lorsque les mêmes termes apparaissent sur plusieurs années.</p></div>
+      <div><h4>Comment ?</h4><p>Saisissez les dates au format <code>jj/mm/aaaa</code>. Laissez la date de début vide pour partir du début des archives, la date de fin vide pour aller jusqu'au dernier échange, ou les deux vides pour tout rechercher.</p></div>
+    </div>
+    <p>DTLarchive affiche d'abord la période réellement disponible. Si la fin précède le début ou si la période ne recoupe aucune archive, il explique l'erreur et redemande les dates. Une période partiellement couverte reste valable.</p>
+  </section>
+
+  <section class="feature">
+    <h3 id="query">Formuler une recherche</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>La recherche accepte un mot, une expression, des alternatives, des termes obligatoires, une exclusion ou un début de mot.</p></div>
+      <div><h4>Pourquoi ?</h4><p>La syntaxe permet d'élargir ou de préciser les résultats sans service d'IA ni interprétation sémantique.</p></div>
+      <div><h4>Comment ?</h4><p>Saisissez les mots tels qu'ils peuvent apparaître dans les conversations. Combinez-les avec <code>ET</code>, <code>OU</code>, une virgule, <code>-</code> ou <code>*</code>.</p></div>
+    </div>
+    <table><thead><tr><th>Besoin</th><th>Saisie</th><th>Effet</th></tr></thead><tbody>
+      <tr><td>Un mot</td><td><code>retraite</code></td><td>Trouve les conversations contenant ce mot.</td></tr>
+      <tr><td>Une expression</td><td><code>carte blanche</code></td><td>Recherche l'expression complète dans le même ordre.</td></tr>
+      <tr><td>Des alternatives</td><td><code>mutuelle, assurance</code></td><td>Trouve l'un ou l'autre terme. <code>OU</code> et le point-virgule ont le même rôle.</td></tr>
+      <tr><td>Des termes obligatoires</td><td><code>asile ET John Doe</code></td><td>Exige les deux termes dans la même conversation.</td></tr>
+      <tr><td>Deux groupes</td><td><code>asile ET John Doe, retraite</code></td><td>Recherche soit le premier groupe complet, soit <code>retraite</code>.</td></tr>
+      <tr><td>Une exclusion</td><td><code>sauvegarde, -réseau</code></td><td>Écarte toute conversation contenant <code>réseau</code>.</td></tr>
+      <tr><td>Un début de mot</td><td><code>imprim*</code></td><td>Trouve notamment <em>imprimer</em>, <em>imprimante</em> et <em>impression</em>.</td></tr>
+    </tbody></table>
+    <div class="callout"><strong>Bon à savoir :</strong> la recherche ignore les majuscules et les accents. Un singulier simple reconnaît aussi sa forme plurielle courante. Les opérateurs français <code>ET</code>/<code>OU</code> et anglais <code>AND</code>/<code>OR</code> sont acceptés dans les deux interfaces.</div>
+  </section>
+
+  <section class="feature">
+    <h3 id="scope">Choisir le périmètre de recherche</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>Le périmètre détermine si DTLarchive examine vos questions, les réponses de ChatGPT ou les deux. Les titres sont toujours examinés.</p></div>
+      <div><h4>Pourquoi ?</h4><p>Rechercher seulement vos questions retrouve vos intentions ; rechercher les réponses retrouve plutôt les informations formulées par ChatGPT.</p></div>
+      <div><h4>Comment ?</h4><p>Saisissez <code>1</code> pour les titres et vos questions, <code>2</code> pour les titres et les réponses, ou <code>3</code> pour l'ensemble. Appuyer sur Entrée choisit <code>1</code>.</p></div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <h3 id="report">Lire le rapport et retrouver le contexte</h3>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p>Le rapport HTML classe les conversations trouvées et montre les termes, les rôles, les occurrences et des extraits de contexte.</p></div>
+      <div><h4>Pourquoi ?</h4><p>Vous pouvez évaluer rapidement la pertinence d'un résultat avant d'ouvrir la conversation complète.</p></div>
+      <div><h4>Comment ?</h4><p>Commencez par le résumé et les statistiques. Dans le tableau, cliquez sur le nombre de contextes pour déplier les extraits, puis sur <strong>Ouvrir la conversation</strong> pour accéder au premier message correspondant.</p></div>
+    </div>
+    <figure class="figure"><img src="screen_Fr.png" alt="Exemple de rapport DTLarchive en français"><figcaption>Le rapport principal présente la recherche, les statistiques, un résumé descriptif et les conversations classées.</figcaption></figure>
+    <p>Le score privilégie les correspondances dans le titre, puis dans vos questions et enfin dans les réponses de ChatGPT. Il augmente également avec le nombre d'occurrences et de termes distincts. Les « principaux titres » sont des titres de conversations trouvées, pas une analyse thématique par intelligence artificielle.</p>
+  </section>
+
+  <section class="feature">
+    <h3 id="json">Réutiliser les résultats structurés</h3>
+    <p class="audience">Public : utilisateur expérimenté</p>
+    <div class="triptych">
+      <div><h4>Quoi ?</h4><p><code>mining_results.json</code> contient les paramètres, statistiques, conversations, scores, termes et contextes du traitement.</p></div>
+      <div><h4>Pourquoi ?</h4><p>Cette sortie sert de première étape à des outils d'extraction, de comparaison ou d'enrichissement de bases de connaissances.</p></div>
+      <div><h4>Comment ?</h4><p>Récupérez le fichier dans <code>DTLarchive-output</code> et importez-le dans un programme acceptant le JSON. Utilisez les métadonnées pour conserver la source, la période et le périmètre de la recherche.</p></div>
+    </div>
+    <div class="warning callout"><strong>Attention :</strong> le JSON peut contenir des extraits de conversations. Appliquez-lui les mêmes règles de confidentialité qu'aux archives d'origine.</div>
+  </section>
+
+  <h2 id="advanced">Utilisation avancée</h2>
+  <h3 id="index">Gérer et reconstruire l'index SQLite</h3>
+  <p class="audience">Public : utilisateur expérimenté</p>
+  <div class="triptych">
+    <div><h4>Quoi ?</h4><p>L'index par défaut est <code>DTLarchive-index.sqlite</code>. Il mémorise les archives déjà traitées et rend les recherches suivantes plus rapides.</p></div>
+    <div><h4>Pourquoi ?</h4><p>Une reconstruction peut être utile après le déplacement de nombreuses archives, une incompatibilité signalée ou un doute sur le contenu indexé.</p></div>
+    <div><h4>Comment ?</h4><p>Fermez DTLarchive, puis relancez-le en ligne de commande avec <code>--reindex</code>. Pour conserver l'ancien index, indiquez un nouveau chemin avec <code>--index</code>.</p></div>
+  </div>
+  <pre>DTLarchive.exe D:\Archives\ChatGPT --mots-cles "retraite" --reindex</pre>
+  <p>La reconstruction efface le contenu de l'index sélectionné puis réimporte les archives fournies. Elle ne supprime pas vos fichiers d'export ChatGPT.</p>
+
+  <h3 id="commandline">Automatiser une recherche en ligne de commande</h3>
+  <p class="audience">Public : utilisateur expérimenté</p>
+  <div class="triptych">
+    <div><h4>Quoi ?</h4><p>La ligne de commande fournit les mêmes fonctions sans questions interactives.</p></div>
+    <div><h4>Pourquoi ?</h4><p>Elle permet de répéter une recherche, de choisir précisément les dossiers de sortie et d'intégrer DTLarchive à un traitement automatisé.</p></div>
+    <div><h4>Comment ?</h4><p>Ouvrez PowerShell dans le dossier de DTLarchive, saisissez l'exécutable ou le script, les archives, puis les options. Entourez de guillemets les chemins ou recherches contenant des espaces.</p></div>
+  </div>
+  <pre>.\DTLarchive.exe "D:\Archives\ChatGPT" `
+  --mots-cles "asile ET John Doe, OFPRA" `
+  --date-debut 01/01/2024 `
+  --date-fin 31/12/2025 `
+  --role user `
+  --lang fr</pre>
+  <table><thead><tr><th>Option</th><th>Comment l'utiliser</th></tr></thead><tbody>
+    <tr><td>fichiers ou dossiers</td><td>Placez un ou plusieurs chemins juste après le nom du programme. Dans un dossier, le motif par défaut est <code>conversations*.json</code>.</td></tr>
+    <tr><td>--mots-cles</td><td>Ajoutez la recherche entre guillemets.</td></tr><tr><td>--date-debut / --date-fin</td><td>Indiquez des dates inclusives au format <code>jj/mm/aaaa</code>.</td></tr>
+    <tr><td>--role</td><td>Choisissez <code>user</code>, <code>assistant</code> ou <code>both</code>.</td></tr><tr><td>--output</td><td>Indiquez le dossier dans lequel créer le rapport, les pages et le JSON.</td></tr>
+    <tr><td>--pattern</td><td>Indiquez un autre motif de fichiers, par exemple <code>conversations-2025*.json</code>.</td></tr><tr><td>--index</td><td>Indiquez le chemin d'un autre fichier SQLite.</td></tr>
+    <tr><td>--reindex</td><td>Ajoutez cette option seule pour reconstruire complètement l'index choisi.</td></tr><tr><td>--quiet</td><td>Ajoutez cette option seule pour masquer le résumé dans la console.</td></tr>
+    <tr><td>--lang</td><td>Utilisez <code>fr</code> ou <code>en</code>.</td></tr><tr><td>--help / --version</td><td>Affichez respectivement l'aide des options ou la version, puis quittez.</td></tr>
+  </tbody></table>
+  <p>En ligne de commande, une date invalide, une période inversée, une période sans recoupement ou l'absence d'archive provoque un arrêt avec le code <code>2</code>.</p>
+
+  <h3 id="diagnostics">Consulter le journal de diagnostic</h3>
+  <div class="triptych">
+    <div><h4>Quoi ?</h4><p>Chaque lancement complète un journal HTML quotidien dans le dossier <code>logs</code>.</p></div>
+    <div><h4>Pourquoi ?</h4><p>Le journal aide à comprendre une archive refusée, une erreur d'index, des paramètres incorrects ou un arrêt inattendu.</p></div>
+    <div><h4>Comment ?</h4><p>Ouvrez <code>logs\DTLarchive_AAAAMMJJ.html</code> dans votre navigateur. Repérez l'heure du lancement concerné, puis lisez les lignes marquées <strong>ERREUR</strong> ou <strong>AVERTISSEMENT</strong>.</p></div>
+  </div>
+  <p>Si vous demandez de l'assistance, indiquez la version de DTLarchive et recopiez uniquement les lignes utiles. Vérifiez auparavant qu'elles ne contiennent pas de chemin ou d'information que vous ne souhaitez pas communiquer.</p>
+
+  <h2 id="help">Aide et sécurité</h2>
+  <h3 id="troubleshooting">Résoudre les difficultés courantes</h3>
+  <table><thead><tr><th>Constat</th><th>Comment réagir</th></tr></thead><tbody>
+    <tr><td>Aucune archive sélectionnée</td><td>Relancez DTLarchive et choisissez au moins un fichier <code>conversations*.json</code> décompressé.</td></tr>
+    <tr><td>Date invalide</td><td>Utilisez exactement le format <code>jj/mm/aaaa</code>, par exemple <code>01/06/2026</code>.</td></tr>
+    <tr><td>Aucune conversation dans la période</td><td>Comparez vos dates à la période disponible affichée, puis élargissez ou videz une limite.</td></tr>
+    <tr><td>Aucun résultat</td><td>Vérifiez l'orthographe, retirez une exclusion, remplacez <code>ET</code> par une virgule ou choisissez le périmètre <code>3</code>.</td></tr>
+    <tr><td>Résultats trop nombreux</td><td>Ajoutez un terme avec <code>ET</code>, une exclusion avec <code>-mot</code> ou une période plus courte.</td></tr>
+    <tr><td>Index incompatible ou illisible</td><td>Fermez l'application et reconstruisez l'index avec <code>--reindex</code>. Consultez le journal si l'erreur persiste.</td></tr>
+    <tr><td>Le rapport ne s'ouvre pas</td><td>Ouvrez manuellement <code>DTLarchive-output\DTLarchive-report.html</code> dans votre navigateur.</td></tr>
+  </tbody></table>
+
+  <h3 id="privacy">Protéger la confidentialité</h3>
+  <ul><li>Conservez les exports, l'index SQLite, les rapports, les pages de conversation, le JSON et les journaux dans un emplacement protégé.</li><li>Ne publiez pas un rapport sans relire les extraits qu'il contient.</li><li>Supprimez le dossier de sortie lorsqu'il n'est plus utile, indépendamment des archives d'origine.</li><li>DTLarchive n'envoie ni archives ni recherches en ligne ; l'ouverture du rapport utilise seulement votre navigateur local.</li></ul>
+
+  <h3 id="glossary">Glossaire rapide</h3>
+  <table><thead><tr><th>Terme</th><th>Signification</th></tr></thead><tbody>
+    <tr><td>Archive JSON</td><td>Fichier structuré de l'export ChatGPT contenant les conversations.</td></tr><tr><td>Index SQLite</td><td>Base locale utilisée pour mémoriser et rechercher rapidement le contenu des archives.</td></tr>
+    <tr><td>Périmètre</td><td>Parties examinées : titres, questions, réponses ou combinaison de ces éléments.</td></tr><tr><td>Occurrence</td><td>Présence d'un terme recherché dans une conversation.</td></tr>
+    <tr><td>Contexte</td><td>Correspondance accompagnée de messages proches pour en comprendre le sens.</td></tr><tr><td>JSON de résultats</td><td>Version structurée et réutilisable des résultats du traitement.</td></tr>
+  </tbody></table>
+
+  <footer>DTLarchive v2.2-5 — Guide utilisateur — Copyright © 2026 Didier DTL Morandi — Licence MIT</footer>
+</main>
+<script>
+const links=[...document.querySelectorAll('nav a:not(.group)')];
+const sections=links.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+addEventListener('scroll',()=>{let current=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<160)current=section}links.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+current.id))},{passive:true});
+</script>
+</body>
+</html>

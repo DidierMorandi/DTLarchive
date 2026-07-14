@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTLarchive &mdash; Reference Manual v2.2-5</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  :root{--bg:#0f1117;--surface:#181c27;--border:#252b3b;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#68748d;--heading:#eef4ff;--code:#12161f;--sidebar:270px}
+  *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.7;display:flex;min-height:100vh}
+  nav{position:fixed;inset:0 auto 0 0;width:var(--sidebar);height:100vh;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:28px 0 40px;z-index:10}
+  nav .logo{font:600 12px/1.4 'IBM Plex Mono',monospace;color:var(--accent);letter-spacing:2px;text-transform:uppercase;padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}nav .logo span{display:block;color:var(--muted);font-size:9px;letter-spacing:1px;margin-top:4px}
+  nav a{display:block;color:var(--muted);text-decoration:none;font:12px/1.4 'IBM Plex Mono',monospace;padding:5px 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.active{color:var(--accent);background:rgba(57,255,20,.05)}nav a.group{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding-top:15px;opacity:.55}nav a.group:hover{background:none;opacity:1}
+  main{margin-left:var(--sidebar);padding:54px 64px 100px;max-width:1170px;width:100%}.doc-header{margin-bottom:46px;padding-bottom:30px;border-bottom:1px solid var(--border)}.doc-header h1{font:600 27px/1.3 'IBM Plex Mono',monospace;color:var(--heading)}.accent{color:var(--accent)}.subtitle{color:var(--muted);margin-top:10px}.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.pill{font:11px 'IBM Plex Mono',monospace;padding:4px 9px;border:1px solid var(--border);background:var(--code);border-radius:3px;color:var(--muted)}.pill b{color:var(--accent);margin-right:5px}
+  h2{font:600 13px 'IBM Plex Mono',monospace;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin:52px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border)}h3{font:600 14px 'IBM Plex Mono',monospace;color:var(--heading);margin:30px 0 10px}p{margin-bottom:14px}strong{color:var(--heading)}code{font:12px 'IBM Plex Mono',monospace;background:var(--code);border:1px solid var(--border);border-radius:3px;padding:1px 6px;color:#9bff85}
+  table{width:100%;border-collapse:collapse;margin:15px 0 24px;font-size:13px}thead{background:var(--code)}th{font:600 10px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted);padding:10px 13px;text-align:left}td{padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top}td:first-child{font-family:'IBM Plex Mono',monospace;color:var(--accent)}tbody tr:hover{background:rgba(57,255,20,.025)}
+  ul{list-style:none;margin:9px 0 16px}li{position:relative;padding:3px 0 3px 20px}li::before{content:'›';position:absolute;left:4px;color:var(--accent);font-weight:600}.callout{background:rgba(57,255,20,.045);border:1px solid var(--accent-dim);border-radius:4px;padding:14px 18px;margin:17px 0}.callout strong{color:var(--accent)}.diagram{font:12px/1.65 'IBM Plex Mono',monospace;white-space:pre;tab-size:2;background:var(--code);border:1px solid var(--border);padding:18px 20px;margin:16px 0;overflow:auto;color:#9bff85}.file-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent-dim);border-radius:4px;padding:16px 20px;margin:12px 0}.file-card h3{margin:0 0 5px;color:var(--accent)}.tag{display:inline-block;font:10px 'IBM Plex Mono',monospace;color:var(--muted);margin-right:10px}
+  .flowchart{font:12px/1.4 'IBM Plex Mono',monospace;background:var(--code);border:1px solid var(--border);padding:22px;margin:16px 0;color:#9bff85;display:flex;flex-direction:column;align-items:center;gap:9px;overflow:hidden}.flow-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%}.flow-node,.flow-output{border:1px solid var(--accent-dim);background:rgba(57,255,20,.035);border-radius:4px;padding:8px 12px;text-align:center}.flow-arrow{color:var(--accent);font-size:18px;line-height:1}.flow-branches{display:grid;grid-template-columns:repeat(3,1fr);width:80%;text-align:center;color:var(--accent);font-size:18px;line-height:1}.flow-outputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}@media(max-width:800px){nav{display:none}main{margin-left:0;padding:30px 22px 60px}.doc-header h1{font-size:22px}table{display:block;overflow-x:auto}.flowchart{padding:16px}.flow-row{flex-wrap:wrap}.flow-outputs{grid-template-columns:1fr}.flow-branches{display:block;width:100%;text-align:center}.flow-branches span{display:none}.flow-branches::before{content:'↓'}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">DTLarchive<span>Reference Manual v2.2-5</span></div>
+  <a class="group" href="#preface">Preface</a><a href="#preface">Purpose</a><a href="#audience">Audience</a><a href="#principles">Design principles</a>
+  <a class="group" href="#architecture">Architecture</a><a href="#overview">Overview</a><a href="#components">Components</a><a href="#pipeline">Processing pipeline</a><a href="#files">File organization</a>
+  <a class="group" href="#data">Data and index</a><a href="#input-format">Source format</a><a href="#models">Internal models</a><a href="#database">SQLite schema</a><a href="#incremental">Incremental import</a>
+  <a class="group" href="#search">Search engine</a><a href="#grammar">Grammar</a><a href="#normalization">Normalization</a><a href="#selection">Indexed selection</a><a href="#analysis">Exact analysis</a><a href="#ranking">Relevance</a><a href="#contexts">Contexts</a>
+  <a class="group" href="#outputs">Outputs</a><a href="#json-output">JSON results</a><a href="#html-output">HTML reports</a><a href="#logs">HTML log</a>
+  <a class="group" href="#internals">Internal reference</a><a href="#modules">Modules</a><a href="#functions">Function groups</a><a href="#i18n">Internationalization</a><a href="#errors">Errors and integrity</a>
+  <a class="group" href="#appendices">Appendices</a><a href="#limits">Known limits</a><a href="#versions">Versions and schemas</a><a href="#glossary">Glossary</a>
+</nav>
+<main>
+  <header class="doc-header">
+    <h1><span class="accent">DTLarchive</span> &mdash; Reference Manual v2.2-5</h1>
+    <p class="subtitle">Functional and technical reference for the local ChatGPT archive indexing, search, and knowledge-reuse engine.</p>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-5</span><span class="pill"><b>date</b>July 14, 2026</span><span class="pill"><b>platform</b>Windows</span><span class="pill"><b>runtime</b>Python 3.14</span><span class="pill"><b>languages</b>fr / en</span><span class="pill"><b>license</b>MIT</span></div>
+  </header>
+
+  <h2 id="preface">Preface</h2>
+  <p>This manual describes the structure, formats, invariants, and internal interfaces of DTLarchive 2.2-5. It is an architecture and data reference. It deliberately contains no user journey, launch procedure, or step-by-step scenario.</p>
+  <p>DTLarchive transforms ChatGPT conversation exports into a locally indexed corpus. Its purpose is to make the knowledge contained in these archives searchable, contextual, and reusable by downstream processing, without any remote-service dependency.</p>
+
+  <h3 id="audience">Intended audience</h3>
+  <p>This document is intended for developers, maintainers, data owners, and integrators who need to understand engine behavior, validate its outputs, or connect its results to other knowledge-management tools.</p>
+
+  <h3 id="principles">Design principles</h3>
+  <ul><li><strong>Locality:</strong> archives, queries, index, and reports remain on the computer.</li><li><strong>Determinism:</strong> selection and ranking use explicit lexical rules.</li><li><strong>Traceability:</strong> each result retains its source file, identifier, and contexts.</li><li><strong>Incrementality:</strong> unchanged sources are not parsed again.</li><li><strong>Bilingual design:</strong> the interface and generated outputs are available in French and English.</li><li><strong>No external AI:</strong> no language model, embedding, or semantic service is involved.</li></ul>
+  <div class="callout"><strong>Analytical scope:</strong> the report's leading titles come from conversation titles ordered by relevance. They are neither clustering nor semantic topic extraction.</div>
+
+  <h2 id="architecture">Architecture</h2>
+  <h3 id="overview">Overview</h3>
+  <p>The architecture separates persistent import, full-text candidate selection, and exact analysis of candidate conversations. This avoids reading and recalculating the complete corpus for every search.</p>
+  <div class="flowchart" role="img" aria-label="DTLarchive processing flow">
+    <div class="flow-node">conversations*.json exports</div><div class="flow-arrow">↓</div>
+    <div class="flow-row"><div class="flow-node">active-branch parser</div><div class="flow-arrow">→</div><div class="flow-node">Conversation / Message models</div></div><div class="flow-arrow">↓</div>
+    <div class="flow-row"><div class="flow-node">ArchiveIndex</div><div class="flow-arrow">→</div><div class="flow-node">SQLite + FTS5</div><div class="flow-arrow">→</div><div class="flow-node">SearchEngine</div></div><div class="flow-arrow">↓</div>
+    <div class="flow-node">mine_conversation</div><div class="flow-branches" aria-hidden="true"><span>↙</span><span>↓</span><span>↘</span></div>
+    <div class="flow-outputs"><div class="flow-output">mining_results.json</div><div class="flow-output">HTML report</div><div class="flow-output">conversation pages</div></div>
+  </div>
+
+  <h3 id="components">Components</h3>
+  <table><thead><tr><th>Component</th><th>Responsibility</th></tr></thead><tbody>
+    <tr><td>DTLarchive.py</td><td>Orchestration, export parsing, lexical analysis, relevance scoring, output generation, and console interface.</td></tr>
+    <tr><td>dtlarchive_index.py</td><td>SQLite schema, incremental import, deduplication, message storage, and FTS5 queries.</td></tr>
+    <tr><td>dtlarchive_search.py</td><td>Candidate-conversation selection facade and examined-corpus counting.</td></tr>
+    <tr><td>dtlarchive_i18n.py</td><td>French/English catalog, active language, interpolation, and plurals.</td></tr>
+    <tr><td>DTLarchive.spec</td><td>Standalone executable build description.</td></tr>
+  </tbody></table>
+
+  <h3 id="pipeline">Processing pipeline</h3>
+  <table><thead><tr><th>Phase</th><th>Input</th><th>Output</th><th>Invariant</th></tr></thead><tbody>
+    <tr><td>Resolution</td><td>Files or directories</td><td>Unique absolute paths</td><td>Stable path ordering.</td></tr>
+    <tr><td>Import</td><td>ChatGPT JSON</td><td>Sources, conversations, messages, FTS</td><td>One transaction per source.</td></tr>
+    <tr><td>Selection</td><td>Terms, roles, dates</td><td>Candidate identifiers</td><td>FTS reduces the corpus without producing final results.</td></tr>
+    <tr><td>Analysis</td><td>Candidate conversations</td><td><code>MiningResult</code></td><td>Exact validation of groups and exclusions.</td></tr>
+    <tr><td>Publication</td><td>Sorted results</td><td>JSON and HTML</td><td>Archived messages remain unchanged.</td></tr>
+  </tbody></table>
+
+  <h3 id="files">File organization</h3>
+  <div class="file-card"><h3>Sources</h3><span class="tag">DTLarchive.py</span><span class="tag">dtlarchive_index.py</span><span class="tag">dtlarchive_search.py</span><span class="tag">dtlarchive_i18n.py</span><p>Engine, index, selection, and language-catalog implementation.</p></div>
+  <div class="file-card"><h3>Persistent data</h3><span class="tag">DTLarchive-index.sqlite</span><p>Local database for fingerprints, provenance, conversations, messages, and the FTS5 index.</p></div>
+  <div class="file-card"><h3>Outputs</h3><span class="tag">DTLarchive-output/</span><span class="tag">logs/</span><p>Structured results, main report, HTML conversation copies, and diagnostic log.</p></div>
+
+  <h2 id="data">Data and index</h2>
+  <h3 id="input-format">ChatGPT source format</h3>
+  <p>The reader accepts an array of conversations or a single conversation object. Each usable conversation contains a <code>mapping</code> dictionary. The active branch is reconstructed backwards from <code>current_node</code> through <code>parent</code> links, then reversed into chronological order.</p>
+  <p>Only non-empty <code>user</code> and <code>assistant</code> messages are retained. Text comes from <code>content.parts</code> or, as a fallback, <code>content.text</code>. If the active branch produces no messages, a fallback traversal sorts usable messages by date.</p>
+
+  <h3 id="models">Internal models</h3>
+  <table><thead><tr><th>Type</th><th>Fields</th><th>Purpose</th></tr></thead><tbody>
+    <tr><td>Message</td><td>id, role, text, create_time</td><td>A message extracted from a conversation.</td></tr>
+    <tr><td>Conversation</td><td>source_file, id, title, create_time, update_time, messages</td><td>Complete analysis unit.</td></tr>
+    <tr><td>QueryTerm</td><td>text, excluded, group</td><td>Lexical term and alternative-group membership.</td></tr>
+    <tr><td>MiningResult</td><td>source, identifiers, date, keywords, counts, score, roles, contexts, URL</td><td>Serializable and displayable result.</td></tr>
+    <tr><td>IndexUpdate</td><td>imported_files, unchanged_files, imported_conversations</td><td>Index synchronization summary.</td></tr>
+    <tr><td>SearchSelection</td><td>conversations, examined_count, candidate_count</td><td>Selection result before exact analysis.</td></tr>
+  </tbody></table>
+
+  <h3 id="database">SQLite schema</h3>
+  <table><thead><tr><th>Object</th><th>Key</th><th>Contents</th></tr></thead><tbody>
+    <tr><td>metadata</td><td>key</td><td>Index-schema version.</td></tr>
+    <tr><td>sources</td><td>id / unique path</td><td>Size, modification time, SHA-256, and indexing time.</td></tr>
+    <tr><td>conversations</td><td>id</td><td>Title, dates, content timestamp, and message count.</td></tr>
+    <tr><td>messages</td><td>id / conversation + ordinal</td><td>External identifier, role, date, and text in original order.</td></tr>
+    <tr><td>source_conversations</td><td>source + conversation</td><td>Many-to-many provenance relationship.</td></tr>
+    <tr><td>search_fts</td><td>FTS5</td><td>Identifier, role, and text indexed with <code>unicode61 remove_diacritics 2</code>.</td></tr>
+  </tbody></table>
+  <p>Foreign keys are enabled and SQLite uses WAL journaling. Relational indexes cover message order and conversation dates.</p>
+
+  <h3 id="incremental">Incremental import and deduplication</h3>
+  <p>A source is unchanged when its size and modification timestamp match the stored state. If those metadata differ while the SHA-256 fingerprint remains identical, only metadata are refreshed. A genuinely modified source is parsed inside a transaction.</p>
+  <p>The ChatGPT identifier is the deduplication key. When absent, a deterministic SHA-256 is computed from path, title, and dates. Existing content is replaced when the incoming <code>(content timestamp, message count)</code> pair is greater than or equal to the stored pair. Provenance links allow one conversation to belong to several exports.</p>
+
+  <h2 id="search">Search engine</h2>
+  <h3 id="grammar">Lexical grammar</h3>
+  <table><thead><tr><th>Construct</th><th>Internal semantics</th></tr></thead><tbody>
+    <tr><td>comma, semicolon, OU, OR</td><td>Creates alternative groups.</td></tr>
+    <tr><td>ET, AND</td><td>Requires every term in one group.</td></tr>
+    <tr><td>-term</td><td>Globally excludes a conversation.</td></tr>
+    <tr><td>"phrase"</td><td>Removes external quotes while preserving the phrase.</td></tr>
+    <tr><td>prefix*</td><td>Lexical extension by alphanumeric, hyphen, or underscore characters.</td></tr>
+  </tbody></table>
+  <p>Duplicates are removed by normalized text, exclusion status, and group number.</p>
+
+  <h3 id="normalization">Normalization and counting</h3>
+  <p>Normalization applies Unicode NFKD, removes diacritics, lowercases text, replaces typographic apostrophes, and compacts whitespace. Searches are case- and accent-insensitive. Without a wildcard, simple forms accept an <code>s</code> or <code>x</code> plural suffix unless the term already ends in either character.</p>
+
+  <h3 id="selection">Indexed candidate selection</h3>
+  <p>For each positive term, FTS5 produces an identifier set constrained by source, role, and date. Terms in one group are intersected; alternative groups are united. The <code>title</code> role is always added to the scope. This phase produces candidates, not final results.</p>
+
+  <h3 id="analysis">Exact analysis</h3>
+  <p>The title and in-scope messages are combined and normalized. Any excluded-term occurrence rejects the conversation. A positive group is valid only when all its terms occur. Counts, matching roles, and message positions are then calculated against exact text.</p>
+
+  <h3 id="ranking">Relevance calculation</h3>
+  <p>The score is capped at 100 and follows this deterministic formula:</p>
+  <div class="diagram">15
++ 35 when the title matches
++ min(user matching messages × 25, 35)
++ min(assistant matching messages × 15, 25)
++ min(occurrences × 5, 20)
++ min((distinct terms − 1) × 10, 20)</div>
+  <table><thead><tr><th>Range</th><th>Label</th></tr></thead><tbody><tr><td>80 to 100</td><td>Highly relevant</td></tr><tr><td>45 to 79</td><td>Relevant</td></tr><tr><td>0 to 44</td><td>Secondary mention</td></tr></tbody></table>
+  <p>Final ordering is descending by score and then conversation date. The score is not a probability and does not come from statistical learning.</p>
+
+  <h3 id="contexts">Context windows</h3>
+  <p>Each matching message generates a window of up to two messages before and two after. Adjacent or overlapping windows are merged. At most six windows are retained per conversation. Context-message text is compacted to 1,200 characters.</p>
+
+  <h2 id="outputs">Structured outputs</h2>
+  <h3 id="json-output">mining_results.json</h3>
+  <p>The root document contains <code>metadata</code> and <code>results</code>. Metadata describe the application, version, logical schema, UTC time, sources, index, dates, query, and scope. Each result is a complete serialization of <code>MiningResult</code>.</p>
+  <table><thead><tr><th>Family</th><th>Main fields</th></tr></thead><tbody>
+    <tr><td>Identification</td><td>source_file, conversation_id, conversation_title, conversation_url</td></tr>
+    <tr><td>Measures</td><td>occurrence_count, message_count, relevance_score, relevance_label</td></tr>
+    <tr><td>Matches</td><td>matched_keywords, matched_roles, contexts</td></tr>
+    <tr><td>Processing context</td><td>source_files, index_path, period, search terms, role_scope</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>Knowledge reuse:</strong> this structured output can act as a first stage for knowledge extraction, comparison, or knowledge-base enrichment tools.</div>
+
+  <h3 id="html-output">HTML reports</h3>
+  <p><code>DTLarchive-report.html</code> presents metrics, term distribution, the first ranked unique conversation titles, the result table, and context windows. Displayed titles are not a semantic summary. Each <code>conversation-&lt;fingerprint&gt;.html</code> page reproduces the complete branch and places an anchor on the first matching message.</p>
+  <p>The documents contain their own CSS, use UTF-8, and follow the active interface language. Conversation content remains in its original language.</p>
+
+  <h3 id="logs">HTML diagnostic log</h3>
+  <p>The daily <code>logs/DTLarchive_YYYYMMDD.html</code> log receives timestamped information, action, and error entries. It records major phases, summarized parameters, import counters, and exceptions. Log write failures do not interrupt the engine.</p>
+
+  <h2 id="internals">Internal reference</h2>
+  <h3 id="modules">Project modules</h3>
+  <table><thead><tr><th>Module</th><th>Main dependencies</th><th>Held state</th></tr></thead><tbody>
+    <tr><td>DTLarchive</td><td>argparse, pathlib, sqlite3, tkinter, webbrowser</td><td>Process language, arguments, selected corpus, and results.</td></tr>
+    <tr><td>dtlarchive_index</td><td>sqlite3, hashlib</td><td>SQLite connection and persistent schema.</td></tr>
+    <tr><td>dtlarchive_search</td><td>ArchiveIndex</td><td>Sources authorized for a selection.</td></tr>
+    <tr><td>dtlarchive_i18n</td><td>os.environ</td><td>Catalog and <code>DTLARCHIVE_LANG</code> variable.</td></tr>
+  </tbody></table>
+
+  <h3 id="functions">Function groups</h3>
+  <table><thead><tr><th>Group</th><th>Representative functions</th><th>Contract</th></tr></thead><tbody>
+    <tr><td>Text</td><td>normalize, compact, unique, keyword_pattern, count_term</td><td>Deterministic lexical normalization and measurement.</td></tr>
+    <tr><td>Parsing</td><td>text_from_content, current_branch_messages, iter_conversations</td><td>Tolerant conversion from ChatGPT JSON to internal models.</td></tr>
+    <tr><td>Time</td><td>parse_french_date, period_overlaps_archive, archive_period_label</td><td>Inclusive bounds and overlap validation.</td></tr>
+    <tr><td>Analysis</td><td>mine_conversation, build_contexts, relevance_label</td><td>Produces an exact result or <code>None</code>.</td></tr>
+    <tr><td>Publication</td><td>write_json, write_html_report, write_conversation_page</td><td>UTF-8 structured and navigable output.</td></tr>
+  </tbody></table>
+
+  <h3 id="i18n">Internationalization</h3>
+  <p>The <code>TRANSLATIONS</code> catalog maps each key to <code>fr</code> and <code>en</code> values. <code>current_language()</code> reads <code>DTLARCHIVE_LANG</code> and falls back to French for unsupported values. <code>t()</code> selects and interpolates a template; <code>plural_key()</code> selects singular and plural variants.</p>
+  <p>Language coverage includes the console, dialogs, help, errors, reports, and log. It does not translate source conversation content.</p>
+
+  <h3 id="errors">Errors, transactions, and integrity</h3>
+  <ul><li>An unreadable archive may be skipped in tolerant mode or raise an error in strict mode.</li><li>Modified-source import is transactional; a parse failure preserves previously indexed content.</li><li>An incompatible index version raises an explicit error before any search.</li><li>Invalid, reversed, or out-of-corpus periods are rejected before analysis.</li><li>HTML text is escaped before insertion into reports.</li><li>HTML and JSON files use UTF-8; the Windows console is configured for code page 65001.</li></ul>
+
+  <h2 id="appendices">Appendices</h2>
+  <h3 id="limits">Known limitations</h3>
+  <ul><li>Search is lexical; it detects neither synonyms, paraphrases, nor semantic proximity.</li><li>FTS candidate selection uses the first significant token of a phrase, after which exact analysis confirms the complete phrase.</li><li>Summary titles are the first five unique titles in ranking order, not topics inferred from the corpus.</li><li>The active branch is preferred; fallback traversal is used only when it yields no usable messages.</li><li>Contexts are limited to six windows and their messages to 1,200 characters.</li><li>The reader reflects the observed ChatGPT export format; source-format changes may require parser adaptation.</li></ul>
+
+  <h3 id="versions">Versions and schemas</h3>
+  <table><thead><tr><th>Identifier</th><th>Value</th><th>Scope</th></tr></thead><tbody><tr><td>Application</td><td>v2.2-5</td><td>Distributed features and interface.</td></tr><tr><td>Logical schema</td><td>2.1</td><td>Value published in result metadata.</td></tr><tr><td>Index schema</td><td>1</td><td>Persistent SQLite database compatibility.</td></tr></tbody></table>
+
+  <h3 id="glossary">Glossary</h3>
+  <table><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody><tr><td>Corpus</td><td>All conversations linked to selected archives.</td></tr><tr><td>Candidate</td><td>A conversation selected by FTS5 before exact lexical validation.</td></tr><tr><td>Context</td><td>A message window surrounding a match.</td></tr><tr><td>Provenance</td><td>The relation between a deduplicated conversation and its source files.</td></tr><tr><td>FTS5</td><td>SQLite's integrated full-text search engine.</td></tr><tr><td>WAL</td><td>SQLite journal mode supporting robust writes and concurrent reads.</td></tr></tbody></table>
+
+  <footer>DTLarchive v2.2-5 &mdash; Reference Manual &mdash; Copyright © 2026 Didier DTL Morandi &mdash; MIT License</footer>
+</main>
+<script>
+  const sections=document.querySelectorAll('[id]'),links=document.querySelectorAll('nav a');
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.remove('active'));const active=document.querySelector(`nav a[href="#${entry.target.id}"]`);if(active)active.classList.add('active')}}),{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(section=>observer.observe(section));
+</script>
+</body>
+</html>
