@@ -19,6 +19,13 @@ Version 2.2 introduces a persistent SQLite index. JSON exports are parsed only
 when they are new or modified; later searches reuse the local full-text index
 instead of reading every archive again.
 
+## Building with PyInstaller
+
+To build the Windows executable, install PyInstaller with
+`python -m pip install pyinstaller`, open PowerShell in the DTLarchive folder,
+then run `python -m PyInstaller --clean --noconfirm .\DTLarchive.spec`. The
+generated file is written to `dist\DTLarchive.exe`.
+
 ## Using the Windows executable
 
 1. Open `DTLarchive.exe`.

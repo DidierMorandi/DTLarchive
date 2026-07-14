@@ -21,6 +21,13 @@ La version 2.2 introduit un index SQLite persistant. Les exports JSON ne sont
 analysés que lorsqu'ils sont nouveaux ou modifiés ; les recherches suivantes
 réutilisent l'index local en texte intégral au lieu de relire toutes les archives.
 
+## Compilation avec PyInstaller
+
+Pour construire l'exécutable Windows, installez PyInstaller avec
+`python -m pip install pyinstaller`, ouvrez PowerShell dans le dossier de
+DTLarchive, puis exécutez `python -m PyInstaller --clean --noconfirm .\DTLarchive.spec`.
+Le fichier généré est placé dans `dist\DTLarchive.exe`.
+
 ## Utilisation de l'exécutable Windows
 
 1. Ouvrez `DTLarchive.exe`.
