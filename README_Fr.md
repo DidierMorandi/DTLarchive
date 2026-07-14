@@ -125,13 +125,16 @@ Le rapport principal contient :
 - un score et un libellé de pertinence ;
 - jusqu'à deux messages avant et après une correspondance ;
 - un bouton ouvrant la conversation complète au premier message correspondant ;
-- un aperçu de la répartition des termes et des principaux sujets.
+- un aperçu de la répartition des termes et des principaux titres de conversations trouvées.
 
 Le score privilégie les correspondances dans le titre, puis dans les questions
 de l'utilisateur et enfin dans les réponses de ChatGPT. Il augmente aussi avec
 le nombre d'occurrences et de termes distincts. Le fichier
 `mining_results.json` contient les mêmes résultats et les informations du
 traitement dans un format réutilisable.
+
+Cette sortie structurée permet à DTLarchive de servir de première étape à des
+outils d'extraction, de comparaison ou d'enrichissement de bases de connaissances.
 
 ## Index SQLite
 

@@ -8,7 +8,7 @@ Repository: [DidierMorandi/DTLarchive](https://github.com/DidierMorandi/DTLarchi
 
 ## Presentation
 
-**DTLarchive is a local tool for mining, searching, and managing the knowledge
+**DTLarchive is a local tool for mining, searching, and reusing knowledge
 contained in ChatGPT conversation archives.** It finds every conversation that
 contains a word, phrase, or combination of keywords, regardless of topic.
 
@@ -119,12 +119,15 @@ The main report contains:
 - a relevance score and label;
 - up to two messages before and after a match;
 - a button that opens the full conversation at the first matching message;
-- an overview of term distribution and the main topics.
+- an overview of term distribution and the most frequent matching conversation titles.
 
 The relevance score prioritizes title matches, followed by user-question
 matches and then ChatGPT-answer matches. It also increases with the number of
 occurrences and distinct matched terms. `mining_results.json` contains the same
 findings and run metadata in a reusable format.
+
+This structured output allows DTLarchive to act as a first stage for knowledge
+extraction, comparison, or knowledge-base enrichment tools.
 
 ## SQLite index
 
