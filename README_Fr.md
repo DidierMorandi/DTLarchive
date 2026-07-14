@@ -15,7 +15,9 @@ expression ou une combinaison de mots-clés, quel que soit leur sujet.
 
 Par défaut, DTLarchive recherche dans les titres des conversations et les
 questions de l'utilisateur. Il peut également chercher dans les titres et les
-réponses de ChatGPT, ou dans les messages des deux rôles.
+réponses de ChatGPT, ou dans les messages des deux rôles. Son interface est
+disponible en français et en anglais, de la console jusqu'aux rapports HTML et
+à l'aide contextuelle.
 
 **Confidentialité :** DTLarchive fonctionne entièrement en local. Aucun export
 ChatGPT n'est téléversé, aucune recherche n'est envoyée en ligne et aucun

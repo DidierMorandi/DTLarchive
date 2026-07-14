@@ -13,7 +13,9 @@ contained in ChatGPT conversation archives.** It finds every conversation that
 contains a word, phrase, or combination of keywords, regardless of topic.
 
 By default, DTLarchive searches conversation titles and user questions. It can
-also search titles and ChatGPT answers, or messages from both roles.
+also search titles and ChatGPT answers, or messages from both roles. Its full
+interface is available in French and English, from the console to the HTML
+reports and contextual help.
 
 **Privacy:** DTLarchive runs entirely locally. No ChatGPT export is uploaded,
 no search query is sent online, and no external AI service is required. The
