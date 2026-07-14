@@ -1,6 +1,6 @@
 # DTLarchive
 
-Version actuelle : **v2.2-0**
+Version actuelle : **v2.2-4**
 
 [English version](README.md)
 
@@ -24,7 +24,9 @@ réutilisent l'index local en texte intégral au lieu de relire toutes les archi
 ## Utilisation de l'exécutable Windows
 
 1. Ouvrez `DTLarchive.exe`.
-2. Appuyez sur une touche à l'invite, puis sélectionnez un ou plusieurs fichiers
+2. Pour utiliser l'interface anglaise, tapez `1` à la première invite puis
+   appuyez sur Entrée. DTLarchive répète alors la demande de sélection en anglais ;
+   appuyez de nouveau sur Entrée, puis sélectionnez un ou plusieurs fichiers
    `conversations*.json` provenant d'un export ChatGPT.
 3. Laissez DTLarchive mettre à jour son index local. Les archives inchangées
    sont réutilisées sans être relues.
@@ -34,6 +36,12 @@ réutilisent l'index local en texte intégral au lieu de relire toutes les archi
 6. Saisissez les mots-clés et choisissez où effectuer la recherche.
 7. Patientez pendant la recherche dans l'index, puis appuyez sur une touche pour ouvrir le
    rapport HTML dans le navigateur par défaut.
+
+La langue choisie s'applique à la console, à l'aide contextuelle, à la fenêtre
+de sélection, aux erreurs, au rapport HTML, aux pages de conversation et au
+journal de diagnostic. À une invite interactive, tapez `?`, `aide`, `help` ou
+`h` pour afficher l'aide correspondant à la question. Le sous-titre de départ
+se termine par `To talk to me in English, type 1`.
 
 DTLarchive contrôle la période demandée avant de demander les mots-clés. Une
 période qui ne recoupe pas les archives sélectionnées est refusée et doit être
@@ -54,7 +62,7 @@ laissées vides, l'ensemble de l'archive est pris en compte.
 - `sauvegarde, -réseau` trouve `sauvegarde` mais exclut les conversations qui
   contiennent `réseau`.
 
-`ET` est l'opérateur logique ET. `OU`, la virgule et le point-virgule sont des
+`ET` (ou `AND`) est l'opérateur logique ET. `OU` (ou `OR`), la virgule et le point-virgule sont des
 opérateurs logiques OU. Un signe moins placé devant un terme l'exclut. La
 recherche ignore les majuscules et les accents. Un singulier simple trouve aussi
 sa forme plurielle courante.
@@ -113,6 +121,7 @@ Options utiles :
 - `--index CHEMIN` choisit un autre fichier d'index SQLite ;
 - `--reindex` efface et reconstruit l'index sélectionné ;
 - `--quiet` masque le résumé des résultats dans la console ;
+- `--lang en` sélectionne l'anglais et `--lang fr` sélectionne le français ;
 - `--version` affiche la version du programme.
 
 En ligne de commande, une date invalide, une période inversée ou une période

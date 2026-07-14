@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
 import datetime as dt
 import hashlib
 import html
@@ -20,11 +21,12 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator, Sequence
 
 from dtlarchive_index import ArchiveIndex
+from dtlarchive_i18n import current_language, plural_key, set_language, t
 from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-0"
+APP_VERSION = "v2.2-4"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
@@ -71,6 +73,16 @@ class MiningResult:
     conversation_url: str = ""
 
 
+class LocalizedArgumentParser(argparse.ArgumentParser):
+    def format_help(self) -> str:
+        value = super().format_help()
+        return (
+            value.replace("usage:", t("arg.usage"), 1)
+            .replace("positional arguments:", t("arg.positionals"), 1)
+            .replace("options:", t("arg.options"), 1)
+        )
+
+
 def normalize(text: str) -> str:
     value = unicodedata.normalize("NFKD", text or "")
     value = "".join(character for character in value if not unicodedata.combining(character))
@@ -97,8 +109,31 @@ def green(value: Any) -> str:
     return f"{GREEN_COLOR}{value}{RESET_COLOR}"
 
 
+def language_switch_message() -> str:
+    if current_language() == "en":
+        return t("startup.switch_to_french").replace("2", green("2"), 1)
+    return t("startup.switch_to_english").replace("1", green("1"), 1)
+
+
 def pluralized(count: int, singular: str, plural: str | None = None) -> str:
     return singular if count == 1 else (plural or singular + "s")
+
+
+def is_help_request(value: str) -> bool:
+    return value.strip().lower() in {"?", "aide", "help", "h"}
+
+
+def configure_console_encoding() -> None:
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
+    if sys.platform == "win32":
+        try:
+            ctypes.windll.kernel32.SetConsoleTitleW(APP_NAME)
+            ctypes.windll.kernel32.SetConsoleOutputCP(65001)
+        except OSError:
+            pass
 
 
 def resolve_tool_dir() -> Path:
@@ -129,8 +164,9 @@ def current_log_path() -> Path:
 
 def html_log_header() -> str:
     generated = html.escape(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    return f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
-<title>Journal {APP_NAME}</title><style>
+    language = current_language()
+    return f"""<!doctype html><html lang="{language}"><head><meta charset="utf-8">
+<title>{t('log.title')} {APP_NAME}</title><style>
 :root{{--bg:#0b1020;--panel:#121a2f;--text:#eef4ff;--muted:#9fb0d0;--info:#38bdf8;--error:#fb7185;--action:#facc15}}
 body{{margin:0;background:var(--bg);color:var(--text);font:14px/1.25 Consolas,"Courier New",monospace}}
 header{{position:sticky;top:0;padding:10px 16px;background:linear-gradient(90deg,#172554,#0f172a);border-bottom:1px solid #24324f}}
@@ -138,15 +174,15 @@ h1{{margin:0;font-size:18px}}.meta{{margin-top:2px;color:var(--muted);font-size:
 .entry{{display:grid;grid-template-columns:160px 72px 1fr;gap:8px;margin:2px 0;padding:4px 7px;border-radius:4px;background:var(--panel)}}
 .time{{color:var(--muted)}}.level{{font-weight:700;color:var(--info)}}.entry.action .level{{color:var(--action)}}
 .entry.error .level{{color:var(--error)}}.entry.error{{background:#2a1320}}.message{{white-space:pre-wrap;overflow-wrap:anywhere}}
-</style></head><body><header><h1>Journal {APP_NAME} {APP_VERSION}</h1>
-<div class="meta">Créé le {generated}</div></header><main>
+</style></head><body><header><h1>{t('log.title')} {APP_NAME} {APP_VERSION}</h1>
+<div class="meta">{t('log.created', date=generated)}</div></header><main>
 """
 
 
 def write_action_log(action: str, status: str = "INFO", *, detail: str = "", exc: BaseException | None = None) -> None:
     normalized_status = status.upper()
     is_error = normalized_status in {"ERREUR", "ECHEC"}
-    level = "ERREUR" if is_error else "ACTION" if normalized_status in {"DEBUT", "OK"} else "INFO"
+    level = t("common.error") if is_error else t("common.action") if normalized_status in {"DEBUT", "OK"} else t("common.info")
     parts = [action]
     if detail:
         parts.append(detail)
@@ -196,27 +232,59 @@ def choose_conversation_files() -> list[Path]:
         root.attributes("-topmost", True)
         selected = filedialog.askopenfilenames(
             parent=root,
-            title="Sélectionnez les archives de conversations ChatGPT",
-            filetypes=(("Archives ChatGPT JSON", "conversations*.json"), ("Fichiers JSON", "*.json")),
+            title=t("file.dialog_title"),
+            filetypes=((t("file.dialog_archive"), "conversations*.json"), (t("file.dialog_json"), "*.json")),
         )
         root.destroy()
         return [Path(value) for value in selected]
     except Exception as exc:
-        write_action_log("Sélection des archives", "ERREUR", exc=exc)
+        write_action_log(t("log.file_selection"), "ERREUR", exc=exc)
         return []
 
 
-def wait_for_key(message: str) -> None:
+def wait_for_key(
+    message: str,
+    *,
+    allow_language_switch: bool = False,
+    help_key: str | None = None,
+    message_key: str | None = None,
+) -> None:
     print()
     print(message)
-    print("Appuyez sur une touche pour continuer...", flush=True)
+    print(t("file.press_key_language" if allow_language_switch else "file.press_key"), flush=True)
     try:
-        if sys.stdin.isatty() and sys.platform == "win32":
+        if allow_language_switch or help_key:
+            answer = input().strip()
+        elif sys.stdin.isatty() and sys.platform == "win32":
             import msvcrt
 
-            msvcrt.getwch()
+            answer = msvcrt.getwch()
         else:
-            input()
+            answer = input().strip()
+        if allow_language_switch and answer == "1" and current_language() == "fr":
+            set_language("en")
+            wait_for_key(
+                t(message_key) if message_key else message,
+                allow_language_switch=allow_language_switch,
+                help_key=help_key,
+                message_key=message_key,
+            )
+        elif allow_language_switch and answer == "2" and current_language() == "en":
+            set_language("fr")
+            wait_for_key(
+                t(message_key) if message_key else message,
+                allow_language_switch=allow_language_switch,
+                help_key=help_key,
+                message_key=message_key,
+            )
+        elif help_key and is_help_request(answer):
+            print(t(help_key))
+            wait_for_key(
+                t(message_key) if message_key else message,
+                allow_language_switch=allow_language_switch,
+                help_key=help_key,
+                message_key=message_key,
+            )
     except (EOFError, OSError):
         pass
 
@@ -224,8 +292,10 @@ def wait_for_key(message: str) -> None:
 def print_console_header() -> None:
     print(f"{APP_NAME} {APP_VERSION}")
     print()
-    print("Data miner local pour archives ChatGPT")
-    print("Recherche dans les titres et les questions de l'utilisateur")
+    switch_message = language_switch_message()
+    print(t("app.subtitle"))
+    print(t("app.scope_subtitle"))
+    print(switch_message)
     print()
 
 
@@ -244,23 +314,26 @@ def parse_french_date(value: str, *, end_of_day: bool = False) -> dt.datetime:
 
 def ask_date(label: str, *, end_of_day: bool = False) -> dt.datetime | None:
     while True:
-        print(f"{label} au format jj/mm/aaaa (vide = aucune limite) : ", end="", flush=True)
+        print(t("date.prompt", label=label), end="", flush=True)
         try:
             value = input().strip()
         except (EOFError, OSError):
             return None
         if not value:
             return None
+        if is_help_request(value):
+            print(t("date.help"))
+            continue
         try:
             return parse_french_date(value, end_of_day=end_of_day)
         except ValueError:
-            print("Date invalide. Exemple attendu : 01/06/2026.")
+            print(t("date.invalid"))
 
 
 def parse_query(value: str) -> list[QueryTerm]:
     terms: list[QueryTerm] = []
-    for group, clause in enumerate(re.split(r"[,;]|\s+OU\s+", value)):
-        for part in re.split(r"\s+ET\s+", clause.strip()):
+    for group, clause in enumerate(re.split(r"[,;]|\s+(?:OU|OR)\s+", value, flags=re.IGNORECASE)):
+        for part in re.split(r"\s+(?:ET|AND)\s+", clause.strip(), flags=re.IGNORECASE):
             token = part.strip()
             if not token:
                 continue
@@ -283,53 +356,58 @@ def format_query(terms: Sequence[QueryTerm]) -> list[str]:
     for term in terms:
         if not term.excluded:
             groups.setdefault(term.group, []).append(term.text)
-    clauses = [" ET ".join(values) for _, values in sorted(groups.items()) if values]
+    conjunction = " AND " if current_language() == "en" else " ET "
+    clauses = [conjunction.join(values) for _, values in sorted(groups.items()) if values]
     return clauses + exclusions
 
 
 def ask_query() -> list[QueryTerm]:
     print()
-    print("Saisissez un mot, une expression ou plusieurs recherches séparées par des virgules.")
-    print(f"Exemples : {green('retraite')}  {green('asile ET lucky')}  {green('asile OU retraite')}  {green('imprim*')}")
-    print("ET exige tous les termes ; OU ou la virgule proposent des alternatives ; -mot exclut ; * complète un mot.")
+    print(t("query.instructions"))
+    examples = ("retirement", "asylum AND lucky", "asylum OR retirement", "print*") if current_language() == "en" else ("retraite", "asile ET lucky", "asile OU retraite", "imprim*")
+    print(t("query.examples", one=green(examples[0]), two=green(examples[1]), three=green(examples[2]), four=green(examples[3])))
+    print(t("query.syntax"))
     while True:
-        print("Recherche : ", end="", flush=True)
+        print(t("query.prompt"), end="", flush=True)
         try:
-            terms = parse_query(input().strip())
+            answer = input().strip()
         except (EOFError, OSError):
             return []
+        if is_help_request(answer):
+            print(t("query.help"))
+            continue
+        terms = parse_query(answer)
         if any(not term.excluded for term in terms):
             return terms
-        print("Saisissez au moins un mot-clé à rechercher.")
+        print(t("query.required"))
 
 
 def ask_role_scope() -> str:
     print()
-    print("Où faut-il chercher ?")
-    print(f"  {green('1')}  Titres et questions de l'utilisateur")
-    print(f"  {green('2')}  Titres et réponses de ChatGPT")
-    print(f"  {green('3')}  Titres, questions et réponses")
+    print(t("scope.question"))
+    print(f"  {green('1')}  {t('scope.user')}")
+    print(f"  {green('2')}  {t('scope.assistant')}")
+    print(f"  {green('3')}  {t('scope.both')}")
     while True:
-        print("Choix [1] : ", end="", flush=True)
+        print(t("scope.prompt"), end="", flush=True)
         try:
             value = input().strip() or "1"
         except (EOFError, OSError):
             return "user"
+        if is_help_request(value):
+            print(t("scope.help"))
+            continue
         if value in {"1", "2", "3"}:
             return {"1": "user", "2": "assistant", "3": "both"}[value]
-        print("Répondez 1, 2 ou 3.")
+        print(t("scope.invalid"))
 
 
 def role_label(role: str) -> str:
-    return "👤 Utilisateur" if role == "user" else "🤖 ChatGPT"
+    return t("role.user" if role == "user" else "role.assistant")
 
 
 def scope_label(scope: str) -> str:
-    return {
-        "user": "Titres et questions de l'utilisateur",
-        "assistant": "Titres et réponses de ChatGPT",
-        "both": "Titres, questions et réponses",
-    }[scope]
+    return t(f"scope.{scope}")
 
 
 def keyword_pattern(term: str) -> re.Pattern[str]:
@@ -396,8 +474,8 @@ def iter_conversations(path: Path, *, strict: bool = False) -> Iterator[Conversa
     try:
         payload = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError) as exc:
-        write_action_log("Lecture d'une archive", "ERREUR", detail=str(path), exc=exc)
-        print(f"[AVERTISSEMENT] {path}: {exc}", file=sys.stderr)
+        write_action_log(t("log.archive_read"), "ERREUR", detail=str(path), exc=exc)
+        print(f"[{t('common.warning')}] {path}: {exc}", file=sys.stderr)
         if strict:
             raise
         return
@@ -410,7 +488,7 @@ def iter_conversations(path: Path, *, strict: bool = False) -> Iterator[Conversa
             yield Conversation(
                 path.name,
                 str(raw.get("conversation_id") or raw.get("id") or ""),
-                str(raw.get("title") or "(sans titre)"),
+                str(raw.get("title") or t("conversation.untitled")),
                 raw.get("create_time"),
                 raw.get("update_time"),
                 messages,
@@ -438,15 +516,15 @@ def period_overlaps_archive(
 
 def archive_period_label(archive_bounds: tuple[dt.datetime, dt.datetime]) -> str:
     archive_start, archive_end = archive_bounds
-    return f"du {archive_start.strftime('%d/%m/%Y')} au {archive_end.strftime('%d/%m/%Y')}"
+    return t("period.from_to", start=archive_start.strftime("%d/%m/%Y"), end=archive_end.strftime("%d/%m/%Y"))
 
 
 def relevance_label(score: int) -> str:
     if score >= 80:
-        return "Très pertinent"
+        return t("relevance.very")
     if score >= 45:
-        return "Pertinent"
-    return "Mention secondaire"
+        return t("relevance.relevant")
+    return t("relevance.secondary")
 
 
 def build_contexts(conversation: Conversation, matched_indexes: Sequence[int]) -> list[dict[str, Any]]:
@@ -509,7 +587,7 @@ def mine_conversation(
 
     title_count = sum(count_term(normalize(conversation.title), term) for term in matched)
     matched_indexes: list[int] = []
-    matched_roles: list[str] = ["Titre"] if title_count else []
+    matched_roles: list[str] = [t("role.title")] if title_count else []
     for index, message in enumerate(conversation.messages):
         if message.role not in allowed_roles:
             continue
@@ -536,7 +614,7 @@ def mine_conversation(
         source_file=conversation.source_file,
         conversation_id=conversation.id,
         conversation_title=conversation.title,
-        conversation_date=date_value.strftime("%d/%m/%Y %H:%M") if date_value else "Date inconnue",
+        conversation_date=date_value.strftime("%d/%m/%Y %H:%M") if date_value else t("conversation.unknown_date"),
         matched_keywords=matched,
         occurrence_count=occurrence_count,
         message_count=len(conversation.messages),
@@ -568,7 +646,8 @@ def write_conversation_page(path: Path, conversation: Conversation, result: Mini
             f'<div class="role">{role_label(message.role)}</div>'
             f'<div class="text">{html.escape(message.text)}</div></article>'
         )
-    document = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
+    language = current_language()
+    document = f"""<!doctype html><html lang="{language}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(conversation.title)}</title><style>
 :root{{--bg:#0b0d0f;--panel:#15191e;--border:#30363d;--text:#e8eaed;--green:#39ff14;--blue:#58a6ff}}
 body{{font-family:Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}}header,main{{max-width:1000px;margin:auto;padding:22px}}
@@ -576,8 +655,8 @@ header{{position:sticky;top:0;background:#0b0d0fee;border-bottom:1px solid var(-
 .message{{margin:12px 0;padding:14px;border:1px solid var(--border);border-radius:8px;background:var(--panel);scroll-margin-top:130px}}
 .message.user{{border-left:4px solid var(--blue)}}.message.assistant{{border-left:4px solid #a78bfa}}.message.matched{{outline:2px solid var(--green);background:#102417}}
 .role{{font-weight:700;margin-bottom:8px}}.text{{white-space:pre-wrap;overflow-wrap:anywhere}}
-</style></head><body><header><a href="../DTLarchive-report.html">← Retour au rapport</a>
-<h1>{html.escape(conversation.title)}</h1><div>{html.escape(conversation.source_file)} — Pertinence : {result.relevance_score} %</div></header>
+</style></head><body><header><a href="../DTLarchive-report.html">{t('html.back')}</a>
+<h1>{html.escape(conversation.title)}</h1><div>{html.escape(conversation.source_file)} — {t('html.relevance')} : {result.relevance_score} %</div></header>
 <main>{''.join(messages)}</main></body></html>"""
     path.write_text(document, encoding="utf-8")
 
@@ -593,7 +672,7 @@ def write_html_report(path: Path, results: Sequence[MiningResult], metadata: dic
         for term in unique(keyword for result in results for keyword in result.matched_keywords)
     }
     term_summary = "".join(
-        f"<li><strong>{html.escape(term)}</strong> : {count} {pluralized(count, 'conversation', 'conversations')}</li>"
+        f"<li><strong>{html.escape(term)}</strong> : {count} {plural_key('html.conversation', count)}</li>"
         for term, count in sorted(term_counts.items(), key=lambda item: (-item[1], normalize(item[0])))
     )
     subjects = unique(result.conversation_title for result in sorted(results, key=lambda item: -item.relevance_score))[:5]
@@ -609,21 +688,22 @@ def write_html_report(path: Path, results: Sequence[MiningResult], metadata: dic
                 for item in context["messages"]
             )
             contexts.append(f'<div class="context-window">{context_messages}</div>')
-        context_label = pluralized(len(result.contexts), "contexte", "contextes")
+        context_label = plural_key("html.context", len(result.contexts))
         roles = " · ".join(result.matched_roles)
         rows.append(
             "<tr>"
             f"<td>{html.escape(result.conversation_date)}</td>"
             f"<td><strong>{html.escape(result.conversation_title)}</strong><br><small>{html.escape(result.source_file)}</small><br>"
-            f'<a class="open-button" href="{html.escape(result.conversation_url)}">Ouvrir la conversation</a></td>'
+            f'<a class="open-button" href="{html.escape(result.conversation_url)}">{t("html.open_conversation")}</a></td>'
             f"<td><span class='score'>{result.relevance_score} %</span><br>{html.escape(result.relevance_label)}</td>"
             f"<td>{keywords}<br><small>{roles}</small></td><td class='number'>{result.occurrence_count}</td>"
             f"<td><details><summary>{len(result.contexts)} {context_label}</summary>{''.join(contexts)}</details></td>"
             "</tr>"
         )
     generated = dt.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    document = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>Résultats {APP_NAME}</title><style>
+    language = current_language()
+    document = f"""<!doctype html><html lang="{language}"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>{t('html.results')} {APP_NAME}</title><style>
 :root{{--bg:#0b0d0f;--panel:#131619;--border:#30363d;--text:#e8eaed;--muted:#9aa0a6;--green:#39ff14;--blue:#58a6ff}}
 body{{font-family:Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}}
 header,main{{max-width:1500px;margin:auto;padding:24px}}h1{{margin:0 0 5px}}.muted,small{{color:var(--muted)}}
@@ -637,38 +717,40 @@ th,td{{padding:10px;border:1px solid var(--border);vertical-align:top;text-align
 .context-window{{margin:8px 0;border:1px solid var(--border);border-radius:6px;overflow:hidden}}.context-message{{padding:8px;background:#0d1117;border-left:3px solid #a78bfa}}
 .context-message.user{{border-left-color:var(--blue)}}.context-message.matched{{background:#102417;outline:1px solid #1f7a36}}.context-message p{{margin:5px 0;white-space:pre-wrap}}
 summary{{cursor:pointer;color:var(--blue)}}@media(max-width:800px){{.summary-grid{{grid-template-columns:1fr}}}}
-</style></head><body><header><h1>{APP_NAME} {APP_VERSION}</h1><div class="muted">Rapport généré le {generated}</div>
-<div class="query"><strong>Recherche :</strong> {chips}<br><span class="muted">{html.escape(metadata['scope_label'])} — Période : {html.escape(metadata['periode'])}</span></div>
-<div class="stats"><div class="stat"><strong>{metadata['fichiers']}</strong>Fichiers</div>
-<div class="stat"><strong>{metadata['conversations_lues']}</strong>Conversations examinées</div>
-<div class="stat"><strong>{len(results)}</strong>Conversations trouvées</div>
-<div class="stat"><strong>{sum(result.occurrence_count for result in results)}</strong>Occurrences</div></div>
-<div class="summary-box"><h2>Résumé automatique</h2><p>La recherche apparaît dans <strong>{len(results)} {pluralized(len(results), 'conversation', 'conversations')}</strong>.</p>
-<div class="summary-grid"><div><h3>Répartition des termes</h3><ul>{term_summary or '<li>Aucun résultat</li>'}</ul></div>
-<div><h3>Principaux sujets</h3><ul>{subject_summary or '<li>Aucun sujet</li>'}</ul></div></div></div></header>
-<main><table><thead><tr><th>Date</th><th>Conversation</th><th>Pertinence</th><th>Mots-clés et rôles</th><th>Occurrences</th><th>Contexte</th></tr></thead>
+</style></head><body><header><h1>{APP_NAME} {APP_VERSION}</h1><div class="muted">{t('html.generated', date=generated)}</div>
+<div class="query"><strong>{t('query.label')} :</strong> {chips}<br><span class="muted">{html.escape(metadata['scope_label'])} — {html.escape(metadata['periode'])}</span></div>
+<div class="stats"><div class="stat"><strong>{metadata['fichiers']}</strong>{t('html.files')}</div>
+<div class="stat"><strong>{metadata['conversations_lues']}</strong>{plural_key('result.examined', metadata['conversations_lues'])}</div>
+<div class="stat"><strong>{len(results)}</strong>{plural_key('result.found', len(results))}</div>
+<div class="stat"><strong>{sum(result.occurrence_count for result in results)}</strong>{plural_key('result.occurrence', sum(result.occurrence_count for result in results))}</div></div>
+<div class="summary-box"><h2>{t('html.automatic_summary')}</h2><p>{t('html.search_appears', count=len(results), label=plural_key('html.conversation', len(results)))}</p>
+<div class="summary-grid"><div><h3>{t('html.term_distribution')}</h3><ul>{term_summary or f'<li>{t("html.no_result")}</li>'}</ul></div>
+<div><h3>{t('html.main_subjects')}</h3><ul>{subject_summary or f'<li>{t("html.no_subject")}</li>'}</ul></div></div></div></header>
+<main><table><thead><tr><th>{t('html.date')}</th><th>{t('html.conversation')}</th><th>{t('html.relevance')}</th><th>{t('html.keywords_roles')}</th><th>{t('html.occurrences')}</th><th>{t('html.context')}</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></main></body></html>"""
     path.write_text(document, encoding="utf-8")
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Recherche généraliste dans les archives ChatGPT.")
-    parser.add_argument("inputs", nargs="*", type=Path, help="fichiers conversations*.json ou dossiers")
-    parser.add_argument("--output", type=Path, help="dossier de sortie")
-    parser.add_argument("--pattern", default="conversations*.json")
-    parser.add_argument("--date-debut", help="date de début inclusive au format jj/mm/aaaa")
-    parser.add_argument("--date-fin", help="date de fin inclusive au format jj/mm/aaaa")
-    parser.add_argument("--mots-cles", help="mots ou expressions séparés par des virgules")
-    parser.add_argument("--index", type=Path, help="chemin de la base d'index SQLite")
-    parser.add_argument("--reindex", action="store_true", help="reconstruire entièrement l'index")
+    parser = LocalizedArgumentParser(description=t("arg.description"), add_help=False)
+    parser.add_argument("-h", "--help", action="help", help=t("arg.help"))
+    parser.add_argument("inputs", nargs="*", type=Path, help=t("arg.inputs"))
+    parser.add_argument("--output", type=Path, help=t("arg.output"))
+    parser.add_argument("--pattern", default="conversations*.json", help=t("arg.pattern"))
+    parser.add_argument("--date-debut", help=t("arg.start"))
+    parser.add_argument("--date-fin", help=t("arg.end"))
+    parser.add_argument("--mots-cles", help=t("arg.keywords"))
+    parser.add_argument("--index", type=Path, help=t("arg.index"))
+    parser.add_argument("--reindex", action="store_true", help=t("arg.reindex"))
     parser.add_argument(
         "--role",
         choices=("user", "assistant", "both"),
         default="user",
-        help="chercher dans les questions, les réponses ou les deux",
+        help=t("arg.role"),
     )
-    parser.add_argument("--quiet", action="store_true")
-    parser.add_argument("--version", action="version", version=f"%(prog)s {APP_VERSION}")
+    parser.add_argument("--lang", choices=("fr", "en"), default=current_language(), help=t("arg.lang"))
+    parser.add_argument("--quiet", action="store_true", help=t("arg.quiet"))
+    parser.add_argument("--version", action="version", version=f"%(prog)s {APP_VERSION}", help=t("arg.version"))
     return parser.parse_args(argv)
 
 
@@ -682,26 +764,44 @@ def resolve_inputs(inputs: Sequence[Path], pattern: str) -> list[Path]:
     return sorted({path.resolve() for path in files})
 
 
+def apply_language_argument(argv: Sequence[str]) -> None:
+    for index, argument in enumerate(argv):
+        if argument.startswith("--lang="):
+            set_language(argument.partition("=")[2])
+            return
+        if argument == "--lang" and index + 1 < len(argv):
+            set_language(argv[index + 1])
+            return
+
+
 def main(argv: Sequence[str] | None = None) -> int:
+    configure_console_encoding()
     effective_argv = list(argv) if argv is not None else sys.argv[1:]
+    apply_language_argument(effective_argv)
     interactive = not effective_argv
-    write_action_log("Démarrage du data miner", "DEBUT", detail=f"arguments={effective_argv!r}")
+    write_action_log(t("log.start"), "DEBUT", detail=f"arguments={effective_argv!r}")
     if interactive:
         print_console_header()
     args = parse_args(argv)
+    set_language(args.lang)
     args.output = args.output or (resolve_tool_dir() / "DTLarchive-output" if interactive else Path("DTLarchive-output"))
 
     files = resolve_inputs(args.inputs, args.pattern) if args.inputs else []
     if not files and interactive:
-        wait_for_key("DTLarchive va ouvrir l'explorateur de fichiers pour sélectionner les archives ChatGPT.")
+        wait_for_key(
+            t("file.selection_intro"),
+            allow_language_switch=True,
+            help_key="file.help",
+            message_key="file.selection_intro",
+        )
         files = sorted({path.resolve() for path in choose_conversation_files() if path.is_file()})
     if not files:
-        message = "Aucune archive ChatGPT n'a été sélectionnée."
-        write_action_log("Sélection des archives", "ERREUR", detail=message)
+        message = t("file.none_selected")
+        write_action_log(t("log.file_selection"), "ERREUR", detail=message)
         if interactive:
             show_dialog("showwarning", APP_NAME, message)
         else:
-            print(f"[ERREUR] {message}", file=sys.stderr)
+            print(f"[{t('common.error')}] {message}", file=sys.stderr)
         return 2
 
     index_path = (args.index or default_index_path()).resolve()
@@ -710,7 +810,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.reindex:
             archive_index.clear()
         if interactive:
-            print("\nMise à jour de l'index local...", flush=True)
+            print(f"\n{t('index.updating')}", flush=True)
         index_update = archive_index.update(
             files,
             lambda path: iter_conversations(path, strict=True),
@@ -720,42 +820,38 @@ def main(argv: Sequence[str] | None = None) -> int:
         if interactive:
             clear_current_file()
             if index_update.imported_files:
-                file_label = pluralized(index_update.imported_files, "archive indexée", "archives indexées")
-                print(
-                    f"Index mis à jour : {green(index_update.imported_files)} {file_label}, "
-                    f"{green(index_update.imported_conversations)} conversations importées."
-                )
+                file_label = plural_key("index.file", index_update.imported_files)
+                print(t("index.updated", files=green(index_update.imported_files), file_label=file_label, conversations=green(index_update.imported_conversations)))
             else:
-                print(f"Index déjà à jour : {green(index_update.unchanged_files)} archives réutilisées.")
+                print(t("index.current", files=green(index_update.unchanged_files)))
         source_ids = archive_index.source_ids(files)
         archive_bounds = archive_index.archive_bounds(source_ids)
     except (OSError, RuntimeError, ValueError, sqlite3.Error) as exc:
-        message = f"Impossible de mettre à jour l'index SQLite : {exc}"
-        write_action_log("Mise à jour de l'index SQLite", "ERREUR", detail=str(index_path), exc=exc)
-        print(f"[ERREUR] {message}", file=sys.stderr)
+        message = t("index.failure", error=exc)
+        write_action_log(t("log.index_update"), "ERREUR", detail=str(index_path), exc=exc)
+        print(f"[{t('common.error')}] {message}", file=sys.stderr)
         if interactive:
             show_dialog("showerror", APP_NAME, message)
         return 2
 
     write_action_log(
-        "Index SQLite prêt",
+        t("log.index_ready"),
         "OK",
         detail=(
-            f"base={index_path} | importées={index_update.imported_files} | "
-            f"réutilisées={index_update.unchanged_files}"
+            t("log.index_detail", path=index_path, imported=index_update.imported_files, reused=index_update.unchanged_files)
         ),
     )
     if interactive:
         if archive_bounds:
-            print(f"Période disponible : {green(archive_period_label(archive_bounds))}")
+            print(t("date.available", period=green(archive_period_label(archive_bounds))))
         else:
-            print("Aucune date de conversation exploitable n'a été trouvée dans les archives.")
+            print(t("date.none_usable"))
 
     try:
         start_date = parse_french_date(args.date_debut) if args.date_debut else None
         end_date = parse_french_date(args.date_fin, end_of_day=True) if args.date_fin else None
     except ValueError:
-        print("[ERREUR] Date invalide : utilisez le format jj/mm/aaaa.", file=sys.stderr)
+        print(f"[{t('common.error')}] {t('date.invalid')}", file=sys.stderr)
         archive_index.close()
         return 2
 
@@ -763,55 +859,51 @@ def main(argv: Sequence[str] | None = None) -> int:
     role_scope = args.role
     if interactive:
         while True:
-            print("\nPériode de recherche (les deux dates sont facultatives).")
-            start_date = ask_date("Date de début")
-            end_date = ask_date("Date de fin", end_of_day=True)
+            print(f"\n{t('date.search_period')}")
+            start_date = ask_date(t("date.start"))
+            end_date = ask_date(t("date.end"), end_of_day=True)
             if start_date and end_date and start_date > end_date:
-                print("La date de fin doit être postérieure ou égale à la date de début.")
+                print(t("date.end_before_start"))
                 continue
             if not period_overlaps_archive(start_date, end_date, archive_bounds):
-                requested_period = (
-                    f"du {start_date.strftime('%d/%m/%Y') if start_date else 'début'} "
-                    f"au {end_date.strftime('%d/%m/%Y') if end_date else 'présent'}"
-                )
-                print(f"Aucune conversation n'existe pour la période demandée ({requested_period}).")
+                requested_period = t("period.from_to", start=start_date.strftime("%d/%m/%Y") if start_date else t("period.start"), end=end_date.strftime("%d/%m/%Y") if end_date else t("period.present"))
+                print(t("date.no_conversation", period=requested_period))
                 if archive_bounds:
-                    print(f"Les archives sélectionnées couvrent la période {green(archive_period_label(archive_bounds))}.")
-                print("Veuillez saisir une période qui recoupe les archives.")
+                    print(t("date.archive_coverage", period=green(archive_period_label(archive_bounds))))
+                print(t("date.retry"))
                 continue
             break
         terms = ask_query()
         role_scope = ask_role_scope()
     elif start_date and end_date and start_date > end_date:
-        print("[ERREUR] La date de fin doit être postérieure ou égale à la date de début.", file=sys.stderr)
+        print(f"[{t('common.error')}] {t('date.end_before_start')}", file=sys.stderr)
         archive_index.close()
         return 2
 
     if not period_overlaps_archive(start_date, end_date, archive_bounds):
-        available = archive_period_label(archive_bounds) if archive_bounds else "inconnue"
-        message = f"La période demandée ne recoupe pas celle des archives ({available})."
-        write_action_log("Contrôle de la période", "ERREUR", detail=message)
-        print(f"[ERREUR] {message}", file=sys.stderr)
+        available = archive_period_label(archive_bounds) if archive_bounds else t("common.unknown")
+        message = t("date.no_overlap", available=available)
+        write_action_log(t("log.period_check"), "ERREUR", detail=message)
+        print(f"[{t('common.error')}] {message}", file=sys.stderr)
         archive_index.close()
         return 2
     if not any(not term.excluded for term in terms):
-        print("[ERREUR] Saisissez au moins un mot-clé à rechercher.", file=sys.stderr)
+        print(f"[{t('common.error')}] {t('query.required')}", file=sys.stderr)
         archive_index.close()
         return 2
 
     all_labels = format_query(terms)
     write_action_log(
-        "Recherche configurée",
+        t("log.search_configured"),
         "OK",
         detail=(
-            f"fichiers={len(files)} | période={start_date} à {end_date} | "
-            f"recherche={all_labels} | périmètre={role_scope}"
+            t("log.search_detail", files=len(files), start=start_date, end=end_date, query=all_labels, scope=role_scope)
         ),
     )
     if interactive:
-        label = pluralized(len(files), "fichier sélectionné", "fichiers sélectionnés")
+        label = plural_key("search.selected", len(files))
         print(f"\n{green(len(files))} {label}.")
-        print("Recherche dans l'index local, merci de patienter...", flush=True)
+        print(t("search.working"), flush=True)
 
     results: list[MiningResult] = []
     matched_conversations: list[tuple[MiningResult, Conversation]] = []
@@ -851,10 +943,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     conversation_dir.mkdir(parents=True, exist_ok=True)
     for result, conversation in matched_conversations:
         write_conversation_page(conversation_dir / conversation_page_name(conversation), conversation, result)
-    period = (
-        f"du {start_date.strftime('%d/%m/%Y') if start_date else 'début des archives'} "
-        f"au {end_date.strftime('%d/%m/%Y') if end_date else 'dernier échange'}"
-    )
+    period = t("period.from_to", start=start_date.strftime("%d/%m/%Y") if start_date else t("period.archive_start"), end=end_date.strftime("%d/%m/%Y") if end_date else t("period.last_exchange"))
     metadata = {
         "application": APP_NAME,
         "version": APP_VERSION,
@@ -876,30 +965,27 @@ def main(argv: Sequence[str] | None = None) -> int:
     write_html_report(report_path, results, metadata)
     occurrences = sum(result.occurrence_count for result in results)
     write_action_log(
-        "Fouille terminée",
+        t("log.finished"),
         "OK",
-        detail=f"conversations examinées={conversation_count} | trouvées={len(results)} | occurrences={occurrences}",
+        detail=t("log.finished_detail", examined=conversation_count, found=len(results), occurrences=occurrences),
     )
 
     if not args.quiet:
         if not interactive:
             print(f"{APP_NAME} {APP_VERSION}")
-        print(f"{pluralized(conversation_count, 'Conversation examinée', 'Conversations examinées')} : {green(conversation_count)}")
-        print(f"{pluralized(len(results), 'Conversation trouvée', 'Conversations trouvées')} : {green(len(results))}")
-        print(f"{pluralized(occurrences, 'Occurrence', 'Occurrences')} : {green(occurrences)}")
+        print(f"{plural_key('result.examined', conversation_count)} : {green(conversation_count)}")
+        print(f"{plural_key('result.found', len(results))} : {green(len(results))}")
+        print(f"{plural_key('result.occurrence', occurrences)} : {green(occurrences)}")
         if not interactive:
-            print(f"Rapport : {green(report_path)}")
+            print(f"{t('result.report')} : {green(report_path)}")
 
     if interactive:
-        wait_for_key(f"Rapport terminé : {green(report_path)}\nIl va maintenant être affiché dans votre navigateur.")
+        wait_for_key(t("result.finished", path=green(report_path)))
         webbrowser.open(report_path.as_uri())
         show_dialog(
             "showinfo",
             APP_NAME,
-            f"Recherche terminée.\n\n{pluralized(conversation_count, 'Conversation examinée', 'Conversations examinées')} : {conversation_count}\n"
-            f"{pluralized(len(results), 'Conversation trouvée', 'Conversations trouvées')} : {len(results)}\n"
-            f"{pluralized(occurrences, 'Occurrence', 'Occurrences')} : {occurrences}\n\n"
-            f"Le rapport a été ouvert dans votre navigateur.\n{report_path}",
+            t("result.dialog", examined_label=plural_key("result.examined", conversation_count), examined=conversation_count, found_label=plural_key("result.found", len(results)), found=len(results), occurrence_label=plural_key("result.occurrence", occurrences), occurrences=occurrences, path=report_path),
         )
     return 0
 
@@ -909,13 +995,13 @@ if __name__ == "__main__":
         exit_code = main()
     except SystemExit as exc:
         if exc.code not in (None, 0):
-            write_action_log("Arrêt demandé par l'analyse des paramètres", "ECHEC", detail=f"code={exc.code}")
+            write_action_log(t("log.argument_stop"), "ECHEC", detail=f"code={exc.code}")
         raise
     except BaseException as exc:
-        write_action_log("Exception fatale de DTLarchive", "ERREUR", exc=exc)
-        print(f"[ERREUR FATALE] {type(exc).__name__}: {exc}", file=sys.stderr)
+        write_action_log(t("log.fatal"), "ERREUR", exc=exc)
+        print(f"[{t('common.fatal_error')}] {type(exc).__name__}: {exc}", file=sys.stderr)
         raise
     else:
         if exit_code != 0:
-            write_action_log("Arrêt de DTLarchive", "ECHEC", detail=f"code={exit_code}")
+            write_action_log(t("log.stop"), "ECHEC", detail=f"code={exit_code}")
         raise SystemExit(exit_code)

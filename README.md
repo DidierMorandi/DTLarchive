@@ -1,6 +1,6 @@
 # DTLarchive
 
-Current version: **v2.2-0**
+Current version: **v2.2-4**
 
 [Version française](README_Fr.md)
 
@@ -22,7 +22,9 @@ instead of reading every archive again.
 ## Using the Windows executable
 
 1. Open `DTLarchive.exe`.
-2. Press a key when prompted, then select one or more
+2. To use the English interface, type `1` at the first prompt and press Enter.
+   DTLarchive repeats the selection prompt in English; press Enter again, then
+   select one or more
    `conversations*.json` files from a ChatGPT export.
 3. Let DTLarchive update its local index. Unchanged archives are reused without
    being parsed again.
@@ -32,6 +34,12 @@ instead of reading every archive again.
 6. Enter the keyword query and choose where to search.
 7. Wait while the index is searched, then press a key to open the HTML
    report in the default browser.
+
+The selected language applies to the console, contextual help, file-selection
+window, error messages, HTML report, conversation pages, and diagnostic log.
+At an interactive prompt, type `?`, `help`, or `h` to display help for the
+current question. The startup subtitle ends with
+`To talk to me in English, type 1`.
 
 DTLarchive validates the requested period before asking for keywords. A period
 that does not overlap the selected archives is rejected and must be entered
@@ -43,15 +51,15 @@ archive data exists. Leaving both dates empty searches the entire archive.
 - `retirement` searches for one word;
 - `white card` searches for the complete phrase;
 - `insurance, pension` finds conversations containing either term;
-- `asylum ET lucky` requires both terms in the same conversation;
-- `asylum ET lucky, pension` means `(asylum ET lucky) OU pension`;
-- `asylum OU pension` explicitly uses alternative terms;
-- `"asylum" ET "lucky"` also accepts quoted terms;
+- `asylum AND lucky` requires both terms in the same conversation;
+- `asylum AND lucky, pension` means `(asylum AND lucky) OR pension`;
+- `asylum OR pension` explicitly uses alternative terms;
+- `"asylum" AND "lucky"` also accepts quoted terms;
 - `print*` finds words beginning with `print`;
 - `backup, -network` finds `backup` while excluding conversations containing
   `network`.
 
-`ET` is the AND operator. `OU`, a comma, or a semicolon is the OR operator.
+`AND` (or `ET`) is the AND operator. `OR` (or `OU`), a comma, or a semicolon is the OR operator.
 A leading minus sign excludes a term. Searches are case-insensitive and
 accent-insensitive. Simple singular forms also match their common plural form.
 
@@ -91,7 +99,7 @@ searched for `conversations*.json` by default.
 
 ```powershell
 python .\DTLarchive.py D:\Archives\ChatGPT `
-  --mots-cles "asylum ET lucky, OFPRA" `
+  --mots-cles "asylum AND lucky, OFPRA" `
   --date-debut 01/01/2024 `
   --date-fin 31/12/2025 `
   --role user
@@ -107,6 +115,7 @@ Useful options:
 - `--index PATH` selects another SQLite index file;
 - `--reindex` clears and rebuilds the selected index;
 - `--quiet` suppresses the result summary in the console;
+- `--lang en` selects English and `--lang fr` selects French;
 - `--version` displays the program version.
 
 An invalid date, a reversed period, or a period outside the archive range stops
