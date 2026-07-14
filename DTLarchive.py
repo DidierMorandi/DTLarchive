@@ -26,7 +26,7 @@ from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-4"
+APP_VERSION = "v2.2-5"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
@@ -364,7 +364,7 @@ def format_query(terms: Sequence[QueryTerm]) -> list[str]:
 def ask_query() -> list[QueryTerm]:
     print()
     print(t("query.instructions"))
-    examples = ("retirement", "asylum AND lucky", "asylum OR retirement", "print*") if current_language() == "en" else ("retraite", "asile ET lucky", "asile OU retraite", "imprim*")
+    examples = ("retirement", "asylum AND John Doe", "asylum OR retirement", "print*") if current_language() == "en" else ("retraite", "asile ET John Doe", "asile OU retraite", "imprim*")
     print(t("query.examples", one=green(examples[0]), two=green(examples[1]), three=green(examples[2]), four=green(examples[3])))
     print(t("query.syntax"))
     while True:

@@ -11,3 +11,5 @@ DTLarchive-index.sqlite-shm
 DTLarchive-index.sqlite-wal
 
 /tests/
+
+/test_dtlarchive_i18n.py
