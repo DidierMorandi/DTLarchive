@@ -1,0 +1,3743 @@
+{
+  "created_at": "2026-07-15T16:41:28.383406+02:00",
+  "tool_version": "v1.1-27",
+  "project": "DTLarchive",
+  "project_root": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive",
+  "automatic_policy": "Seules les corrections déterministes marquées safe_automatic sont applicables, après confirmation unique.",
+  "before": {
+    "summary": {
+      "catalogs": 2,
+      "catalog_entries": 133,
+      "unique_keys": 133,
+      "references": 129,
+      "referenced_keys": 112,
+      "direct_literal_keys": 112,
+      "indirect_or_propagated_keys": 0,
+      "keys_without_literal_evidence": 21,
+      "demonstrated_unused_keys": 0,
+      "unresolved_dynamic_translation_calls": 7,
+      "issues": 3,
+      "safe_corrections": 0,
+      "syntax_errors": 0,
+      "issues_by_code": {
+        "catalog_unreadable": 1,
+        "language_mismatch_en": 1,
+        "language_mismatch_fr": 1
+      },
+      "issues_by_severity": {
+        "error": 1,
+        "warning": 2
+      }
+    },
+    "catalogs": [
+      "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+      "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py"
+    ],
+    "selector": {
+      "exists": true,
+      "evidence": [
+        "fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language",
+        "14 appel(s) effectif(s) du sélecteur",
+        "4 affectation(s) dynamique(s) de langue",
+        "langue consultée par la traduction dans 1 fichier(s)"
+      ],
+      "explanation": "Un choix de langue alimente réellement la fonction de traduction.",
+      "proposed_correction": null
+    },
+    "usage_analysis": {
+      "files_scanned": 4,
+      "direct_literal_keys": 112,
+      "indirect_or_propagated_keys": 0,
+      "keys_without_literal_evidence": 21,
+      "demonstrated_unused_keys": 0,
+      "dynamic_translation_calls": 7,
+      "unresolved_dynamic_translation_calls": 7,
+      "proof_policy": "L'absence de littéral n'est jamais considérée seule comme une preuve d'inutilisation.",
+      "indirect_keys": [],
+      "keys_without_literal_evidence_list": [
+        "t0011_common.help_hint",
+        "t0012_common.invalid_choice",
+        "t0018_file.press_key",
+        "t0019_file.press_key_language",
+        "t0020_file.help",
+        "t0053_role.user",
+        "t0054_role.assistant",
+        "t0063_index.file.one",
+        "t0064_index.file.many",
+        "t0068_search.selected.one",
+        "t0069_search.selected.many",
+        "t0071_result.examined.one",
+        "t0072_result.examined.many",
+        "t0073_result.found.one",
+        "t0074_result.found.many",
+        "t0075_result.occurrence.one",
+        "t0076_result.occurrence.many",
+        "t0085_html.context.one",
+        "t0086_html.context.many",
+        "t0087_html.conversation.one",
+        "t0088_html.conversation.many"
+      ],
+      "evidence": [
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 519,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0060_relevance.secondary",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 527,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0003_app.subtitle",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 296,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0004_app.scope_subtitle",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 297,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0039_query.instructions",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 366,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0040_query.examples",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 368,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0041_query.syntax",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 369,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0046_scope.question",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 387,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0058_relevance.very",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 524,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0059_relevance.relevant",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 526,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0105_log.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 782,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0017_file.none_selected",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 799,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0107_log.index_ready",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 838,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0033_date.no_overlap",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 885,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0110_log.search_configured",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 897,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0112_log.finished",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 968,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0133_arg.options",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 82,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0001_startup.switch_to_english",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 115,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0101_log.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 169,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0101_log.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 177,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0102_log.created",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 178,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0008_common.action",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0009_common.info",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0021_date.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 317,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0042_query.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 371,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0043_query.required",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 382,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0050_scope.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 392,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0051_scope.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 402,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0055_role.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 590,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0080_html.back",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 658,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0081_html.relevance",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 659,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0082_html.results",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 706,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0083_html.generated",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 720,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0045_query.label",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 721,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0089_html.files",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 722,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0090_html.automatic_summary",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 726,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0091_html.search_appears",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 726,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0092_html.term_distribution",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 727,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0093_html.main_subjects",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 728,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0096_html.date",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0097_html.conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0081_html.relevance",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0098_html.keywords_roles",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0099_html.occurrences",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0100_html.context",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0117_arg.description",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 735,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0129_arg.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 736,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0118_arg.inputs",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 737,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0119_arg.output",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 738,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0127_arg.pattern",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 739,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0120_arg.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 740,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0121_arg.end",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 741,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0122_arg.keywords",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 742,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0123_arg.index",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 743,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0124_arg.reindex",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 744,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0125_arg.role",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 749,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0126_arg.lang",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 751,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0128_arg.quiet",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 752,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0130_arg.version",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 753,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0016_file.selection_intro",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 792,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0103_log.file_selection",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 800,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0066_index.failure",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 830,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0108_log.index_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 841,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0010_common.unknown",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 884,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0109_log.period_check",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 886,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0111_log.search_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 900,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0070_search.working",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 906,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0113_log.finished_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 970,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0078_result.finished",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 983,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0079_result.dialog",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 988,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0002_startup.switch_to_french",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 114,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0013_file.dialog_title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 235,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0103_log.file_selection",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 241,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0025_date.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 325,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0044_query.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 377,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0047_scope.user",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 388,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0048_scope.assistant",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 389,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0049_scope.both",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 390,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0052_scope.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 398,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0104_log.archive_read",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 477,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0057_conversation.unknown_date",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 617,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0106_log.index_update",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 831,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0027_date.available",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 846,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0028_date.none_usable",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 848,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0022_date.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 863,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0023_date.end",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 864,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0037_period.archive_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0038_period.last_exchange",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0115_log.fatal",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1001,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0116_log.stop",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1006,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0132_arg.positionals",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 81,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0024_date.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 330,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0084_html.open_conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 697,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0062_index.updated",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 824,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0065_index.current",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 826,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0029_date.end_before_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 866,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0030_date.no_conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 870,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0032_date.retry",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 873,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 887,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 891,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0043_query.required",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 891,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0114_log.argument_stop",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 998,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0014_file.dialog_archive",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 236,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0015_file.dialog_json",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 236,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0007_common.warning",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 478,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0094_html.no_result",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 727,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0095_html.no_subject",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 728,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 804,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0061_index.updating",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 813,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 832,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 854,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0024_date.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 854,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0026_date.search_period",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 862,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0031_date.archive_coverage",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 872,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 879,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0029_date.end_before_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 879,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0077_result.report",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 980,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0006_common.fatal_error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1002,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0131_arg.usage",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 80,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 491,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0035_period.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0036_period.present",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0067_index.incompatible",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 145,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 273,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 241,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 257,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        }
+      ],
+      "dynamic_calls": [
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 406,
+          "function_name": "t",
+          "expression": "\"role.user\" if role == \"user\" else \"role.assistant\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 410,
+          "function_name": "t",
+          "expression": "f\"scope.{scope}\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 254,
+          "function_name": "t",
+          "expression": "\"file.press_key_language\" if allow_language_switch else \"file.press_key\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 267,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 275,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 281,
+          "function_name": "t",
+          "expression": "help_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 283,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        }
+      ],
+      "syntax_errors": []
+    },
+    "catalog_problems": [
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py",
+        "message": "dictionnaire TRANSLATIONS introuvable"
+      }
+    ],
+    "syntax_errors": [],
+    "references": [
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 519,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 527,
+        "key": "t0060_relevance.secondary",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 296,
+        "key": "t0003_app.subtitle",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 297,
+        "key": "t0004_app.scope_subtitle",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 366,
+        "key": "t0039_query.instructions",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 368,
+        "key": "t0040_query.examples",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 369,
+        "key": "t0041_query.syntax",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 387,
+        "key": "t0046_scope.question",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 524,
+        "key": "t0058_relevance.very",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 526,
+        "key": "t0059_relevance.relevant",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 782,
+        "key": "t0105_log.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 799,
+        "key": "t0017_file.none_selected",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 838,
+        "key": "t0107_log.index_ready",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 885,
+        "key": "t0033_date.no_overlap",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 897,
+        "key": "t0110_log.search_configured",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 968,
+        "key": "t0112_log.finished",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 82,
+        "key": "t0133_arg.options",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 115,
+        "key": "t0001_startup.switch_to_english",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 169,
+        "key": "t0101_log.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 177,
+        "key": "t0101_log.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 178,
+        "key": "t0102_log.created",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0008_common.action",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0009_common.info",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 317,
+        "key": "t0021_date.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 371,
+        "key": "t0042_query.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 382,
+        "key": "t0043_query.required",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 392,
+        "key": "t0050_scope.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 402,
+        "key": "t0051_scope.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 590,
+        "key": "t0055_role.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 658,
+        "key": "t0080_html.back",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 659,
+        "key": "t0081_html.relevance",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 706,
+        "key": "t0082_html.results",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 720,
+        "key": "t0083_html.generated",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 721,
+        "key": "t0045_query.label",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 722,
+        "key": "t0089_html.files",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 726,
+        "key": "t0090_html.automatic_summary",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 726,
+        "key": "t0091_html.search_appears",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 727,
+        "key": "t0092_html.term_distribution",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 728,
+        "key": "t0093_html.main_subjects",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0096_html.date",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0097_html.conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0081_html.relevance",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0098_html.keywords_roles",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0099_html.occurrences",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0100_html.context",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 735,
+        "key": "t0117_arg.description",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 736,
+        "key": "t0129_arg.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 737,
+        "key": "t0118_arg.inputs",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 738,
+        "key": "t0119_arg.output",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 739,
+        "key": "t0127_arg.pattern",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 740,
+        "key": "t0120_arg.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 741,
+        "key": "t0121_arg.end",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 742,
+        "key": "t0122_arg.keywords",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 743,
+        "key": "t0123_arg.index",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 744,
+        "key": "t0124_arg.reindex",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 749,
+        "key": "t0125_arg.role",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 751,
+        "key": "t0126_arg.lang",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 752,
+        "key": "t0128_arg.quiet",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 753,
+        "key": "t0130_arg.version",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 792,
+        "key": "t0016_file.selection_intro",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 800,
+        "key": "t0103_log.file_selection",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 830,
+        "key": "t0066_index.failure",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 841,
+        "key": "t0108_log.index_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 884,
+        "key": "t0010_common.unknown",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 886,
+        "key": "t0109_log.period_check",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 900,
+        "key": "t0111_log.search_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 906,
+        "key": "t0070_search.working",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 970,
+        "key": "t0113_log.finished_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 983,
+        "key": "t0078_result.finished",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 988,
+        "key": "t0079_result.dialog",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 114,
+        "key": "t0002_startup.switch_to_french",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 235,
+        "key": "t0013_file.dialog_title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 241,
+        "key": "t0103_log.file_selection",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 325,
+        "key": "t0025_date.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 377,
+        "key": "t0044_query.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 388,
+        "key": "t0047_scope.user",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 389,
+        "key": "t0048_scope.assistant",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 390,
+        "key": "t0049_scope.both",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 398,
+        "key": "t0052_scope.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 477,
+        "key": "t0104_log.archive_read",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 617,
+        "key": "t0057_conversation.unknown_date",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 831,
+        "key": "t0106_log.index_update",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 846,
+        "key": "t0027_date.available",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 848,
+        "key": "t0028_date.none_usable",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 863,
+        "key": "t0022_date.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 864,
+        "key": "t0023_date.end",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0037_period.archive_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0038_period.last_exchange",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1001,
+        "key": "t0115_log.fatal",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1006,
+        "key": "t0116_log.stop",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 81,
+        "key": "t0132_arg.positionals",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 330,
+        "key": "t0024_date.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 697,
+        "key": "t0084_html.open_conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 824,
+        "key": "t0062_index.updated",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 826,
+        "key": "t0065_index.current",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 866,
+        "key": "t0029_date.end_before_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 870,
+        "key": "t0030_date.no_conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 873,
+        "key": "t0032_date.retry",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 887,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 891,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 891,
+        "key": "t0043_query.required",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 998,
+        "key": "t0114_log.argument_stop",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 236,
+        "key": "t0014_file.dialog_archive",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 236,
+        "key": "t0015_file.dialog_json",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 478,
+        "key": "t0007_common.warning",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 727,
+        "key": "t0094_html.no_result",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 728,
+        "key": "t0095_html.no_subject",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 804,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 813,
+        "key": "t0061_index.updating",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 832,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 854,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 854,
+        "key": "t0024_date.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 862,
+        "key": "t0026_date.search_period",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 872,
+        "key": "t0031_date.archive_coverage",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 879,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 879,
+        "key": "t0029_date.end_before_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 980,
+        "key": "t0077_result.report",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1002,
+        "key": "t0006_common.fatal_error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 80,
+        "key": "t0131_arg.usage",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 491,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0035_period.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0036_period.present",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 145,
+        "key": "t0067_index.incompatible",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 273,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 241,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 257,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      }
+    ],
+    "issues": [
+      {
+        "code": "catalog_unreadable",
+        "severity": "error",
+        "title": "Catalogue illisible",
+        "details": "dictionnaire TRANSLATIONS introuvable",
+        "confidence": 1.0,
+        "key": "",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Corriger manuellement la syntaxe ou le format du catalogue.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- test_dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Catalogue illisible (catalog_unreadable)\n- Clé : non applicable\n- Détail : dictionnaire TRANSLATIONS introuvable\n- Confiance du diagnostic : 100%\n\nRésultat attendu :\nRendre le catalogue lisible et valide sans modifier sa structure publique ni perdre de traduction.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      },
+      {
+        "code": "language_mismatch_fr",
+        "severity": "warning",
+        "title": "Langue probablement incorrecte dans le champ FR",
+        "details": "Texte détecté comme anglais, alors que le champ attend du français : 3 indice(s) en faveur du anglais, 0 indice(s) opposé(s).",
+        "confidence": 0.98,
+        "key": "t0001_startup.switch_to_english",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Faire vérifier ou corriger ce texte par une personne compétente.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- DTLarchive.py:115\n- dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Langue probablement incorrecte dans le champ FR (language_mismatch_fr)\n- Clé : t0001_startup.switch_to_english\n- Détail : Texte détecté comme anglais, alors que le champ attend du français : 3 indice(s) en faveur du anglais, 0 indice(s) opposé(s).\n- Confiance du diagnostic : 98%\n\nRésultat attendu :\nLe champ FR doit contenir un texte réellement français, sans altérer le sens fonctionnel.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      },
+      {
+        "code": "language_mismatch_en",
+        "severity": "warning",
+        "title": "Langue probablement incorrecte dans le champ EN",
+        "details": "Texte détecté comme français, alors que le champ attend du anglais : 2 indice(s) en faveur du français, 0 indice(s) opposé(s).",
+        "confidence": 0.89,
+        "key": "t0002_startup.switch_to_french",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Faire vérifier ou corriger ce texte par une personne compétente.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- DTLarchive.py:114\n- dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Langue probablement incorrecte dans le champ EN (language_mismatch_en)\n- Clé : t0002_startup.switch_to_french\n- Détail : Texte détecté comme français, alors que le champ attend du anglais : 2 indice(s) en faveur du français, 0 indice(s) opposé(s).\n- Confiance du diagnostic : 89%\n\nRésultat attendu :\nLe champ EN doit contenir un texte réellement anglais, sans altérer le sens fonctionnel.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      }
+    ]
+  },
+  "application": {
+    "confirmed_and_applied": false,
+    "corrections": [],
+    "modified_files": [],
+    "backups": {}
+  },
+  "after": {
+    "summary": {
+      "catalogs": 2,
+      "catalog_entries": 133,
+      "unique_keys": 133,
+      "references": 129,
+      "referenced_keys": 112,
+      "direct_literal_keys": 112,
+      "indirect_or_propagated_keys": 0,
+      "keys_without_literal_evidence": 21,
+      "demonstrated_unused_keys": 0,
+      "unresolved_dynamic_translation_calls": 7,
+      "issues": 3,
+      "safe_corrections": 0,
+      "syntax_errors": 0,
+      "issues_by_code": {
+        "catalog_unreadable": 1,
+        "language_mismatch_en": 1,
+        "language_mismatch_fr": 1
+      },
+      "issues_by_severity": {
+        "error": 1,
+        "warning": 2
+      }
+    },
+    "catalogs": [
+      "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+      "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py"
+    ],
+    "selector": {
+      "exists": true,
+      "evidence": [
+        "fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language",
+        "14 appel(s) effectif(s) du sélecteur",
+        "4 affectation(s) dynamique(s) de langue",
+        "langue consultée par la traduction dans 1 fichier(s)"
+      ],
+      "explanation": "Un choix de langue alimente réellement la fonction de traduction.",
+      "proposed_correction": null
+    },
+    "usage_analysis": {
+      "files_scanned": 4,
+      "direct_literal_keys": 112,
+      "indirect_or_propagated_keys": 0,
+      "keys_without_literal_evidence": 21,
+      "demonstrated_unused_keys": 0,
+      "dynamic_translation_calls": 7,
+      "unresolved_dynamic_translation_calls": 7,
+      "proof_policy": "L'absence de littéral n'est jamais considérée seule comme une preuve d'inutilisation.",
+      "indirect_keys": [],
+      "keys_without_literal_evidence_list": [
+        "t0011_common.help_hint",
+        "t0012_common.invalid_choice",
+        "t0018_file.press_key",
+        "t0019_file.press_key_language",
+        "t0020_file.help",
+        "t0053_role.user",
+        "t0054_role.assistant",
+        "t0063_index.file.one",
+        "t0064_index.file.many",
+        "t0068_search.selected.one",
+        "t0069_search.selected.many",
+        "t0071_result.examined.one",
+        "t0072_result.examined.many",
+        "t0073_result.found.one",
+        "t0074_result.found.many",
+        "t0075_result.occurrence.one",
+        "t0076_result.occurrence.many",
+        "t0085_html.context.one",
+        "t0086_html.context.many",
+        "t0087_html.conversation.one",
+        "t0088_html.conversation.many"
+      ],
+      "evidence": [
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 519,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0060_relevance.secondary",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 527,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0003_app.subtitle",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 296,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0004_app.scope_subtitle",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 297,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0039_query.instructions",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 366,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0040_query.examples",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 368,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0041_query.syntax",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 369,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0046_scope.question",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 387,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0058_relevance.very",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 524,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0059_relevance.relevant",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 526,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0105_log.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 782,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0017_file.none_selected",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 799,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0107_log.index_ready",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 838,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0033_date.no_overlap",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 885,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0110_log.search_configured",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 897,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0112_log.finished",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 968,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0133_arg.options",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 82,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0001_startup.switch_to_english",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 115,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0101_log.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 169,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0101_log.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 177,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0102_log.created",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 178,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0008_common.action",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0009_common.info",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 185,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0021_date.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 317,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0042_query.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 371,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0043_query.required",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 382,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0050_scope.prompt",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 392,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0051_scope.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 402,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0055_role.title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 590,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0080_html.back",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 658,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0081_html.relevance",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 659,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0082_html.results",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 706,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0083_html.generated",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 720,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0045_query.label",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 721,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0089_html.files",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 722,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0090_html.automatic_summary",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 726,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0091_html.search_appears",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 726,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0092_html.term_distribution",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 727,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0093_html.main_subjects",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 728,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0096_html.date",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0097_html.conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0081_html.relevance",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0098_html.keywords_roles",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0099_html.occurrences",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0100_html.context",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 729,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0117_arg.description",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 735,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0129_arg.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 736,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0118_arg.inputs",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 737,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0119_arg.output",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 738,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0127_arg.pattern",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 739,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0120_arg.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 740,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0121_arg.end",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 741,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0122_arg.keywords",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 742,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0123_arg.index",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 743,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0124_arg.reindex",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 744,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0125_arg.role",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 749,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0126_arg.lang",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 751,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0128_arg.quiet",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 752,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0130_arg.version",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 753,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0016_file.selection_intro",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 792,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0103_log.file_selection",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 800,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0066_index.failure",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 830,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0108_log.index_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 841,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0010_common.unknown",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 884,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0109_log.period_check",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 886,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0111_log.search_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 900,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0070_search.working",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 906,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0113_log.finished_detail",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 970,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0078_result.finished",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 983,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0079_result.dialog",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 988,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0002_startup.switch_to_french",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 114,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0013_file.dialog_title",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 235,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0103_log.file_selection",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 241,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0025_date.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 325,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0044_query.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 377,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0047_scope.user",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 388,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0048_scope.assistant",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 389,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0049_scope.both",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 390,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0052_scope.help",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 398,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0104_log.archive_read",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 477,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0057_conversation.unknown_date",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 617,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0106_log.index_update",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 831,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0027_date.available",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 846,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0028_date.none_usable",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 848,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0022_date.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 863,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0023_date.end",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 864,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0034_period.from_to",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0037_period.archive_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0038_period.last_exchange",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 946,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0115_log.fatal",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1001,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0116_log.stop",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1006,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0132_arg.positionals",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 81,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0024_date.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 330,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0084_html.open_conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 697,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0062_index.updated",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 824,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0065_index.current",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 826,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0029_date.end_before_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 866,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0030_date.no_conversation",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 870,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0032_date.retry",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 873,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 887,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 891,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0043_query.required",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 891,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0114_log.argument_stop",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 998,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0014_file.dialog_archive",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 236,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0015_file.dialog_json",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 236,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0007_common.warning",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 478,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0094_html.no_result",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 727,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0095_html.no_subject",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 728,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 804,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0061_index.updating",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 813,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 832,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 854,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0024_date.invalid",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 854,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0026_date.search_period",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 862,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0031_date.archive_coverage",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 872,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0005_common.error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 879,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0029_date.end_before_start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 879,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0077_result.report",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 980,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0006_common.fatal_error",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 1002,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0131_arg.usage",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 80,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 491,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0035_period.start",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0036_period.present",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 869,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0067_index.incompatible",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 145,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 273,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 241,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        },
+        {
+          "key": "t0056_conversation.untitled",
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+          "line": 257,
+          "kind": "direct_translation_call",
+          "details": "appel littéral direct de la fonction de traduction"
+        }
+      ],
+      "dynamic_calls": [
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 406,
+          "function_name": "t",
+          "expression": "\"role.user\" if role == \"user\" else \"role.assistant\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 410,
+          "function_name": "t",
+          "expression": "f\"scope.{scope}\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 254,
+          "function_name": "t",
+          "expression": "\"file.press_key_language\" if allow_language_switch else \"file.press_key\"",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 267,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 275,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 281,
+          "function_name": "t",
+          "expression": "help_key",
+          "resolved_keys": []
+        },
+        {
+          "path": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+          "line": 283,
+          "function_name": "t",
+          "expression": "message_key",
+          "resolved_keys": []
+        }
+      ],
+      "syntax_errors": []
+    },
+    "catalog_problems": [
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py",
+        "message": "dictionnaire TRANSLATIONS introuvable"
+      }
+    ],
+    "syntax_errors": [],
+    "references": [
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 519,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 527,
+        "key": "t0060_relevance.secondary",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 296,
+        "key": "t0003_app.subtitle",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 297,
+        "key": "t0004_app.scope_subtitle",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 366,
+        "key": "t0039_query.instructions",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 368,
+        "key": "t0040_query.examples",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 369,
+        "key": "t0041_query.syntax",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 387,
+        "key": "t0046_scope.question",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 524,
+        "key": "t0058_relevance.very",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 526,
+        "key": "t0059_relevance.relevant",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 782,
+        "key": "t0105_log.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 799,
+        "key": "t0017_file.none_selected",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 838,
+        "key": "t0107_log.index_ready",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 885,
+        "key": "t0033_date.no_overlap",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 897,
+        "key": "t0110_log.search_configured",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 968,
+        "key": "t0112_log.finished",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 82,
+        "key": "t0133_arg.options",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 115,
+        "key": "t0001_startup.switch_to_english",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 169,
+        "key": "t0101_log.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 177,
+        "key": "t0101_log.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 178,
+        "key": "t0102_log.created",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0008_common.action",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 185,
+        "key": "t0009_common.info",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 317,
+        "key": "t0021_date.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 371,
+        "key": "t0042_query.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 382,
+        "key": "t0043_query.required",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 392,
+        "key": "t0050_scope.prompt",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 402,
+        "key": "t0051_scope.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 590,
+        "key": "t0055_role.title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 658,
+        "key": "t0080_html.back",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 659,
+        "key": "t0081_html.relevance",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 706,
+        "key": "t0082_html.results",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 720,
+        "key": "t0083_html.generated",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 721,
+        "key": "t0045_query.label",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 722,
+        "key": "t0089_html.files",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 726,
+        "key": "t0090_html.automatic_summary",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 726,
+        "key": "t0091_html.search_appears",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 727,
+        "key": "t0092_html.term_distribution",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 728,
+        "key": "t0093_html.main_subjects",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0096_html.date",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0097_html.conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0081_html.relevance",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0098_html.keywords_roles",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0099_html.occurrences",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 729,
+        "key": "t0100_html.context",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 735,
+        "key": "t0117_arg.description",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 736,
+        "key": "t0129_arg.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 737,
+        "key": "t0118_arg.inputs",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 738,
+        "key": "t0119_arg.output",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 739,
+        "key": "t0127_arg.pattern",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 740,
+        "key": "t0120_arg.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 741,
+        "key": "t0121_arg.end",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 742,
+        "key": "t0122_arg.keywords",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 743,
+        "key": "t0123_arg.index",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 744,
+        "key": "t0124_arg.reindex",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 749,
+        "key": "t0125_arg.role",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 751,
+        "key": "t0126_arg.lang",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 752,
+        "key": "t0128_arg.quiet",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 753,
+        "key": "t0130_arg.version",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 792,
+        "key": "t0016_file.selection_intro",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 800,
+        "key": "t0103_log.file_selection",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 830,
+        "key": "t0066_index.failure",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 841,
+        "key": "t0108_log.index_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 884,
+        "key": "t0010_common.unknown",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 886,
+        "key": "t0109_log.period_check",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 900,
+        "key": "t0111_log.search_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 906,
+        "key": "t0070_search.working",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 970,
+        "key": "t0113_log.finished_detail",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 983,
+        "key": "t0078_result.finished",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 988,
+        "key": "t0079_result.dialog",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 114,
+        "key": "t0002_startup.switch_to_french",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 235,
+        "key": "t0013_file.dialog_title",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 241,
+        "key": "t0103_log.file_selection",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 325,
+        "key": "t0025_date.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 377,
+        "key": "t0044_query.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 388,
+        "key": "t0047_scope.user",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 389,
+        "key": "t0048_scope.assistant",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 390,
+        "key": "t0049_scope.both",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 398,
+        "key": "t0052_scope.help",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 477,
+        "key": "t0104_log.archive_read",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 617,
+        "key": "t0057_conversation.unknown_date",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 831,
+        "key": "t0106_log.index_update",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 846,
+        "key": "t0027_date.available",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 848,
+        "key": "t0028_date.none_usable",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 863,
+        "key": "t0022_date.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 864,
+        "key": "t0023_date.end",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0034_period.from_to",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0037_period.archive_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 946,
+        "key": "t0038_period.last_exchange",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1001,
+        "key": "t0115_log.fatal",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1006,
+        "key": "t0116_log.stop",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 81,
+        "key": "t0132_arg.positionals",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 330,
+        "key": "t0024_date.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 697,
+        "key": "t0084_html.open_conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 824,
+        "key": "t0062_index.updated",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 826,
+        "key": "t0065_index.current",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 866,
+        "key": "t0029_date.end_before_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 870,
+        "key": "t0030_date.no_conversation",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 873,
+        "key": "t0032_date.retry",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 887,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 891,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 891,
+        "key": "t0043_query.required",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 998,
+        "key": "t0114_log.argument_stop",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 236,
+        "key": "t0014_file.dialog_archive",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 236,
+        "key": "t0015_file.dialog_json",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 478,
+        "key": "t0007_common.warning",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 727,
+        "key": "t0094_html.no_result",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 728,
+        "key": "t0095_html.no_subject",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 804,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 813,
+        "key": "t0061_index.updating",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 832,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 854,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 854,
+        "key": "t0024_date.invalid",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 862,
+        "key": "t0026_date.search_period",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 872,
+        "key": "t0031_date.archive_coverage",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 879,
+        "key": "t0005_common.error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 879,
+        "key": "t0029_date.end_before_start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 980,
+        "key": "t0077_result.report",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 1002,
+        "key": "t0006_common.fatal_error",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 80,
+        "key": "t0131_arg.usage",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 491,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0035_period.start",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\DTLarchive.py",
+        "line": 869,
+        "key": "t0036_period.present",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 145,
+        "key": "t0067_index.incompatible",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 273,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 241,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      },
+      {
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_index.py",
+        "line": 257,
+        "key": "t0056_conversation.untitled",
+        "function": "t"
+      }
+    ],
+    "issues": [
+      {
+        "code": "catalog_unreadable",
+        "severity": "error",
+        "title": "Catalogue illisible",
+        "details": "dictionnaire TRANSLATIONS introuvable",
+        "confidence": 1.0,
+        "key": "",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\test_dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Corriger manuellement la syntaxe ou le format du catalogue.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- test_dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Catalogue illisible (catalog_unreadable)\n- Clé : non applicable\n- Détail : dictionnaire TRANSLATIONS introuvable\n- Confiance du diagnostic : 100%\n\nRésultat attendu :\nRendre le catalogue lisible et valide sans modifier sa structure publique ni perdre de traduction.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      },
+      {
+        "code": "language_mismatch_fr",
+        "severity": "warning",
+        "title": "Langue probablement incorrecte dans le champ FR",
+        "details": "Texte détecté comme anglais, alors que le champ attend du français : 3 indice(s) en faveur du anglais, 0 indice(s) opposé(s).",
+        "confidence": 0.98,
+        "key": "t0001_startup.switch_to_english",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Faire vérifier ou corriger ce texte par une personne compétente.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- DTLarchive.py:115\n- dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Langue probablement incorrecte dans le champ FR (language_mismatch_fr)\n- Clé : t0001_startup.switch_to_english\n- Détail : Texte détecté comme anglais, alors que le champ attend du français : 3 indice(s) en faveur du anglais, 0 indice(s) opposé(s).\n- Confiance du diagnostic : 98%\n\nRésultat attendu :\nLe champ FR doit contenir un texte réellement français, sans altérer le sens fonctionnel.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      },
+      {
+        "code": "language_mismatch_en",
+        "severity": "warning",
+        "title": "Langue probablement incorrecte dans le champ EN",
+        "details": "Texte détecté comme français, alors que le champ attend du anglais : 2 indice(s) en faveur du français, 0 indice(s) opposé(s).",
+        "confidence": 0.89,
+        "key": "t0002_startup.switch_to_french",
+        "file": "D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\\dtlarchive_i18n.py",
+        "line": 0,
+        "proposed_correction": "Faire vérifier ou corriger ce texte par une personne compétente.",
+        "safe_automatic": false,
+        "correction_type": "",
+        "old_value": "",
+        "new_value": "",
+        "remediation_prompt": "Tu interviens sur un projet Python déjà internationalisé.\n\nProjet : DTLarchive\nRacine du projet : D:\\Documents\\Mes sites Web\\Secours catholique\\outils\\DTLarchive\n\nContexte i18n détecté :\n- Catalogues : dtlarchive_i18n.py, test_dtlarchive_i18n.py\n- Fonctions de traduction réellement appelées : t()\n- Références de traduction détectées dans les sources : 129\n- Sélection de langue : opérationnel\n- Indices du mécanisme existant : fonction(s) de sélection : language_switch_message, set_language, test_conversation_page_uses_selected_language, test_initial_contextual_help_then_language_switch, test_main_report_uses_selected_language; 14 appel(s) effectif(s) du sélecteur; 4 affectation(s) dynamique(s) de langue; langue consultée par la traduction dans 1 fichier(s)\n\nFichiers concernés :\n- DTLarchive.py:114\n- dtlarchive_i18n.py\n\nAnomalie à traiter :\n- Type : Langue probablement incorrecte dans le champ EN (language_mismatch_en)\n- Clé : t0002_startup.switch_to_french\n- Détail : Texte détecté comme français, alors que le champ attend du anglais : 2 indice(s) en faveur du français, 0 indice(s) opposé(s).\n- Confiance du diagnostic : 89%\n\nRésultat attendu :\nLe champ EN doit contenir un texte réellement anglais, sans altérer le sens fonctionnel.\n\nConsignes impératives :\n1. Analyse d'abord l'architecture existante, les imports, les fonctions de traduction, les catalogues et le chemin réel de sélection de langue avant toute modification.\n2. Réutilise les mécanismes i18n déjà présents ; ne crée pas un second système parallèle et ne change pas l'API existante sans nécessité démontrée.\n3. Vérifie tous les usages de la clé et les éventuels placeholders ou formats dynamiques.\n4. Limite les changements aux fichiers nécessaires et préserve le comportement existant.\n5. Après modification, compile tous les fichiers Python, contrôle les références dans les deux sens et vérifie les textes FR et EN concernés.\n6. Fournis un résumé précis des fichiers modifiés, des contrôles exécutés et des points qui nécessitent encore une décision humaine."
+      }
+    ]
+  }
+}

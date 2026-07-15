@@ -142,7 +142,7 @@ class ArchiveIndex:
             "SELECT value FROM metadata WHERE key = 'schema_version'"
         ).fetchone()
         if current and current["value"] != self.SCHEMA_VERSION:
-            raise RuntimeError(t("t0067_index.incompatible", current=current["value"], expected=self.SCHEMA_VERSION))
+            raise RuntimeError(t("index.incompatible", current=current["value"], expected=self.SCHEMA_VERSION))
         self.connection.execute(
             "INSERT OR REPLACE INTO metadata(key, value) VALUES('schema_version', ?)",
             (self.SCHEMA_VERSION,),
@@ -238,7 +238,7 @@ class ArchiveIndex:
                             """,
                             (
                                 conversation_id,
-                                str(getattr(conversation, "title", "") or t("t0056_conversation.untitled")),
+                                str(getattr(conversation, "title", "") or t("conversation.untitled")),
                                 getattr(conversation, "create_time", None),
                                 getattr(conversation, "update_time", None),
                                 incoming_timestamp,
@@ -254,7 +254,7 @@ class ArchiveIndex:
                             WHERE id = ?
                             """,
                             (
-                                str(getattr(conversation, "title", "") or t("t0056_conversation.untitled")),
+                                str(getattr(conversation, "title", "") or t("conversation.untitled")),
                                 getattr(conversation, "create_time", None),
                                 getattr(conversation, "update_time", None),
                                 incoming_timestamp,
@@ -270,7 +270,7 @@ class ArchiveIndex:
                         self.connection.execute(
                             "DELETE FROM search_fts WHERE conversation_id = ?", (conversation_id,)
                         )
-                        title = str(getattr(conversation, "title", "") or t("t0056_conversation.untitled"))
+                        title = str(getattr(conversation, "title", "") or t("conversation.untitled"))
                         self.connection.execute(
                             "INSERT INTO search_fts(conversation_id, role, text) VALUES(?, 'title', ?)",
                             (conversation_id, title),
