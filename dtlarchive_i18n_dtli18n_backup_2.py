@@ -19,12 +19,12 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Pour me parler en français, tapez 2.',
                                               },
                                               't0003_app.subtitle': {
-                                                  'fr': 'Explorateur local des archives .json de ChatGPT.',
-                                                  'en': 'Local ChatGPT .json archives explorer.',
+                                                  'fr': 'Explorateur local des archives .json de ChatGPT',
+                                                  'en': 'Local ChatGPT .json archives explorer',
                                               },
                                               't0004_app.scope_subtitle': {
-                                                  'fr': "Recherche effectuée dans les titres et les questions de l'utilisateur.",
-                                                  'en': 'Search performed in conversation titles and user questions.',
+                                                  'fr': "Recherche dans les titres et les questions de l'utilisateur",
+                                                  'en': 'Searches conversation titles and user questions',
                                               },
                                               't0005_common.error': {
                                                   'fr': 'ERREUR',
@@ -215,7 +215,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Enter 1, 2, or 3.',
                                               },
                                               't0052_scope.help': {
-                                                  'fr': 'Le titre est toujours un champ de recherche. Choisissez 1 pour vos questions, 2 pour les réponses de ChatGPT, ou 3 pour les deux.',
+                                                  'fr': 'Le titre est toujours recherché. Choisissez 1 pour vos questions, 2 pour les réponses de ChatGPT, ou 3 pour les deux.',
                                                   'en': 'Titles are always searched. Choose 1 for your questions, 2 for ChatGPT answers, or 3 for both.',
                                               },
                                               't0053_role.user': {

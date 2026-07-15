@@ -21,12 +21,12 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator, Sequence
 
 from dtlarchive_index import ArchiveIndex
-from dtlarchive_i18n import current_language, plural_key, set_language, t
+from dtlarchive_i18n import current_language, set_language, t
 from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-6"
+APP_VERSION = "v2.2-9"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
@@ -251,7 +251,7 @@ def wait_for_key(
 ) -> None:
     print()
     print(message)
-    print(t("file.press_key_language" if allow_language_switch else "file.press_key"), flush=True)
+    print(t("t0019_file.press_key_language" if allow_language_switch else "t0018_file.press_key"), flush=True)
     try:
         if allow_language_switch or help_key:
             answer = input().strip()
@@ -402,12 +402,35 @@ def ask_role_scope() -> str:
         print(t("t0051_scope.invalid"))
 
 
+PLURAL_KEYS: dict[str, tuple[str, str]] = {
+    "index.file": ("t0063_index.file.one", "t0064_index.file.many"),
+    "search.selected": ("t0068_search.selected.one", "t0069_search.selected.many"),
+    "result.examined": ("t0071_result.examined.one", "t0072_result.examined.many"),
+    "result.found": ("t0073_result.found.one", "t0074_result.found.many"),
+    "result.occurrence": ("t0075_result.occurrence.one", "t0076_result.occurrence.many"),
+    "html.context": ("t0085_html.context.one", "t0086_html.context.many"),
+    "html.conversation": ("t0087_html.conversation.one", "t0088_html.conversation.many"),
+}
+
+
+def plural_label(prefix: str, count: int) -> str:
+    one_key, many_key = PLURAL_KEYS[prefix]
+    return t(one_key if count == 1 else many_key)
+
+
 def role_label(role: str) -> str:
-    return t("role.user" if role == "user" else "role.assistant")
+    return t("t0053_role.user" if role == "user" else "t0054_role.assistant")
+
+
+SCOPE_LABEL_KEYS = {
+    "user": "t0047_scope.user",
+    "assistant": "t0048_scope.assistant",
+    "both": "t0049_scope.both",
+}
 
 
 def scope_label(scope: str) -> str:
-    return t(f"scope.{scope}")
+    return t(SCOPE_LABEL_KEYS.get(scope, scope))
 
 
 def keyword_pattern(term: str) -> re.Pattern[str]:
@@ -672,7 +695,7 @@ def write_html_report(path: Path, results: Sequence[MiningResult], metadata: dic
         for term in unique(keyword for result in results for keyword in result.matched_keywords)
     }
     term_summary = "".join(
-        f"<li><strong>{html.escape(term)}</strong> : {count} {plural_key('html.conversation', count)}</li>"
+        f"<li><strong>{html.escape(term)}</strong> : {count} {plural_label('html.conversation', count)}</li>"
         for term, count in sorted(term_counts.items(), key=lambda item: (-item[1], normalize(item[0])))
     )
     subjects = unique(result.conversation_title for result in sorted(results, key=lambda item: -item.relevance_score))[:5]
@@ -688,7 +711,7 @@ def write_html_report(path: Path, results: Sequence[MiningResult], metadata: dic
                 for item in context["messages"]
             )
             contexts.append(f'<div class="context-window">{context_messages}</div>')
-        context_label = plural_key("html.context", len(result.contexts))
+        context_label = plural_label("html.context", len(result.contexts))
         roles = " · ".join(result.matched_roles)
         rows.append(
             "<tr>"
@@ -720,10 +743,10 @@ summary{{cursor:pointer;color:var(--blue)}}@media(max-width:800px){{.summary-gri
 </style></head><body><header><h1>{APP_NAME} {APP_VERSION}</h1><div class="muted">{t("t0083_html.generated", date=generated)}</div>
 <div class="query"><strong>{t("t0045_query.label")} :</strong> {chips}<br><span class="muted">{html.escape(metadata['scope_label'])} — {html.escape(metadata['periode'])}</span></div>
 <div class="stats"><div class="stat"><strong>{metadata['fichiers']}</strong>{t("t0089_html.files")}</div>
-<div class="stat"><strong>{metadata['conversations_lues']}</strong>{plural_key('result.examined', metadata['conversations_lues'])}</div>
-<div class="stat"><strong>{len(results)}</strong>{plural_key('result.found', len(results))}</div>
-<div class="stat"><strong>{sum(result.occurrence_count for result in results)}</strong>{plural_key('result.occurrence', sum(result.occurrence_count for result in results))}</div></div>
-<div class="summary-box"><h2>{t("t0090_html.automatic_summary")}</h2><p>{t("t0091_html.search_appears", count=len(results), label=plural_key('html.conversation', len(results)))}</p>
+<div class="stat"><strong>{metadata['conversations_lues']}</strong>{plural_label('result.examined', metadata['conversations_lues'])}</div>
+<div class="stat"><strong>{len(results)}</strong>{plural_label('result.found', len(results))}</div>
+<div class="stat"><strong>{sum(result.occurrence_count for result in results)}</strong>{plural_label('result.occurrence', sum(result.occurrence_count for result in results))}</div></div>
+<div class="summary-box"><h2>{t("t0090_html.automatic_summary")}</h2><p>{t("t0091_html.search_appears", count=len(results), label=plural_label('html.conversation', len(results)))}</p>
 <div class="summary-grid"><div><h3>{t("t0092_html.term_distribution")}</h3><ul>{term_summary or f'<li>{t("t0094_html.no_result")}</li>'}</ul></div>
 <div><h3>{t("t0093_html.main_subjects")}</h3><ul>{subject_summary or f'<li>{t("t0095_html.no_subject")}</li>'}</ul></div></div></div></header>
 <main><table><thead><tr><th>{t("t0096_html.date")}</th><th>{t("t0097_html.conversation")}</th><th>{t("t0081_html.relevance")}</th><th>{t("t0098_html.keywords_roles")}</th><th>{t("t0099_html.occurrences")}</th><th>{t("t0100_html.context")}</th></tr></thead>
@@ -791,8 +814,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         wait_for_key(
             t("t0016_file.selection_intro"),
             allow_language_switch=True,
-            help_key="file.help",
-            message_key="file.selection_intro",
+            help_key="t0020_file.help",
+            message_key="t0016_file.selection_intro",
         )
         files = sorted({path.resolve() for path in choose_conversation_files() if path.is_file()})
     if not files:
@@ -820,7 +843,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if interactive:
             clear_current_file()
             if index_update.imported_files:
-                file_label = plural_key("index.file", index_update.imported_files)
+                file_label = plural_label("index.file", index_update.imported_files)
                 print(t("t0062_index.updated", files=green(index_update.imported_files), file_label=file_label, conversations=green(index_update.imported_conversations)))
             else:
                 print(t("t0065_index.current", files=green(index_update.unchanged_files)))
@@ -901,7 +924,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
     )
     if interactive:
-        label = plural_key("search.selected", len(files))
+        label = plural_label("search.selected", len(files))
         print(f"\n{green(len(files))} {label}.")
         print(t("t0070_search.working"), flush=True)
 
@@ -973,9 +996,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     if not args.quiet:
         if not interactive:
             print(f"{APP_NAME} {APP_VERSION}")
-        print(f"{plural_key('result.examined', conversation_count)} : {green(conversation_count)}")
-        print(f"{plural_key('result.found', len(results))} : {green(len(results))}")
-        print(f"{plural_key('result.occurrence', occurrences)} : {green(occurrences)}")
+        print(f"{plural_label('result.examined', conversation_count)} : {green(conversation_count)}")
+        print(f"{plural_label('result.found', len(results))} : {green(len(results))}")
+        print(f"{plural_label('result.occurrence', occurrences)} : {green(occurrences)}")
         if not interactive:
             print(f"{t("t0077_result.report")} : {green(report_path)}")
 
@@ -985,7 +1008,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         show_dialog(
             "showinfo",
             APP_NAME,
-            t("t0079_result.dialog", examined_label=plural_key("result.examined", conversation_count), examined=conversation_count, found_label=plural_key("result.found", len(results)), found=len(results), occurrence_label=plural_key("result.occurrence", occurrences), occurrences=occurrences, path=report_path),
+            t("t0079_result.dialog", examined_label=plural_label("result.examined", conversation_count), examined=conversation_count, found_label=plural_label("result.found", len(results)), found=len(results), occurrence_label=plural_label("result.occurrence", occurrences), occurrences=occurrences, path=report_path),
         )
     return 0
 
