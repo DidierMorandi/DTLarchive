@@ -83,8 +83,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Press any key to continue...',
                                               },
                                               't0019_file.press_key_language': {
-                                                  'fr': "Appuyez sur Entrée pour continuer, saisissez 1 pour passer en anglais, ou ? pour obtenir de l'aide...",
-                                                  'en': 'Press Enter to continue, or enter 2 to switch to French, or ? for help...',
+                                                  'fr': "Appuyez sur Entrée pour continuer, saisissez 1 pour passer en anglais, ou ? pour obtenir de l'aide.",
+                                                  'en': 'Press Enter to continue, or enter 2 to switch to French, or ? for help.',
                                               },
                                               't0020_file.help': {
                                                   'fr': 'Vous allez sélectionner un ou plusieurs fichiers conversations*.json exportés depuis ChatGPT. Vous pourrez en sélectionner plusieurs dans la même fenêtre.',
