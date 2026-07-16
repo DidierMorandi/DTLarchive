@@ -1,6 +1,6 @@
 # DTLarchive
 
-Current version: **v2.2-5**
+Current version: **v2.2-10**
 
 [Version française](README_Fr.md)
 

@@ -6,6 +6,7 @@ dist/
 *.spec
 
 /logs/
+/backup/
 DTLarchive-index.sqlite
 DTLarchive-index.sqlite-shm
 DTLarchive-index.sqlite-wal

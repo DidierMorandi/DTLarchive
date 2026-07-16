@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTLarchive &mdash; Reference Manual v2.2-5</title>
+<title>DTLarchive &mdash; Reference Manual v2.2-10</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
   :root{--bg:#0f1117;--surface:#181c27;--border:#252b3b;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#68748d;--heading:#eef4ff;--code:#12161f;--sidebar:270px}
@@ -21,7 +21,7 @@
 </head>
 <body>
 <nav>
-  <div class="logo">DTLarchive<span>Reference Manual v2.2-5</span></div>
+  <div class="logo">DTLarchive<span>Reference Manual v2.2-10</span></div>
   <a class="group" href="#preface">Preface</a><a href="#preface">Purpose</a><a href="#audience">Audience</a><a href="#principles">Design principles</a>
   <a class="group" href="#architecture">Architecture</a><a href="#overview">Overview</a><a href="#components">Components</a><a href="#pipeline">Processing pipeline</a><a href="#files">File organization</a>
   <a class="group" href="#data">Data and index</a><a href="#input-format">Source format</a><a href="#models">Internal models</a><a href="#database">SQLite schema</a><a href="#incremental">Incremental import</a>
@@ -32,9 +32,9 @@
 </nav>
 <main>
   <header class="doc-header">
-    <h1><span class="accent">DTLarchive</span> &mdash; Reference Manual v2.2-5</h1>
+    <h1><span class="accent">DTLarchive</span> &mdash; Reference Manual v2.2-10</h1>
     <p class="subtitle">Functional and technical reference for the local ChatGPT archive indexing, search, and knowledge-reuse engine.</p>
-    <div class="pills"><span class="pill"><b>version</b>v2.2-5</span><span class="pill"><b>date</b>July 14, 2026</span><span class="pill"><b>platform</b>Windows</span><span class="pill"><b>runtime</b>Python 3.14</span><span class="pill"><b>languages</b>fr / en</span><span class="pill"><b>license</b>MIT</span></div>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-10</span><span class="pill"><b>date</b>July 16, 2026</span><span class="pill"><b>platform</b>Windows</span><span class="pill"><b>runtime</b>Python 3.14</span><span class="pill"><b>languages</b>fr / en</span><span class="pill"><b>license</b>MIT</span></div>
   </header>
 
   <h2 id="preface">Preface</h2>
@@ -194,12 +194,12 @@
   <ul><li>Search is lexical; it detects neither synonyms, paraphrases, nor semantic proximity.</li><li>FTS candidate selection uses the first significant token of a phrase, after which exact analysis confirms the complete phrase.</li><li>Summary titles are the first five unique titles in ranking order, not topics inferred from the corpus.</li><li>The active branch is preferred; fallback traversal is used only when it yields no usable messages.</li><li>Contexts are limited to six windows and their messages to 1,200 characters.</li><li>The reader reflects the observed ChatGPT export format; source-format changes may require parser adaptation.</li></ul>
 
   <h3 id="versions">Versions and schemas</h3>
-  <table><thead><tr><th>Identifier</th><th>Value</th><th>Scope</th></tr></thead><tbody><tr><td>Application</td><td>v2.2-5</td><td>Distributed features and interface.</td></tr><tr><td>Logical schema</td><td>2.1</td><td>Value published in result metadata.</td></tr><tr><td>Index schema</td><td>1</td><td>Persistent SQLite database compatibility.</td></tr></tbody></table>
+  <table><thead><tr><th>Identifier</th><th>Value</th><th>Scope</th></tr></thead><tbody><tr><td>Application</td><td>v2.2-10</td><td>Distributed features and interface.</td></tr><tr><td>Logical schema</td><td>2.1</td><td>Value published in result metadata.</td></tr><tr><td>Index schema</td><td>1</td><td>Persistent SQLite database compatibility.</td></tr></tbody></table>
 
   <h3 id="glossary">Glossary</h3>
   <table><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody><tr><td>Corpus</td><td>All conversations linked to selected archives.</td></tr><tr><td>Candidate</td><td>A conversation selected by FTS5 before exact lexical validation.</td></tr><tr><td>Context</td><td>A message window surrounding a match.</td></tr><tr><td>Provenance</td><td>The relation between a deduplicated conversation and its source files.</td></tr><tr><td>FTS5</td><td>SQLite's integrated full-text search engine.</td></tr><tr><td>WAL</td><td>SQLite journal mode supporting robust writes and concurrent reads.</td></tr></tbody></table>
 
-  <footer>DTLarchive v2.2-5 &mdash; Reference Manual &mdash; Copyright © 2026 Didier DTL Morandi &mdash; MIT License</footer>
+  <footer>DTLarchive v2.2-10 &mdash; Reference Manual &mdash; Copyright © 2026 Didier DTL Morandi &mdash; MIT License</footer>
 </main>
 <script>
   const sections=document.querySelectorAll('[id]'),links=document.querySelectorAll('nav a');

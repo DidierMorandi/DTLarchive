@@ -542,6 +542,10 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'fr': 'options :',
                                                   'en': 'options:',
                                               },
+                                              't0134_brand.suite': {
+                                                  'fr': 'Un outil de la suite NetDTL',
+                                                  'en': 'A tool from the NetDTL suite',
+                                              },
                                           }
 
 

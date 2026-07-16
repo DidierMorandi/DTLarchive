@@ -9,7 +9,9 @@ import datetime as dt
 import hashlib
 import html
 import json
+import os
 import re
+import shutil
 import sqlite3
 import sys
 import tempfile
@@ -26,10 +28,18 @@ from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-9"
+APP_VERSION = "v2.2-10"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
+ANSI_BOLD = "\033[1m"
+ANSI_LOGO = "\033[38;2;255;255;255;48;2;2;1;183m"
+APP_WEBSITE = "www.netdtl.com"
+LOGO_LINES = (
+    "┌─┬─┬─┬─┬─┬─┐",
+    "│N│e│t│D│T│L│",
+    "└─┴─┴─┴─┴─┴─┘",
+)
 
 
 @dataclass
@@ -109,10 +119,12 @@ def green(value: Any) -> str:
     return f"{GREEN_COLOR}{value}{RESET_COLOR}"
 
 
-def language_switch_message() -> str:
+def language_switch_message(color: bool = True) -> str:
     if current_language() == "en":
-        return t("t0002_startup.switch_to_french").replace("2", green("2"), 1)
-    return t("t0001_startup.switch_to_english").replace("1", green("1"), 1)
+        value = t("t0002_startup.switch_to_french")
+        return value.replace("2", green("2"), 1) if color else value
+    value = t("t0001_startup.switch_to_english")
+    return value.replace("1", green("1"), 1) if color else value
 
 
 def pluralized(count: int, singular: str, plural: str | None = None) -> str:
@@ -134,6 +146,54 @@ def configure_console_encoding() -> None:
             ctypes.windll.kernel32.SetConsoleOutputCP(65001)
         except OSError:
             pass
+
+
+def terminal_width() -> int:
+    try:
+        return max(76, min(shutil.get_terminal_size().columns, 160))
+    except OSError:
+        return 100
+
+
+def supports_color() -> bool:
+    if not sys.stdout.isatty() or "NO_COLOR" in os.environ:
+        return False
+    if os.name != "nt":
+        return os.environ.get("TERM", "").casefold() != "dumb"
+    try:
+        kernel32 = ctypes.windll.kernel32
+        handle = kernel32.GetStdHandle(-11)
+        mode = ctypes.c_uint32()
+        if handle in (0, -1) or not kernel32.GetConsoleMode(handle, ctypes.byref(mode)):
+            return False
+        return bool(kernel32.SetConsoleMode(handle, mode.value | 0x0004))
+    except (AttributeError, OSError, ValueError):
+        return False
+
+
+def brand_header_lines(screen_width: int, color: bool = False) -> list[str]:
+    left = (f"{APP_NAME} {APP_VERSION}", t("t0134_brand.suite"), APP_WEBSITE)
+    gap = 3
+    logo_width = len(LOGO_LINES[0])
+    left_width = max(0, screen_width - logo_width - gap)
+    result: list[str] = []
+    for index, (text, logo) in enumerate(zip(left, LOGO_LINES)):
+        text = text[:left_width]
+        padding = " " * (left_width - len(text))
+        visible_text = f"{ANSI_BOLD}{text}{RESET_COLOR}{padding}" if color and index == 0 else f"{text}{padding}"
+        visible_logo = f"{ANSI_LOGO}{logo}{RESET_COLOR}" if color else logo
+        result.append(f"{visible_text}{' ' * gap}{visible_logo}")
+    result.extend(
+        (
+            "",
+            t("t0003_app.subtitle"),
+            t("t0004_app.scope_subtitle"),
+            language_switch_message(color),
+            "",
+            "=" * screen_width,
+        )
+    )
+    return result
 
 
 def resolve_tool_dir() -> Path:
@@ -290,13 +350,8 @@ def wait_for_key(
 
 
 def print_console_header() -> None:
-    print(f"{APP_NAME} {APP_VERSION}")
-    print()
-    switch_message = language_switch_message()
-    print(t("t0003_app.subtitle"))
-    print(t("t0004_app.scope_subtitle"))
-    print(switch_message)
-    print()
+    os.system("cls" if os.name == "nt" else "clear")
+    print("\n".join(brand_header_lines(terminal_width(), supports_color())))
 
 
 def print_current_file(path: Path) -> None:
