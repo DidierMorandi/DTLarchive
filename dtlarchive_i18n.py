@@ -91,8 +91,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Select one or more conversations*.json files exported from ChatGPT. You can select several files in the same window.',
                                               },
                                               't0021_date.prompt': {
-                                                  'fr': '{label} au format jj/mm/aaaa (vide = aucune limite, ? = aide) : ',
-                                                  'en': '{label} in dd/mm/yyyy format (blank = no limit, ? = help): ',
+                                                  'fr': '{label} au format jj/mm/aaaa (vide = aucune limite, ? = aide, Q = quitter) : ',
+                                                  'en': '{label} in dd/mm/yyyy format (blank = no limit, ? = help, Q = quit): ',
                                               },
                                               't0022_date.start': {
                                                   'fr': 'Date de début',
@@ -107,8 +107,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Invalid date. Expected example: 01/06/2026.',
                                               },
                                               't0025_date.help': {
-                                                  'fr': 'Saisissez une date au format jour/mois/année, par exemple 01/06/2026. Laissez vide pour ne pas fixer cette limite.',
-                                                  'en': 'Enter a date in day/month/year format, for example 01/06/2026. Leave it blank to set no limit.',
+                                                  'fr': 'Saisissez une date au format jour/mois/année, par exemple 01/06/2026. Laissez vide pour ne pas fixer cette limite, ou saisissez Q pour quitter.',
+                                                  'en': 'Enter a date in day/month/year format, for example 01/06/2026. Leave it blank to set no limit, or enter Q to quit.',
                                               },
                                               't0026_date.search_period': {
                                                   'fr': 'Période de recherche (les deux dates sont facultatives).',
@@ -175,8 +175,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'AND requires every term; OR or a comma provides alternatives; -word excludes; * completes a word.',
                                               },
                                               't0042_query.prompt': {
-                                                  'fr': 'Recherche (? = aide) : ',
-                                                  'en': 'Search (? = help): ',
+                                                  'fr': 'Recherche (? = aide, Q = quitter) : ',
+                                                  'en': 'Search (? = help, Q = quit): ',
                                               },
                                               't0043_query.required': {
                                                   'fr': 'Saisissez au moins un mot-clé à rechercher.',
@@ -255,20 +255,20 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Updating the local index...',
                                               },
                                               't0062_index.updated': {
-                                                  'fr': 'Index mis à jour : {files} {file_label}, {conversations} conversations importées.',
-                                                  'en': 'Index updated: {files} {file_label}, {conversations} conversations imported.',
+                                                  'fr': 'Index mis à jour : {files} {file_label}, {conversations} {conversation_label}.',
+                                                  'en': 'Index updated: {files} {file_label}, {conversations} {conversation_label}.',
                                               },
                                               't0063_index.file.one': {
-                                                  'fr': 'archive indexée',
-                                                  'en': 'archive indexed',
+                                                  'fr': 'fichier analysé',
+                                                  'en': 'file analyzed',
                                               },
                                               't0064_index.file.many': {
-                                                  'fr': 'archives indexées',
-                                                  'en': 'archives indexed',
+                                                  'fr': 'fichiers analysés',
+                                                  'en': 'files analyzed',
                                               },
                                               't0065_index.current': {
-                                                  'fr': 'Index déjà à jour : {files} archives réutilisées.',
-                                                  'en': 'Index already up to date: {files} archives reused.',
+                                                  'fr': 'Index déjà à jour — fichiers réutilisés : {files}.',
+                                                  'en': 'Index already up to date — files reused: {files}.',
                                               },
                                               't0066_index.failure': {
                                                   'fr': "Impossible de mettre à jour l'index SQLite : {error}",
@@ -323,8 +323,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                                   'en': 'Report complete: {path}\nIt will now open in your browser.',
                                               },
                                               't0079_result.dialog': {
-                                                  'fr': 'Recherche terminée.\n\n{examined_label} : {examined}\n{found_label} : {found}\n{occurrence_label} : {occurrences}\n\nLe rapport a été ouvert dans votre navigateur.\n{path}',
-                                                  'en': 'Search complete.\n\n{examined_label}: {examined}\n{found_label}: {found}\n{occurrence_label}: {occurrences}\n\nThe report has been opened in your browser.\n{path}',
+                                                  'fr': 'Recherche terminée.\n\n{examined_label} : {examined}\n{found_label} : {found}\n{occurrence_label} : {occurrences}\n\nLe rapport a été ouvert dans votre navigateur.\n{path}\n\nFermez cette fenêtre pour revenir au menu de recherche.',
+                                                  'en': 'Search complete.\n\n{examined_label}: {examined}\n{found_label}: {found}\n{occurrence_label}: {occurrences}\n\nThe report has been opened in your browser.\n{path}\n\nClose this window to return to the search menu.',
                                               },
                                               't0080_html.back': {
                                                   'fr': '← Retour au rapport',
@@ -545,6 +545,22 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
                                               't0134_brand.suite': {
                                                   'fr': 'Un outil de la suite NetDTL',
                                                   'en': 'A tool from the NetDTL suite',
+                                              },
+                                              't0135_result.no_match': {
+                                                  'fr': 'Aucune conversation trouvée. Retour au menu de recherche.',
+                                                  'en': 'No conversation found. Returning to the search menu.',
+                                              },
+                                              't0136_index.conversation.one': {
+                                                  'fr': 'conversation importée',
+                                                  'en': 'conversation imported',
+                                              },
+                                              't0137_index.conversation.many': {
+                                                  'fr': 'conversations importées',
+                                                  'en': 'conversations imported',
+                                              },
+                                              't0138_index.no_conversation': {
+                                                  'fr': "Aucune conversation exploitable n'a été trouvée dans les fichiers sélectionnés. Retour à la sélection des fichiers.",
+                                                  'en': 'No usable conversation was found in the selected files. Returning to file selection.',
                                               },
                                           }
 

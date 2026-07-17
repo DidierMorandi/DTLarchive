@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTLarchive — Guide utilisateur v2.2-10</title>
+<title>DTLarchive — Guide utilisateur v2.2-16</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
   :root{--bg:#0f1117;--surface:#181c27;--border:#2a3142;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#7b879f;--heading:#f2f6ff;--code:#12161f;--blue:#55a7ff;--warning:#ffcc66;--sidebar:280px}
@@ -18,7 +18,7 @@
 </head>
 <body>
 <nav aria-label="Sommaire">
-  <div class="logo">DTLarchive<span>Guide utilisateur v2.2-10</span></div>
+  <div class="logo">DTLarchive<span>Guide utilisateur v2.2-16</span></div>
   <a class="group" href="#start">Premiers pas</a><a href="#purpose">À quoi sert DTLarchive ?</a><a href="#prepare">Préparer les archives</a><a href="#quickstart">Parcours rapide</a>
   <a class="group" href="#features">Fonctionnalités</a><a href="#language">Langue et aide</a><a href="#selection">Sélection et index</a><a href="#dates">Période</a><a href="#query">Recherche</a><a href="#scope">Périmètre</a><a href="#report">Rapport et contextes</a><a href="#json">Résultats JSON</a>
   <a class="group" href="#advanced">Utilisation avancée</a><a href="#index">Gérer l'index</a><a href="#commandline">Ligne de commande</a><a href="#diagnostics">Diagnostic</a>
@@ -26,10 +26,10 @@
 </nav>
 <main>
   <header class="doc-header">
-    <h1><span class="accent">DTLarchive</span> — Guide utilisateur v2.2-10</h1>
+    <h1><span class="accent">DTLarchive</span> — Guide utilisateur v2.2-16</h1>
     <p class="subtitle">Le quoi, le pourquoi et le comment de chaque fonctionnalité.</p>
     <a class="lang-link" href="DTLarchive_User_Guide.html">Read this guide in English</a>
-    <div class="pills"><span class="pill"><b>version</b>v2.2-10</span><span class="pill"><b>date</b>16 juillet 2026</span><span class="pill"><b>public</b>tous publics</span><span class="pill"><b>système</b>Windows</span><span class="pill"><b>langues</b>fr / en</span></div>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-16</span><span class="pill"><b>date</b>17 juillet 2026</span><span class="pill"><b>public</b>tous publics</span><span class="pill"><b>système</b>Windows</span><span class="pill"><b>langues</b>fr / en</span></div>
   </header>
 
   <h2 id="start">Premiers pas</h2>
@@ -53,7 +53,8 @@
     <li>Dans l'Explorateur de fichiers, sélectionnez un ou plusieurs fichiers <code>conversations*.json</code>, puis validez.</li>
     <li>Lisez la période disponible. Saisissez éventuellement une date de début et une date de fin au format <code>jj/mm/aaaa</code>, ou laissez les champs vides.</li>
     <li>Saisissez votre recherche, puis choisissez <code>1</code>, <code>2</code> ou <code>3</code> pour déterminer les parties des conversations à examiner.</li>
-    <li>À la fin du traitement, appuyez sur une touche. Le rapport s'ouvre dans votre navigateur par défaut.</li>
+    <li>Si des conversations sont trouvées, appuyez sur une touche : le rapport s'ouvre dans votre navigateur par défaut. Si aucun résultat n'est trouvé, aucun rapport n'est ouvert.</li>
+    <li>Le menu de recherche réapparaît directement dans la console. Les archives sélectionnées restent actives.</li>
   </ol>
 
   <h2 id="features">Fonctionnalités principales</h2>
@@ -74,7 +75,7 @@
       <div><h4>Pourquoi ?</h4><p>L'index accélère les recherches suivantes et évite de relire les fichiers inchangés. Une conversation dupliquée dans plusieurs exports n'est conservée qu'une fois.</p></div>
       <div><h4>Comment ?</h4><p>Dans la fenêtre de sélection, maintenez <strong>Ctrl</strong> pour choisir plusieurs fichiers séparés, ou <strong>Maj</strong> pour une plage continue, puis cliquez sur <strong>Ouvrir</strong>.</p></div>
     </div>
-    <p>Pendant la mise à jour, le nom du fichier traité apparaît. Le message final précise combien d'archives ont été importées ou réutilisées. Gardez l'index <code>DTLarchive-index.sqlite</code> à côté de l'application si vous souhaitez bénéficier de cette réutilisation.</p>
+    <p>Pendant la mise à jour, le nom du fichier traité apparaît. Le message final distingue les fichiers analysés des conversations importées. Si aucune conversation exploitable n'est trouvée, DTLarchive ne demande pas de période et revient à la sélection des fichiers. Gardez l'index <code>DTLarchive-index.sqlite</code> à côté de l'application si vous souhaitez bénéficier de sa réutilisation.</p>
   </section>
 
   <section class="feature">
@@ -82,7 +83,7 @@
     <div class="triptych">
       <div><h4>Quoi ?</h4><p>Le filtre de période retient seulement les conversations datées entre deux limites inclusives.</p></div>
       <div><h4>Pourquoi ?</h4><p>Il réduit le nombre de résultats lorsque les mêmes termes apparaissent sur plusieurs années.</p></div>
-      <div><h4>Comment ?</h4><p>Saisissez les dates au format <code>jj/mm/aaaa</code>. Laissez la date de début vide pour partir du début des archives, la date de fin vide pour aller jusqu'au dernier échange, ou les deux vides pour tout rechercher.</p></div>
+      <div><h4>Comment ?</h4><p>Saisissez les dates au format <code>jj/mm/aaaa</code>. Laissez la date de début vide pour partir du début des archives, la date de fin vide pour aller jusqu'au dernier échange, ou les deux vides pour tout rechercher. Saisissez <code>Q</code> à l'une des invites pour quitter la session.</p></div>
     </div>
     <p>DTLarchive affiche d'abord la période réellement disponible. Si la fin précède le début ou si la période ne recoupe aucune archive, il explique l'erreur et redemande les dates. Une période partiellement couverte reste valable.</p>
   </section>
@@ -92,7 +93,7 @@
     <div class="triptych">
       <div><h4>Quoi ?</h4><p>La recherche accepte un mot, une expression, des alternatives, des termes obligatoires, une exclusion ou un début de mot.</p></div>
       <div><h4>Pourquoi ?</h4><p>La syntaxe permet d'élargir ou de préciser les résultats sans service d'IA ni interprétation sémantique.</p></div>
-      <div><h4>Comment ?</h4><p>Saisissez les mots tels qu'ils peuvent apparaître dans les conversations. Combinez-les avec <code>ET</code>, <code>OU</code>, une virgule, <code>-</code> ou <code>*</code>.</p></div>
+      <div><h4>Comment ?</h4><p>Saisissez les mots tels qu'ils peuvent apparaître dans les conversations. Combinez-les avec <code>ET</code>, <code>OU</code>, une virgule, <code>-</code> ou <code>*</code>. Saisissez <code>Q</code> seul pour quitter la session.</p></div>
     </div>
     <table><thead><tr><th>Besoin</th><th>Saisie</th><th>Effet</th></tr></thead><tbody>
       <tr><td>Un mot</td><td><code>retraite</code></td><td>Trouve les conversations contenant ce mot.</td></tr>
@@ -201,7 +202,7 @@
     <tr><td>Contexte</td><td>Correspondance accompagnée de messages proches pour en comprendre le sens.</td></tr><tr><td>JSON de résultats</td><td>Version structurée et réutilisable des résultats du traitement.</td></tr>
   </tbody></table>
 
-  <footer>DTLarchive v2.2-10 — Guide utilisateur — Copyright © 2026 Didier DTL Morandi — Licence MIT</footer>
+  <footer>DTLarchive v2.2-16 — Guide utilisateur — Copyright © 2026 Didier DTL Morandi — Licence MIT</footer>
 </main>
 <script>
 const links=[...document.querySelectorAll('nav a:not(.group)')];

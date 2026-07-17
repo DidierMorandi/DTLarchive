@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTLarchive — User Guide v2.2-10</title>
+<title>DTLarchive — User Guide v2.2-16</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
   :root{--bg:#0f1117;--surface:#181c27;--border:#2a3142;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#7b879f;--heading:#f2f6ff;--code:#12161f;--blue:#55a7ff;--warning:#ffcc66;--sidebar:280px}
@@ -18,7 +18,7 @@
 </head>
 <body>
 <nav aria-label="Contents">
-  <div class="logo">DTLarchive<span>User Guide v2.2-10</span></div>
+  <div class="logo">DTLarchive<span>User Guide v2.2-16</span></div>
   <a class="group" href="#start">Getting started</a><a href="#purpose">What is DTLarchive for?</a><a href="#prepare">Prepare the archives</a><a href="#quickstart">Quick walkthrough</a>
   <a class="group" href="#features">Features</a><a href="#language">Language and help</a><a href="#selection">Selection and index</a><a href="#dates">Date range</a><a href="#query">Search query</a><a href="#scope">Scope</a><a href="#report">Report and contexts</a><a href="#json">JSON results</a>
   <a class="group" href="#advanced">Advanced use</a><a href="#index">Manage the index</a><a href="#commandline">Command line</a><a href="#diagnostics">Diagnostics</a>
@@ -26,10 +26,10 @@
 </nav>
 <main>
   <header class="doc-header">
-    <h1><span class="accent">DTLarchive</span> — User Guide v2.2-10</h1>
+    <h1><span class="accent">DTLarchive</span> — User Guide v2.2-16</h1>
     <p class="subtitle">The what, why, and how of every feature.</p>
     <a class="lang-link" href="DTLarchive_Guide_Utilisateur.html">Lire ce guide en français</a>
-    <div class="pills"><span class="pill"><b>version</b>v2.2-10</span><span class="pill"><b>date</b>July 16, 2026</span><span class="pill"><b>audience</b>all users</span><span class="pill"><b>system</b>Windows</span><span class="pill"><b>languages</b>fr / en</span></div>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-16</span><span class="pill"><b>date</b>July 17, 2026</span><span class="pill"><b>audience</b>all users</span><span class="pill"><b>system</b>Windows</span><span class="pill"><b>languages</b>fr / en</span></div>
   </header>
 
   <h2 id="start">Getting started</h2>
@@ -53,7 +53,8 @@
     <li>In File Explorer, select one or more <code>conversations*.json</code> files, then confirm.</li>
     <li>Review the available period. Optionally enter a start date and an end date in <code>dd/mm/yyyy</code> format, or leave the fields blank.</li>
     <li>Enter your search, then choose <code>1</code>, <code>2</code>, or <code>3</code> to determine which parts of the conversations are examined.</li>
-    <li>When processing is complete, press a key. The report opens in your default browser.</li>
+    <li>If conversations are found, press a key: the report opens in your default browser. If no result is found, no report is opened.</li>
+    <li>The search menu reappears directly in the console. The selected archives remain active.</li>
   </ol>
 
   <h2 id="features">Main features</h2>
@@ -74,7 +75,7 @@
       <div><h4>Why?</h4><p>The index speeds up later searches and avoids rereading unchanged files. A conversation duplicated across several exports is retained only once.</p></div>
       <div><h4>How?</h4><p>In the selection window, hold <strong>Ctrl</strong> to choose separate files or <strong>Shift</strong> to choose a continuous range, then click <strong>Open</strong>.</p></div>
     </div>
-    <p>During the update, the name of the current file is displayed. The final message states how many archives were imported or reused. Keep <code>DTLarchive-index.sqlite</code> next to the application to benefit from this reuse.</p>
+    <p>During the update, the name of the current file is displayed. The final message distinguishes analyzed files from imported conversations. If no usable conversation is found, DTLarchive does not ask for a date range and returns to file selection. Keep <code>DTLarchive-index.sqlite</code> next to the application to benefit from its reuse.</p>
   </section>
 
   <section class="feature">
@@ -82,7 +83,7 @@
     <div class="triptych">
       <div><h4>What?</h4><p>The date filter keeps only conversations dated between two inclusive limits.</p></div>
       <div><h4>Why?</h4><p>It reduces the number of results when the same terms occur across several years.</p></div>
-      <div><h4>How?</h4><p>Enter dates in <code>dd/mm/yyyy</code> format. Leave the start date blank to begin with the earliest archive, the end date blank to continue through the latest exchange, or both blank to search everything.</p></div>
+      <div><h4>How?</h4><p>Enter dates in <code>dd/mm/yyyy</code> format. Leave the start date blank to begin with the earliest archive, the end date blank to continue through the latest exchange, or both blank to search everything. Enter <code>Q</code> at either prompt to exit the session.</p></div>
     </div>
     <p>DTLarchive first displays the period actually available. If the end precedes the start or the range does not overlap any archive, it explains the error and asks for the dates again. A partially covered range remains valid.</p>
   </section>
@@ -92,7 +93,7 @@
     <div class="triptych">
       <div><h4>What?</h4><p>A search can contain a word, phrase, alternatives, required terms, an exclusion, or a word prefix.</p></div>
       <div><h4>Why?</h4><p>The syntax lets you broaden or narrow the results without an AI service or semantic interpretation.</p></div>
-      <div><h4>How?</h4><p>Enter words as they may appear in the conversations. Combine them with <code>AND</code>, <code>OR</code>, a comma, <code>-</code>, or <code>*</code>.</p></div>
+      <div><h4>How?</h4><p>Enter words as they may appear in the conversations. Combine them with <code>AND</code>, <code>OR</code>, a comma, <code>-</code>, or <code>*</code>. Enter <code>Q</code> by itself to exit the session.</p></div>
     </div>
     <table><thead><tr><th>Need</th><th>Entry</th><th>Effect</th></tr></thead><tbody>
       <tr><td>One word</td><td><code>retirement</code></td><td>Finds conversations containing that word.</td></tr>
@@ -201,7 +202,7 @@
     <tr><td>Context</td><td>A match with nearby messages that help explain its meaning.</td></tr><tr><td>Results JSON</td><td>Structured, reusable version of the run results.</td></tr>
   </tbody></table>
 
-  <footer>DTLarchive v2.2-10 — User Guide — Copyright © 2026 Didier DTL Morandi — MIT License</footer>
+  <footer>DTLarchive v2.2-16 — User Guide — Copyright © 2026 Didier DTL Morandi — MIT License</footer>
 </main>
 <script>
 const links=[...document.querySelectorAll('nav a:not(.group)')];

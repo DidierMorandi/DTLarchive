@@ -1,6 +1,6 @@
 # DTLarchive
 
-Current version: **v2.2-10**
+Current version: **v2.2-16**
 
 [Version française](README_Fr.md)
 
@@ -54,17 +54,23 @@ index instead of reading every archive again.
    DTLarchive repeats the selection prompt in English; press Enter again.
 3. Select one or more `conversations*.json` files from a ChatGPT export.
 4. Let DTLarchive update its local index. Unchanged archives are reused without
-   being parsed again.
+   being parsed again. If the files contain no usable conversation, DTLarchive
+   returns to file selection without asking for a date range.
 5. Review the date range covered by the selected conversations.
 6. Optionally enter inclusive start and end dates in `dd/mm/yyyy` format.
-   Leave either field empty to remove that limit.
+   Leave either field empty to remove that limit, or enter `Q` to exit the
+   session.
 7. Enter the keyword query and choose where to search.
 8. Wait while the index is searched, then press a key to open the HTML report
    in the default browser.
+9. After the report opens, the search menu reappears directly. The selected
+   archives remain active for the next search.
 
 The selected language applies to the console, contextual help, file-selection
 window, errors, HTML report, conversation pages, and diagnostic log. At an
 interactive prompt, type `?`, `help`, or `h` for help with the current question.
+
+At the `Search` prompt, enter `Q` by itself to exit the session cleanly.
 
 DTLarchive rejects a period that does not overlap the selected archives. A
 partially overlapping period remains valid. Leaving both dates empty searches

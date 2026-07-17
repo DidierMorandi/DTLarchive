@@ -28,7 +28,7 @@ from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-10"
+APP_VERSION = "v2.2-16"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
@@ -81,6 +81,15 @@ class MiningResult:
     matched_roles: list[str] = field(default_factory=list)
     contexts: list[dict[str, Any]] = field(default_factory=list)
     conversation_url: str = ""
+
+
+@dataclass
+class RestartInteractiveSearch:
+    files: list[Path]
+
+
+class QuitInteractiveSession(Exception):
+    """Raised when the user requests a clean exit from an interactive prompt."""
 
 
 class LocalizedArgumentParser(argparse.ArgumentParser):
@@ -376,6 +385,8 @@ def ask_date(label: str, *, end_of_day: bool = False) -> dt.datetime | None:
             return None
         if not value:
             return None
+        if value.casefold() == "q":
+            raise QuitInteractiveSession
         if is_help_request(value):
             print(t("t0025_date.help"))
             continue
@@ -416,7 +427,7 @@ def format_query(terms: Sequence[QueryTerm]) -> list[str]:
     return clauses + exclusions
 
 
-def ask_query() -> list[QueryTerm]:
+def ask_query() -> list[QueryTerm] | None:
     print()
     print(t("t0039_query.instructions"))
     examples = ("retirement", "asylum AND John Doe", "asylum OR retirement", "print*") if current_language() == "en" else ("retraite", "asile ET John Doe", "asile OU retraite", "imprim*")
@@ -428,6 +439,8 @@ def ask_query() -> list[QueryTerm]:
             answer = input().strip()
         except (EOFError, OSError):
             return []
+        if answer.casefold() == "q":
+            return None
         if is_help_request(answer):
             print(t("t0044_query.help"))
             continue
@@ -459,6 +472,7 @@ def ask_role_scope() -> str:
 
 PLURAL_KEYS: dict[str, tuple[str, str]] = {
     "index.file": ("t0063_index.file.one", "t0064_index.file.many"),
+    "index.conversation": ("t0136_index.conversation.one", "t0137_index.conversation.many"),
     "search.selected": ("t0068_search.selected.one", "t0069_search.selected.many"),
     "result.examined": ("t0071_result.examined.one", "t0072_result.examined.many"),
     "result.found": ("t0073_result.found.one", "t0074_result.found.many"),
@@ -852,7 +866,11 @@ def apply_language_argument(argv: Sequence[str]) -> None:
             return
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def run_once(
+    argv: Sequence[str] | None = None,
+    *,
+    selected_files: Sequence[Path] | None = None,
+) -> int | RestartInteractiveSearch:
     configure_console_encoding()
     effective_argv = list(argv) if argv is not None else sys.argv[1:]
     apply_language_argument(effective_argv)
@@ -864,14 +882,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     set_language(args.lang)
     args.output = args.output or (resolve_tool_dir() / "DTLarchive-output" if interactive else Path("DTLarchive-output"))
 
-    files = resolve_inputs(args.inputs, args.pattern) if args.inputs else []
+    returning_to_file_selection = selected_files is not None and not selected_files
+    files = list(selected_files) if selected_files is not None else (
+        resolve_inputs(args.inputs, args.pattern) if args.inputs else []
+    )
     if not files and interactive:
-        wait_for_key(
-            t("t0016_file.selection_intro"),
-            allow_language_switch=True,
-            help_key="t0020_file.help",
-            message_key="t0016_file.selection_intro",
-        )
+        if not returning_to_file_selection:
+            wait_for_key(
+                t("t0016_file.selection_intro"),
+                allow_language_switch=True,
+                help_key="t0020_file.help",
+                message_key="t0016_file.selection_intro",
+            )
         files = sorted({path.resolve() for path in choose_conversation_files() if path.is_file()})
     if not files:
         message = t("t0017_file.none_selected")
@@ -899,10 +921,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             clear_current_file()
             if index_update.imported_files:
                 file_label = plural_label("index.file", index_update.imported_files)
-                print(t("t0062_index.updated", files=green(index_update.imported_files), file_label=file_label, conversations=green(index_update.imported_conversations)))
+                conversation_label = plural_label("index.conversation", index_update.imported_conversations)
+                print(t("t0062_index.updated", files=green(index_update.imported_files), file_label=file_label, conversations=green(index_update.imported_conversations), conversation_label=conversation_label))
             else:
                 print(t("t0065_index.current", files=green(index_update.unchanged_files)))
         source_ids = archive_index.source_ids(files)
+        selected_conversation_count = archive_index.conversation_count(source_ids, None, None)
         archive_bounds = archive_index.archive_bounds(source_ids)
     except (OSError, RuntimeError, ValueError, sqlite3.Error) as exc:
         message = t("t0066_index.failure", error=exc)
@@ -919,6 +943,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             t("t0108_log.index_detail", path=index_path, imported=index_update.imported_files, reused=index_update.unchanged_files)
         ),
     )
+    if selected_conversation_count == 0:
+        message = t("t0138_index.no_conversation")
+        archive_index.close()
+        if interactive:
+            wait_for_key(message)
+            return RestartInteractiveSearch([])
+        print(f"[{t('t0005_common.error')}] {message}", file=sys.stderr)
+        return 2
     if interactive:
         if archive_bounds:
             print(t("t0027_date.available", period=green(archive_period_label(archive_bounds))))
@@ -938,8 +970,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     if interactive:
         while True:
             print(f"\n{t("t0026_date.search_period")}")
-            start_date = ask_date(t("t0022_date.start"))
-            end_date = ask_date(t("t0023_date.end"), end_of_day=True)
+            try:
+                start_date = ask_date(t("t0022_date.start"))
+                end_date = ask_date(t("t0023_date.end"), end_of_day=True)
+            except QuitInteractiveSession:
+                archive_index.close()
+                return 0
             if start_date and end_date and start_date > end_date:
                 print(t("t0029_date.end_before_start"))
                 continue
@@ -952,6 +988,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 continue
             break
         terms = ask_query()
+        if terms is None:
+            archive_index.close()
+            return 0
         role_scope = ask_role_scope()
     elif start_date and end_date and start_date > end_date:
         print(f"[{t("t0005_common.error")}] {t("t0029_date.end_before_start")}", file=sys.stderr)
@@ -1058,14 +1097,24 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"{t("t0077_result.report")} : {green(report_path)}")
 
     if interactive:
-        wait_for_key(t("t0078_result.finished", path=green(report_path)))
-        webbrowser.open(report_path.as_uri())
-        show_dialog(
-            "showinfo",
-            APP_NAME,
-            t("t0079_result.dialog", examined_label=plural_label("result.examined", conversation_count), examined=conversation_count, found_label=plural_label("result.found", len(results)), found=len(results), occurrence_label=plural_label("result.occurrence", occurrences), occurrences=occurrences, path=report_path),
-        )
+        if not results:
+            wait_for_key(t("t0135_result.no_match"))
+        else:
+            wait_for_key(t("t0078_result.finished", path=green(report_path)))
+            webbrowser.open(report_path.as_uri())
+        return RestartInteractiveSearch(files)
     return 0
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    next_argv = argv
+    selected_files: list[Path] | None = None
+    while True:
+        result = run_once(next_argv, selected_files=selected_files)
+        if not isinstance(result, RestartInteractiveSearch):
+            return result
+        selected_files = result.files
+        next_argv = []
 
 
 if __name__ == "__main__":
