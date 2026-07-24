@@ -1,6 +1,6 @@
 # DTLarchive
 
-Version actuelle : **v2.2-16**
+Version actuelle : **v2.2-17**
 
 [English version](README.md)
 
@@ -54,7 +54,7 @@ réutilisent cet index au lieu de relire toutes les archives.
 
 1. Ouvrez `DTLarchive.exe`.
 2. Pour utiliser l'interface anglaise, tapez `1` à la première invite puis
-   appuyez sur Entrée. DTLarchive répète la demande de sélection en anglais ;
+   appuyez sur Entrée. DTLarchive réaffiche tout l'écran d'accueil en anglais ;
    appuyez de nouveau sur Entrée.
 3. Sélectionnez un ou plusieurs fichiers `conversations*.json` provenant d'un
    export ChatGPT.

@@ -28,7 +28,7 @@ from dtlarchive_search import SearchEngine
 
 
 APP_NAME = "DTLarchive"
-APP_VERSION = "v2.2-16"
+APP_VERSION = "v2.2-17"
 SCHEMA_VERSION = "2.1"
 GREEN_COLOR = "\033[38;2;0;255;0m"
 RESET_COLOR = "\033[0m"
@@ -332,6 +332,7 @@ def wait_for_key(
             answer = input().strip()
         if allow_language_switch and answer == "1" and current_language() == "fr":
             set_language("en")
+            print_console_header()
             wait_for_key(
                 t(message_key) if message_key else message,
                 allow_language_switch=allow_language_switch,
@@ -340,6 +341,7 @@ def wait_for_key(
             )
         elif allow_language_switch and answer == "2" and current_language() == "en":
             set_language("fr")
+            print_console_header()
             wait_for_key(
                 t(message_key) if message_key else message,
                 allow_language_switch=allow_language_switch,

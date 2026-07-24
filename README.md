@@ -1,6 +1,6 @@
 # DTLarchive
 
-Current version: **v2.2-16**
+Current version: **v2.2-17**
 
 [Version française](README_Fr.md)
 
@@ -51,7 +51,7 @@ index instead of reading every archive again.
 
 1. Open `DTLarchive.exe`.
 2. To use the English interface, type `1` at the first prompt and press Enter.
-   DTLarchive repeats the selection prompt in English; press Enter again.
+   DTLarchive redraws the complete home screen in English; press Enter again.
 3. Select one or more `conversations*.json` files from a ChatGPT export.
 4. Let DTLarchive update its local index. Unchanged archives are reused without
    being parsed again. If the files contain no usable conversation, DTLarchive

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTLarchive — User Guide v2.2-16</title>
+<title>DTLarchive — User Guide v2.2-17</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
   :root{--bg:#0f1117;--surface:#181c27;--border:#2a3142;--accent:#39ff14;--accent-dim:#145c0d;--text:#c9d1e0;--muted:#7b879f;--heading:#f2f6ff;--code:#12161f;--blue:#55a7ff;--warning:#ffcc66;--sidebar:280px}
@@ -18,7 +18,7 @@
 </head>
 <body>
 <nav aria-label="Contents">
-  <div class="logo">DTLarchive<span>User Guide v2.2-16</span></div>
+  <div class="logo">DTLarchive<span>User Guide v2.2-17</span></div>
   <a class="group" href="#start">Getting started</a><a href="#purpose">What is DTLarchive for?</a><a href="#prepare">Prepare the archives</a><a href="#quickstart">Quick walkthrough</a>
   <a class="group" href="#features">Features</a><a href="#language">Language and help</a><a href="#selection">Selection and index</a><a href="#dates">Date range</a><a href="#query">Search query</a><a href="#scope">Scope</a><a href="#report">Report and contexts</a><a href="#json">JSON results</a>
   <a class="group" href="#advanced">Advanced use</a><a href="#index">Manage the index</a><a href="#commandline">Command line</a><a href="#diagnostics">Diagnostics</a>
@@ -26,10 +26,10 @@
 </nav>
 <main>
   <header class="doc-header">
-    <h1><span class="accent">DTLarchive</span> — User Guide v2.2-16</h1>
+    <h1><span class="accent">DTLarchive</span> — User Guide v2.2-17</h1>
     <p class="subtitle">The what, why, and how of every feature.</p>
     <a class="lang-link" href="DTLarchive_Guide_Utilisateur.html">Lire ce guide en français</a>
-    <div class="pills"><span class="pill"><b>version</b>v2.2-16</span><span class="pill"><b>date</b>July 17, 2026</span><span class="pill"><b>audience</b>all users</span><span class="pill"><b>system</b>Windows</span><span class="pill"><b>languages</b>fr / en</span></div>
+    <div class="pills"><span class="pill"><b>version</b>v2.2-17</span><span class="pill"><b>date</b>July 22, 2026</span><span class="pill"><b>audience</b>all users</span><span class="pill"><b>system</b>Windows</span><span class="pill"><b>languages</b>fr / en</span></div>
   </header>
 
   <h2 id="start">Getting started</h2>
@@ -49,7 +49,7 @@
   <h3 id="quickstart">Quick walkthrough with the executable</h3>
   <ol class="steps">
     <li>Double-click <code>DTLarchive.exe</code>.</li>
-    <li>Type <code>1</code> and press <strong>Enter</strong> to switch to English. DTLarchive repeats the current question in English; press Enter again to continue.</li>
+    <li>Type <code>1</code> and press <strong>Enter</strong> to switch to English. DTLarchive redraws the complete home screen in English; press Enter again to continue.</li>
     <li>In File Explorer, select one or more <code>conversations*.json</code> files, then confirm.</li>
     <li>Review the available period. Optionally enter a start date and an end date in <code>dd/mm/yyyy</code> format, or leave the fields blank.</li>
     <li>Enter your search, then choose <code>1</code>, <code>2</code>, or <code>3</code> to determine which parts of the conversations are examined.</li>
@@ -65,7 +65,7 @@
       <div><h4>Why?</h4><p>The selected language applies to questions, errors, windows, reports, conversation pages, and logs.</p></div>
       <div><h4>How?</h4><p>At the first question, type <code>1</code> for English or press Enter for French. Type <code>?</code>, <code>aide</code>, <code>help</code>, or <code>h</code> to display an explanation of the current question.</p></div>
     </div>
-    <p>After a help request, DTLarchive displays the explanation and repeats the same question. Switching to English works the same way: no step is skipped.</p>
+    <p>After a help request, DTLarchive displays the explanation and repeats the same question. Changing languages redraws the complete home screen in the selected language without skipping a step.</p>
   </section>
 
   <section class="feature">
@@ -202,7 +202,7 @@
     <tr><td>Context</td><td>A match with nearby messages that help explain its meaning.</td></tr><tr><td>Results JSON</td><td>Structured, reusable version of the run results.</td></tr>
   </tbody></table>
 
-  <footer>DTLarchive v2.2-16 — User Guide — Copyright © 2026 Didier DTL Morandi — MIT License</footer>
+  <footer>DTLarchive v2.2-17 — User Guide — Copyright © 2026 Didier DTL Morandi — MIT License</footer>
 </main>
 <script>
 const links=[...document.querySelectorAll('nav a:not(.group)')];
